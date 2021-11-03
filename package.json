@@ -1,0 +1,22 @@
+{
+  "name": "blockchain_mock_investment",
+  "version": "1.0.0",
+  "description": "2021 캡스톤 디자인 - 블록체인을 이용한 한남대학교 모의 투자 웹 페이지",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nueob/blockchain_mock_investment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nueob/blockchain_mock_investment/issues"
+  },
+  "homepage": "https://github.com/nueob/blockchain_mock_investment#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
