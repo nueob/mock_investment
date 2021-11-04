@@ -4,11 +4,27 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('sample/index2', { title: 'Express' });
+  res.render('stock-search/stock-search', { title: 'Express' });
 });
 
-router.get('/sample', function(req, res, next) {
-  res.render('sample/ui-widgets-todolist', { title: 'Express' });
+router.get('/gallery', function(req, res, next) {
+  res.render('sample/application-gallery', { title: 'Express' });
+});
+
+router.get('/model', function(req, res, next) {
+  res.render('sample/component-modal', { title: 'Express' });
+});
+
+router.get('/table', function(req, res, next) {
+  res.render('sample/table', { title: 'Express' });
+});
+
+router.get('/table/dataable', function(req, res, next) {
+  res.render('sample/table-datatable', { title: 'Express' });
+});
+
+router.get('/select', function(req, res, next) {
+  res.render('sample/form-element-select', { title: 'Express' });
 });
 
 router.get('/stock', function(req, res, next) {
