@@ -1,0 +1,189 @@
+<style> 
+/* 탭 css*/
+.project-tab {
+    /* padding: 10%; */
+    /* margin-top: -8%; */
+    margin-left:-30%;
+    margin-right:-30%;
+}
+.project-tab #tabs{
+    background: #007b5e;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: #eee;
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #435ebe;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #435ebe;
+    font-size: 16px;
+    font-weight: 600;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+/*검색창 css*/
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+</style>
+<div>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="container">
+    <br/>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <form class="card card-sm">
+                <div class="card-body row no-gutters align-items-center" style="padding:0.5rem;">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+                    <!--end of col-->
+                    <div class="col">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto">
+                        <button class="btn btn-lg btn-success" type="submit" style="background-color: #435ebe;border-color: #435ebe;">Search</button>
+                    </div>
+                    <!--end of col-->
+                </div>
+            </form>
+        </div>
+        <!--end of col-->
+    </div>
+</div>
+<section id="tabs" class="project-tab">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="current-price-tab" data-toggle="tab" href="#current-price" role="tab" aria-controls="current-price" aria-selected="true">현재가</a>
+                        <a class="nav-item nav-link" id="live-chart-tab" data-toggle="tab" href="#live-chart" role="tab" aria-controls="live-chart" aria-selected="false">실시간 차트</a>
+                        <a class="nav-item nav-link" id="company-info-tab" data-toggle="tab" href="#company-info" role="tab" aria-controls="company-info" aria-selected="false">기업 정보</a>
+                        <a class="nav-item nav-link" id="company-news-tab" data-toggle="tab" href="#company-news" role="tab" aria-controls="company-news" aria-selected="false">기업 뉴스</a>
+                        <a class="nav-item nav-link" id="investment-discussion-tab" data-toggle="tab" href="#investment-discussion" role="tab" aria-controls="investment-discussion" aria-selected="false">종목 토론</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="current-price" role="tabpanel" aria-labelledby="current-price-tab">current-price</div>
+                    <div class="tab-pane fade" id="live-chart" role="tabpanel" aria-labelledby="live-chart-tab">live-chart</div>
+                    <div class="tab-pane fade" id="company-info" role="tabpanel" aria-labelledby="company-info-tab">company-info</div>
+                    <div class="tab-pane fade" id="company-news" role="tabpanel" aria-labelledby="company-news-tab">company-news</div>
+                    <div class="tab-pane fade" id="investment-discussion" role="tabpanel" aria-labelledby="investment-discussion-tab">investment-discussion</div>
+                    <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <table class="table" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Employer</th>
+                                    <th>Awards</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Work 1</a></td>
+                                    <td>Doe</td>
+                                    <td>john@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Work 2</a></td>
+                                    <td>Moe</td>
+                                    <td>mary@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Work 3</a></td>
+                                    <td>Dooley</td>
+                                    <td>july@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <table class="table" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Employer</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Work 1</a></td>
+                                    <td>Doe</td>
+                                    <td>john@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Work 2</a></td>
+                                    <td>Moe</td>
+                                    <td>mary@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Work 3</a></td>
+                                    <td>Dooley</td>
+                                    <td>july@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <table class="table" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Contest Name</th>
+                                    <th>Date</th>
+                                    <th>Award Position</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Work 1</a></td>
+                                    <td>Doe</td>
+                                    <td>john@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Work 2</a></td>
+                                    <td>Moe</td>
+                                    <td>mary@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Work 3</a></td>
+                                    <td>Dooley</td>
+                                    <td>july@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
