@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('sample/ui-icons-bootstrap-icons');
+  res.render('sample/ui-icons-bootstrap-icons', { title: 'Express' });
 });
 
 module.exports = router;

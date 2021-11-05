@@ -48,3 +48,35 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+//mysql 연동 연습
+// var mysql = require('mysql');
+// var connection = mysql.createConnection({
+//   host : 'localhost',
+//   user : "root",
+//   password : "",
+//   database : "o2"
+
+// });
+
+// connection.connect();
+// var sql = "select * from topic";
+// connection.query(sql, function(err, rows, fields) {
+//   if (err) {
+//     console.log(err);
+//   }else{
+//     console.log('rows', rows);
+//     console.log('fields', fields);
+//   }
+// });
+// connection.end();
+
+// var sql = "insert into topic (id, description, author) values('3', 'nodejs','ungung')";
+// connection.query(sql, function(err, rows, fields){
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log(rows);
+//   }
+// });
+// connection.end();
