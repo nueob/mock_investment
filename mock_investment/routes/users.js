@@ -7,4 +7,8 @@ router.get('/', function(req, res, next) {
   res.render('sample/ui-icons-bootstrap-icons', { title: 'Express' });
 });
 
+router.get('/my', function(req, res, next) {
+  res.render('dashboard/my', { title: 'Express' });
+});
+
 module.exports = router;
