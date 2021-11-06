@@ -14,7 +14,7 @@
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
+                        <div class="col-12 col-md-12">
                             <h3>내 정보</h3>
                           
                         </div>
@@ -22,21 +22,29 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-12 col-md-9">
+                <div class="col-12 col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body py-4 px-5">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-xl">
                                     <img src="/images/faces/1.jpg" alt="Face 1">
                                 </div>
-                                <div class="ms-3 name">
+                            
+                                 <div class="ms-3 name ">
                                     <h5 class="font-bold">John Duck님</h5>
+                                
+                                
                                     <h6 class="text-muted mb-0">@johnducky</h6>
+                                    <button type="button" class="btn btn-info "  data-bs-toggle="modal"
+                                        data-bs-target="#inlineForm">
+                                         닉네임 변경
+                                    </button>
                                 </div>
-                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                               
+                                <!-- <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                                                 data-bs-target="#inlineForm">
                                                닉네임 변경
-                                </button>
+                                </button> -->
 
                                 <div class="modal fade text-left" id="inlineForm" tabindex="-1"
                                 role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
@@ -82,16 +90,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
         
 
 
-           <div class="row">
-               <div class="col-md-6">
+    
+            <div class="row">
+                <div class="col-md-12"> 
                   
                
                 
-                    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
                                 role="tab" aria-controls="home" aria-selected="true">진행중인 거래</a>
@@ -111,11 +119,18 @@
                             <div class ="row">
                                 <div class="col-md-5">
                                     <h5>삼성전자</h5>
+                                    <h5>sk하이닉스</h5>
+                                    <h5>카카오</h5>
+                                    
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
+                                    <h6 class="text-muted font-semibold">71,000</h6>
+                                    <h6 class="text-muted font-semibold">71,000</h6>
                                     <h6 class="text-muted font-semibold">71,000</h6>
                                 </div>  
                                 <div class="col-md-4">
+                                    <h6 class="font-extrabold mb-0 cen2">매도진행중</h6>
+                                    <h6 class="font-extrabold mb-0 cen2">매도진행중</h6>
                                     <h6 class="font-extrabold mb-0 cen2">매도진행중</h6>
                                 </div> 
                             </div>    

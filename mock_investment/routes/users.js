@@ -11,4 +11,11 @@ router.get('/my', function(req, res, next) {
   res.render('dashboard/my', { title: 'Express' });
 });
 
+router.get('/asset', function(req, res, next) {
+  res.render('dashboard/assetvalue', { title: 'Express' });
+});
+
+
+
+
 module.exports = router;
