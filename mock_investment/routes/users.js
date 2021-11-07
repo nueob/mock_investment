@@ -14,6 +14,9 @@ router.get('/my', function(req, res, next) {
 router.get('/asset', function(req, res, next) {
   res.render('dashboard/assetvalue', { title: 'Express' });
 });
+router.get('/my1', function(req, res, next) {
+  res.render('dashboard/my1', { title: 'Express' });
+});
 
 
 
