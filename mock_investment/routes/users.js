@@ -8,15 +8,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/my', function(req, res, next) {
-  res.render('dashboard/my', { title: 'Express' });
+  res.render('myInfo/my1', { title: 'Express' });
 });
 
 router.get('/asset', function(req, res, next) {
-  res.render('dashboard/assetvalue', { title: 'Express' });
+  res.render('myInfo/assetvalue', { title: 'Express' });
 });
-router.get('/my1', function(req, res, next) {
-  res.render('dashboard/my1', { title: 'Express' });
-});
+
 
 
 
