@@ -7,13 +7,21 @@ router.get('/', function(req, res, next) {
   res.render('stock-search/stock-search', { title: 'Express' });
 });
 
-router.get('/stock', function(req, res, next) {
+router.get('/companyInfo', function(req, res, next) {
   res.render('stock-search/stock-companyInfo', { title: 'Express' });
+});
+
+router.get('/discussion', function(req, res, next) {
+  res.render('stock-search/stock-discussion', { title: 'Express' });
 });
 
 /* sample page */
 router.get('/gallery', function(req, res, next) {
   res.render('sample/application-gallery', { title: 'Express' });
+});
+
+router.get('/divider', function(req, res, next) {
+  res.render('sample/extra-component-divider', { title: 'Express' });
 });
 
 router.get('/model', function(req, res, next) {
@@ -54,6 +62,10 @@ router.get('/layout/vertical', function(req, res, next) {
 
 router.get('/icon', function(req, res, next) {
   res.render('sample/ui-icons-bootstrap-icons', { title: 'Express' });
+});
+
+router.get('/input', function(req, res, next) {
+  res.render('sample/form-element-input', { title: 'Express' });
 });
 
 module.exports = router;
