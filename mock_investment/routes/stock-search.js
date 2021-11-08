@@ -2,11 +2,16 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* 종목 검색 page */
 router.get('/', function(req, res, next) {
   res.render('stock-search/stock-search', { title: 'Express' });
 });
 
+router.get('/stock', function(req, res, next) {
+  res.render('stock-search/stock-companyInfo', { title: 'Express' });
+});
+
+/* sample page */
 router.get('/gallery', function(req, res, next) {
   res.render('sample/application-gallery', { title: 'Express' });
 });
@@ -27,10 +32,6 @@ router.get('/select', function(req, res, next) {
   res.render('sample/form-element-select', { title: 'Express' });
 });
 
-router.get('/stock', function(req, res, next) {
-  res.render('stock-search/stock-search', { title: 'Express' });
-});
-
 router.get('/font', function(req, res, next) {
   res.render('sample/component-tooltip', { title: 'Express' });
 });
@@ -49,6 +50,10 @@ router.get('/layout/horizontal', function(req, res, next) {
 
 router.get('/layout/vertical', function(req, res, next) {
   res.render('sample/layout-vertical-1-column', { title: 'Express' });
+});
+
+router.get('/icon', function(req, res, next) {
+  res.render('sample/ui-icons-bootstrap-icons', { title: 'Express' });
 });
 
 module.exports = router;
