@@ -31,4 +31,24 @@ router.get('/stock', function(req, res, next) {
   res.render('stock-search/stock-search', { title: 'Express' });
 });
 
+router.get('/font', function(req, res, next) {
+  res.render('sample/component-tooltip', { title: 'Express' });
+});
+
+router.get('/button', function(req, res, next) {
+  res.render('sample/component-button', { title: 'Express' });
+});
+
+router.get('/layout/default', function(req, res, next) {
+  res.render('sample/layout-default', { title: 'Express' });
+});
+
+router.get('/layout/horizontal', function(req, res, next) {
+  res.render('sample/layout-horizontal', { title: 'Express' });
+});
+
+router.get('/layout/vertical', function(req, res, next) {
+  res.render('sample/layout-vertical-1-column', { title: 'Express' });
+});
+
 module.exports = router;
