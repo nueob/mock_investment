@@ -2,6 +2,7 @@
 <html lang="en">
  <style>.card-footer{background-color:#fff}</style>
  <style>.btn.btn-info{background-color:#f2f7ff; border-color: #f2f7ff; color:#002152;}</style>
+
  
 
 
@@ -185,7 +186,7 @@
                                                 aria-orientation="vertical">
                                                 <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
                                                     href="#v-pills-home" role="tab" aria-controls="v-pills-home"
-                                                    aria-selected="true">이체</a>
+                                                    aria-selected="true">자산정보</a>
                                                 <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                                     href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
                                                     aria-selected="false">진행중인 거래</a>
@@ -212,20 +213,49 @@
                                              <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                                                 aria-labelledby="v-pills-home-tab">
                                                 <h1>이체</h1>
-                                                
+                                                <div class="table-responsive">
+                                                    <table class="table ">
+                                                       
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="text-bold-500" >총 자산</th>
+                                                                <td>9,981,000</td>
+                                                              
+                                                               
+                                                                <!-- <td><a href="#"><i
+                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                                            data-feather="mail"></i></a></td> -->
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="text-bold-500">가용 자산</th>
+                                                                <td>9,352,000</td>
+                                                                
+                                                            
+                                                                <!-- <td><a href="#"><i
+                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                                            data-feather="mail"></i></a></td> -->
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="text-bold-500">보유 주식 총액</th>
+                                                                <td>629,000</td>
+                                                                
+            <!--                                                    
+                                                                <td><a href="#"><i
+                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                                            data-feather="mail"></i></a></td> -->
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th class="text-bold-500">보유 종목 수</th>
+                                                                <td>1종목</td>
+                                                            </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
 
                                                
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-                                                nulla neque.
-                                                Ut hendrerit nulla a euismod pretium.
-                                                Fusce venenatis sagittis ex efficitur suscipit. In tempor mattis
-                                                fringilla. Sed
-                                                id tincidunt orci, et volutpat ligula.
-                                                Aliquam sollicitudin sagittis ex, a rhoncus nisl feugiat quis. Lorem
-                                                ipsum dolor
-                                                sit amet, consectetur adipiscing elit.
-                                                Nunc ultricies ligula a tempor vulputate. Suspendisse pretium mollis
-                                                ultrices
+                                            
                                             </div>
                                             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                                 aria-labelledby="v-pills-profile-tab">
@@ -263,21 +293,65 @@
                                             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                                                 aria-labelledby="v-pills-messages-tab">
                                                 <h1>거래내역</h1>
-                                                Integer pretium dolor at sapien laoreet ultricies. Fusce congue et
-                                                lorem id
-                                                convallis. Nulla volutpat tellus nec
-                                                molestie finibus. In nec odio tincidunt eros finibus ullamcorper. Ut
-                                                sodales,
-                                                dui nec posuere finibus, nisl sem aliquam
-                                                metus, eu accumsan lacus felis at odio.
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered mb-0">
+                                                       
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="text-bold-500" >엔씨소프트</th>
+                                                                <td>매수가 648,000<br>1주</td>
+                                                                
+                                                               
+                                                                <!-- <td><a href="#"><i
+                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                                            data-feather="mail"></i></a></td> -->
+                                                            </tr>
+                                                            
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered mb-0">
+                                                       
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="text-bold-500" >엔씨소프트</th>
+                                                                <td>매수가 648,000<br>1주</td>
+                                                                
+                                                               
+                                                                <!-- <td><a href="#"><i
+                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                                            data-feather="mail"></i></a></td> -->
+                                                            </tr>
+                                                            
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                              </div>
                                             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
                                                 aria-labelledby="v-pills-settings-tab">
                                                 <h1>관심 종목</h1>
-                                                Sed lacus quam, convallis quis condimentum ut, accumsan congue
-                                                massa.
-                                                Pellentesque et quam vel massa pretium ullamcorper
-                                                vitae eu tortor.
+                                                <div class="col-lg-12 col-md-12">
+                                                
+                                                              
+                                                      <div class="list-group">
+                                                                 <span class="list-group-item">
+                                                                       종목1
+                                                                 </span>
+                                                                    <span class="list-group-item">종목2</span>
+                                                                    <span class="list-group-item ">종목3</span>
+                                                                    <span class="list-group-item">종목4</span>
+                                                                    <span class="list-group-item">종목5</span>
+                                                                    <span class="list-group-item">
+                                                                        </span>
+                                                                    <!-- <span class="list-group-item">Oat cake icing pastry pie carrot</span> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                            
                                         </div>
