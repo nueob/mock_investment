@@ -50,6 +50,7 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
+
 //mysql 연동 연습
 // var mysql = require('mysql');
 // var connection = mysql.createConnection({
@@ -81,3 +82,4 @@ module.exports = app;
 //   }
 // });
 // connection.end();
+
