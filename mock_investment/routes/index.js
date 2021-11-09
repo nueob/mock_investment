@@ -2,15 +2,18 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('user-auth/auth-login', { title: 'Express' });
-// });
+router.get('/', function(req, res, next) {
+  res.render('user-auth/auth-login', { title: 'Express' });
+});
+module.exports = router;
 
-router.get('/', function(req,res){
-  var email = req.query.email;
-  var id = req.query.id;
-  res.send(email+','+id);
+router.post('/', function(req,res,error){
+  var password = req.body.password;
+  var id = req.body.id;
+  res.render('user-auth/auth-login', { title: 'Express' });
 })
+module.exports = router;
+
 router.get('/register', function(req, res, next){
   res.render('user-auth/auth-register', {title: 'Express'});
 });
