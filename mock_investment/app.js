@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
 //var bodyParser = require('body-parser');
 
 //var indexRouter = require('./routes/index');
@@ -66,6 +67,16 @@ app.get('/register', (req,res)=>{
 //   req.session.count=1;
 //   res.send('ge');
 // });
+
+
+app.get('/logout', function(req, res, next){
+  res.send(req.session.displayname+'logout<a href="/">login</a>')
+  delete req.session.displayname; //여기서 세션 초기화
+  // res.send(req.session.displayname+'hello'); //세션 초기화 됐는지 이걸로 확인해보면 됨.
+});
+
+
+
 app.listen('3000', function(){
   console.log('success');
 });
