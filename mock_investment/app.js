@@ -15,12 +15,27 @@ var mainRouter = require('./routes/main');
 var searchRouter = require('./routes/stock-search');
 const expressEjsLayouts = require('express-ejs-layouts');
 
+var mysql = require('mysql');
+var conn = mysql.createConnection({
+  host : 'localhost',
+  user : "root",
+  password : "",
+  database : "o2"
+});
+conn.connect();
 var app = express();
 //app.use(bodyParser.urlencoded({ extended: false}));
 app.use(session({
   secret: 'sdfdsf3',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store:new MySQLStore({
+    host : 'localhost',
+    port:3306,
+    user : "root",
+    password : "",
+    database : "o2"
+  })
 }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,19 +60,20 @@ app.get('/', (req,res)=>{
 })
 
 app.post('/', (req,res)=>{
-  var user = {
-    user_name: '한남대',
-    user_password: '1111'
-  };
-  var um = req.body.um;
-  var pwd = req.body.pwd;
+  res.render("user-auth/auth-login", {title: 'Express'});
+  // var user = {
+  //   user_name: '한남대',
+  //   user_password: '1111'
+  // };
+  // var um = req.body.um;
+  // var pwd = req.body.pwd;
     
-  if( um ===  user.user_name && pwd === user.user_password){
-    req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
-    res.render('dashboard/index', { title: 'Express' });
-  }else{
-    res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
-  }
+  // if( um ===  user.user_name && pwd === user.user_password){
+  //   req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
+  //   res.render('dashboard/index', { title: 'Express' });
+  // }else{
+  //   res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
+  // }
 });
 
 app.get('/register', (req,res)=>{
@@ -67,6 +83,25 @@ app.get('/register', (req,res)=>{
 //   req.session.count=1;
 //   res.send('ge');
 // });
+
+app.post('/register', (req,res)=>{
+  var user = {
+    authId:'local'+req.body.id,
+    username:req.body.id,
+    password:req.body.password,
+    displayname:req.body.display_name,
+    email:req.body.email
+  };
+  var sql = "insert into users SET ?";
+  conn.query(sql, user, function(err,result){  //user라는 변수가 가리키는 객체가 sql로 담긴다.
+      if(err){
+        console.log(err);
+        res.status(500);
+      } else{
+        res.redirect('/');
+      }
+  });
+});
 
 
 app.get('/logout', function(req, res, next){
