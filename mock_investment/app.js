@@ -15,27 +15,27 @@ var mainRouter = require('./routes/main');
 var searchRouter = require('./routes/stock-search');
 const expressEjsLayouts = require('express-ejs-layouts');
 
-var mysql = require('mysql');
-var conn = mysql.createConnection({
-  host : 'localhost',
-  user : "root",
-  password : "",
-  database : "o2"
-});
-conn.connect();
+// var mysql = require('mysql');
+// var conn = mysql.createConnection({
+//   host : 'localhost',
+//   user : "root",
+//   password : "",
+//   database : "o2"
+// });
+// conn.connect();
 var app = express();
 //app.use(bodyParser.urlencoded({ extended: false}));
 app.use(session({
   secret: 'sdfdsf3',
   resave: false,
   saveUninitialized: true,
-  store:new MySQLStore({
-    host : 'localhost',
-    port:3306,
-    user : "root",
-    password : "",
-    database : "o2"
-  })
+  // store:new MySQLStore({
+  //   host : 'localhost',
+  //   port:3306,
+  //   user : "root",
+  //   password : "",
+  //   database : "o2"
+  // })
 }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -85,22 +85,22 @@ app.get('/register', (req,res)=>{
 // });
 
 app.post('/register', (req,res)=>{
-  var user = {
-    authId:'local'+req.body.id,
-    username:req.body.id,
-    password:req.body.password,
-    displayname:req.body.display_name,
-    email:req.body.email
-  };
-  var sql = "insert into users SET ?";
-  conn.query(sql, user, function(err,result){  //user라는 변수가 가리키는 객체가 sql로 담긴다.
-      if(err){
-        console.log(err);
-        res.status(500);
-      } else{
+  // var user = {
+  //   authId:'local'+req.body.id,
+  //   username:req.body.id,
+  //   password:req.body.password,
+  //   displayname:req.body.display_name,
+  //   email:req.body.email
+  // };
+  // var sql = "insert into users SET ?";
+  // conn.query(sql, user, function(err,result){  //user라는 변수가 가리키는 객체가 sql로 담긴다.
+  //     if(err){
+  //       console.log(err);
+  //       res.status(500);
+  //     } else{
         res.redirect('/');
-      }
-  });
+  //     }
+  // });
 });
 
 
@@ -165,4 +165,3 @@ module.exports = app;
 //   }
 // });
 // connection.end();
-
