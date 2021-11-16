@@ -4,25 +4,33 @@ var session = require('express-session');
 var router = express.Router();
 
 router.post('/', function(req, res, next){
+//   um = req.body.username;
+//   pwd = req.body.password;
+//   var sql = 'select * from users where username=?';
+//   console.log('first');
+//   conn.query(sql,[um], (err, results)=>{
+//     console.log('second');
+//     if(um === results[0].username && pwd === results[0].password){
+//       res.render('dashboard/index', { title: 'Express' });
+//     }else{
+//       res.send('로그인실패')
+//       console.log('fail');
+//     }    
+//   });
+// });
   var user = {
     user_name: '한남대',
     user_password: '1111'
   };
-  var um = req.body.um;
-  var pwd = req.body.pwd;
-    
+  var um = req.body.username;
+  var pwd = req.body.password;
+  console.log('hi');
   if( um ===  user.user_name && pwd === user.user_password){
     req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
     res.render('dashboard/index', { title: 'Express' });
   }else{
     res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
   }
-  // if(req.session.displayname){
-  //   res.render("dashboard/index");
-  // } else{
-  //   res.send("please login first");
-  // }
-  
 });
 module.exports = router;
 

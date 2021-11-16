@@ -4,39 +4,38 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 //var bodyParser = require('body-parser');
 
-//var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var mainRouter = require('./routes/main');
+// var mainRouter = require('./routes/main');
 var searchRouter = require('./routes/stock-search');
 const expressEjsLayouts = require('express-ejs-layouts');
 
-// var mysql = require('mysql');
-// var conn = mysql.createConnection({
-//   host : 'localhost',
-//   user : "root",
-//   password : "",
-//   database : "o2"
-// });
-// conn.connect();
+var mysql = require('mysql');
+var conn = mysql.createConnection({
+  host : 'localhost',
+  user : "root",
+  password : "",
+  database : "o2"
+});
+conn.connect();
 var app = express();
 //app.use(bodyParser.urlencoded({ extended: false}));
 app.use(session({
   secret: 'sdfdsf3',
   resave: false,
   saveUninitialized: true,
-  // store:new MySQLStore({
-  //   host : 'localhost',
-  //   port:3306,
-  //   user : "root",
-  //   password : "",
-  //   database : "o2"
-  // })
+  store:new MySQLStore({
+    host : 'localhost',
+    port:3306,
+    user : "root",
+    password : "",
+    database : "o2"
+  })
 }));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -50,8 +49,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', indexRouter);
-app.use('/main', mainRouter);
+// app.use('/main', mainRouter);
 app.use('/search', searchRouter);
 app.use('/users', usersRouter);
 
@@ -59,22 +57,24 @@ app.get('/', (req,res)=>{
   res.render("user-auth/auth-login", {title: 'Express'});
 })
 
-app.post('/', (req,res)=>{
-  res.render("user-auth/auth-login", {title: 'Express'});
-  // var user = {
-  //   user_name: '한남대',
-  //   user_password: '1111'
-  // };
-  // var um = req.body.um;
-  // var pwd = req.body.pwd;
-    
-  // if( um ===  user.user_name && pwd === user.user_password){
-  //   req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
-  //   res.render('dashboard/index', { title: 'Express' });
-  // }else{
-  //   res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
-  // }
-});
+
+// app.post('/', (req,res)=>{
+//   res.render("user-auth/auth-login", {title: 'Express'}); 
+//   um = req.body.username;
+//   pwd = req.body.password;
+//   conn.query('select * from users where username=?',[um], (err, results)=>{
+//     if(um === results[0].username && pwd === results[0].password){
+//       console.log('sueecccssss');
+//       req.session.username = results.username;
+//       req.session.save(function(){
+//         res.render('dashboard/index');
+//      });
+//     }else{
+//       res.send('로그인실패')
+//       console.log('fail');
+//     }    
+//   });
+// });
 
 app.get('/register', (req,res)=>{
   res.render("user-auth/auth-register");
@@ -85,31 +85,57 @@ app.get('/register', (req,res)=>{
 // });
 
 app.post('/register', (req,res)=>{
-  // var user = {
-  //   authId:'local'+req.body.id,
-  //   username:req.body.id,
-  //   password:req.body.password,
-  //   displayname:req.body.display_name,
-  //   email:req.body.email
-  // };
-  // var sql = "insert into users SET ?";
-  // conn.query(sql, user, function(err,result){  //user라는 변수가 가리키는 객체가 sql로 담긴다.
-  //     if(err){
-  //       console.log(err);
-  //       res.status(500);
-  //     } else{
+  var user = {
+    authId:'local'+req.body.user_name,
+    username:req.body.user_name,
+    password:req.body.pass_word,
+    displayname:req.body.display_name,
+    email:req.body.email
+  };
+  var sql = "insert into users SET ?";
+  conn.query(sql, user, function(err,result){  //user라는 변수가 가리키는 객체가 sql로 담긴다.
+      if(err){
+        console.log(err);
+        res.status(500);
+      } else{
         res.redirect('/');
-  //     }
-  // });
+      }
+  });
 });
 
+app.get('/main', (req, res)=>{
+  res.render('dashboard/index');
+});
+
+app.post('/main', (req, res)=>{
+  var username = req.body.username;
+  var password = req.body.password;
+  conn.query('select * from users where username=?',[username], function( error, results, fields){
+    if(error){
+      res.send('failed');
+    }else{
+      if(results.length > 0) {
+        if (results[0].password == password){
+          req.session.username = req.body.username;  //이거 좌,우 순서만 바껴도 틀린다........
+          res.render('dashboard/index');
+        }else{
+          res.redirect('/fail');
+        }
+      }else{
+        res.redirect('/fail');
+      }
+    }
+  });
+});
+app.get('/fail', (req,res)=>{
+  res.render('user-auth/auth-fail-login');
+});
 
 app.get('/logout', function(req, res, next){
-  res.send(req.session.displayname+'logout<a href="/">login</a>')
-  delete req.session.displayname; //여기서 세션 초기화
+  res.send(req.session.username+'logout<a href="/">login</a>');
+  delete req.session.username; //여기서 세션 초기화
   // res.send(req.session.displayname+'hello'); //세션 초기화 됐는지 이걸로 확인해보면 됨.
 });
-
 
 
 app.listen('3000', function(){
@@ -134,15 +160,7 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 
-//mysql 연동 연습
-// var mysql = require('mysql');
-// var connection = mysql.createConnection({
-//   host : 'localhost',
-//   user : "root",
-//   password : "",
-//   database : "o2"
 
-// });
 
 // connection.connect();
 // var sql = "select * from topic";
