@@ -2,6 +2,9 @@
 var express = require('express');
 var session = require('express-session');
 var router = express.Router();
+// var userController = require('../controllers/UserControllers');
+
+// router.get('/',userController.doDashbord);
 
 router.post('/', function(req, res, next){
 //   um = req.body.username;
@@ -19,8 +22,8 @@ router.post('/', function(req, res, next){
 //   });
 // });
   var user = {
-    user_name: '한남대',
-    user_password: '1111'
+    user_name: '123',
+    user_password: '123'
   };
   var um = req.body.username;
   var pwd = req.body.password;

@@ -23,12 +23,12 @@ module.exports = {
     doDashbord : function(req,res,next) {
         res.render('dashbord/index', {title: 'Express'});
     },
-    
+
     // data controllers
     loginProc : function(req,res,next) {
         User.findUser(req.body.username,req.body.password).then((result) =>{
             if(result != '') {
-                res.render('stock-search/stock-search');
+                res.render('dashboard/index');
             } else {
                 res.render('user-auth/auth-login.ejs');
             }
