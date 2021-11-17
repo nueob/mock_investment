@@ -57,32 +57,9 @@ app.get('/', (req,res)=>{
   res.render("user-auth/auth-login", {title: 'Express'});
 })
 
-
-// app.post('/', (req,res)=>{
-//   res.render("user-auth/auth-login", {title: 'Express'}); 
-//   um = req.body.username;
-//   pwd = req.body.password;
-//   conn.query('select * from users where username=?',[um], (err, results)=>{
-//     if(um === results[0].username && pwd === results[0].password){
-//       console.log('sueecccssss');
-//       req.session.username = results.username;
-//       req.session.save(function(){
-//         res.render('dashboard/index');
-//      });
-//     }else{
-//       res.send('로그인실패')
-//       console.log('fail');
-//     }    
-//   });
-// });
-
 app.get('/register', (req,res)=>{
   res.render("user-auth/auth-register");
 });
-// app.get('/', function(req,res){
-//   req.session.count=1;
-//   res.send('ge');
-// });
 
 app.post('/register', (req,res)=>{
   var user = {
@@ -92,20 +69,24 @@ app.post('/register', (req,res)=>{
     displayname:req.body.display_name,
     email:req.body.email
   };
-  var sql = "insert into users SET ?";
-  conn.query(sql, user, function(err,result){  //user라는 변수가 가리키는 객체가 sql로 담긴다.
-      if(err){
-        console.log(err);
-        res.status(500);
-      } else{
-        res.redirect('/');
-      }
-  });
+  if(req.body.pass_word === req.body.confirm_password){
+    var sql = "insert into users SET ?";
+    conn.query(sql, user, function(err,result){  //user라는 변수가 가리키는 객체가 sql로 담긴다.
+        if(err){
+          console.log(err);
+          res.status(500);
+        } else{
+          res.redirect('/');
+        }
+    });
+  }else{
+    res.send('비밀번호가 다릅니다. 다시 입력해주세요.<a href="/register">register</a>');
+  }
 });
 
-app.get('/main', (req, res)=>{
-  res.render('dashboard/index');
-});
+// app.get('/main', (req, res)=>{
+//   res.render('dashboard/index');
+// });
 
 app.post('/main', (req, res)=>{
   var username = req.body.username;
@@ -137,6 +118,31 @@ app.get('/logout', function(req, res, next){
   // res.send(req.session.displayname+'hello'); //세션 초기화 됐는지 이걸로 확인해보면 됨.
 });
 
+app.get('/password', (req,res)=>{
+  res.render('user-auth/auth-forgot-password', {title: 'Express'});
+});
+
+app.post('/password', (req,res)=>{
+  var forgot_email = req.body.forgot_email;
+  var forgot_displayname = req.body.displayname;
+  var forgot_username = req.body.forgot_username;
+  conn.query('select * from users where username=?',[forgot_username], function(error, results, fields){
+    if(error){
+      res.send('failed');
+    }else{
+      if(results.length > 0){
+        if (results[0].email == forgot_email && results[0].displayname == forgot_displayname){
+          res.send(results[0].password);
+        }else{
+          res.send('틀렷어');
+        }
+      }else{
+        res.send('틀렷어');
+      }
+    }
+  });
+});
+
 
 app.listen('3000', function(){
   console.log('success');
@@ -159,27 +165,3 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-
-
-
-// connection.connect();
-// var sql = "select * from topic";
-// connection.query(sql, function(err, rows, fields) {
-//   if (err) {
-//     console.log(err);
-//   }else{
-//     console.log('rows', rows);
-//     console.log('fields', fields);
-//   }
-// });
-// connection.end();
-
-// var sql = "insert into topic (id, description, author) values('3', 'nodejs','ungung')";
-// connection.query(sql, function(err, rows, fields){
-//   if(err){
-//     console.log(err);
-//   } else {
-//     console.log(rows);
-//   }
-// });
-// connection.end();
