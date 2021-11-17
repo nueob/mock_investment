@@ -98,7 +98,7 @@ app.post('/main', (req, res)=>{
       if(results.length > 0) {
         if (results[0].password == password){
           req.session.username = req.body.username;  //이거 좌,우 순서만 바껴도 틀린다........
-          res.render('dashboard/index');
+          res.render('dashboard/index', { title: 'Express', data: req.session.username });
         }else{
           res.redirect('/fail');
         }
@@ -134,10 +134,10 @@ app.post('/password', (req,res)=>{
         if (results[0].email == forgot_email && results[0].displayname == forgot_displayname){
           res.send(results[0].password);
         }else{
-          res.send('틀렷어');
+          res.send('이메일 또는 이름을 다시 입력해주세요<a href="/password">recall</a>');
         }
       }else{
-        res.send('틀렷어');
+        res.send('아이디를 다시 입력해주세요<a href="/password">recall</a>');
       }
     }
   });
