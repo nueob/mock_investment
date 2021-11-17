@@ -4,10 +4,15 @@ var router = express.Router();
 var userController = require('../controllers/UserControllers');
 
 router.get('/',userController.doLoginUser);
-router.get('/regist',userController.doRegistUser);
-router.get('/password',userController.doPasswordUser);
-router.get('/checkout',userController.doCheckoutUser);
+router.post('/', userController.loginProc);
 
+// router.get('/main',userController.doDashbord);
+
+router.get('/regist',userController.doRegistUser);
+
+router.get('/password',userController.doPasswordUser);
+
+router.get('/checkout',userController.doCheckoutUser);
 
 module.exports = router;
 /* GET home page. */

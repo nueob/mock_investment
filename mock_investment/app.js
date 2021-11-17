@@ -13,6 +13,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mainRouter = require('./routes/main');
 var searchRouter = require('./routes/stock-search');
+
 const expressEjsLayouts = require('express-ejs-layouts');
 
 // var mysql = require('mysql');
@@ -56,6 +57,12 @@ app.use('/', indexRouter);
 app.use('/main', mainRouter);
 app.use('/search', searchRouter);
 app.use('/users', usersRouter);
+
+// app.get('/loginProc', (req, res) => {
+//     var id = req.query.id;
+//     var pw = req.query.pw;
+//     res.render(userController.loginProc,{info:req.query});
+// })
 
 app.get('/', (req,res)=>{
   res.render("user-auth/auth-login", {title: 'Express'});

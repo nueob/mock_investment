@@ -1,14 +1,9 @@
 // 메인 창
 var express = require('express');
+var session = require('express-session');
 var router = express.Router();
 
-var userController = require('../controllers/UserControllers');
-
-router.get('/',userController.doLoginUser);
-router.get('/regist',userController.doRegistUser);
-
-module.exports = router;
-// router.post('/', function(req, res, next){
+router.post('/', function(req, res, next){
 //   um = req.body.username;
 //   pwd = req.body.password;
 //   var sql = 'select * from users where username=?';
@@ -23,21 +18,21 @@ module.exports = router;
 //     }    
 //   });
 // });
-//   var user = {
-//     user_name: '한남대',
-//     user_password: '1111'
-//   };
-//   var um = req.body.username;
-//   var pwd = req.body.password;
-//   console.log('hi');
-//   if( um ===  user.user_name && pwd === user.user_password){
-//     req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
-//     res.render('dashboard/index', { title: 'Express' });
-//   }else{
-//     res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
-//   }
-// });
-//module.exports = router;
+  var user = {
+    user_name: '한남대',
+    user_password: '1111'
+  };
+  var um = req.body.username;
+  var pwd = req.body.password;
+  console.log('hi');
+  if( um ===  user.user_name && pwd === user.user_password){
+    req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
+    res.render('dashboard/index', { title: 'Express' });
+  }else{
+    res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
+  }
+});
+module.exports = router;
 
 /* session을 받을 수 있는 코딩 */
 // router.post('/', function(req, res, next) {
