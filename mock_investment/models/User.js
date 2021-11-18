@@ -31,5 +31,19 @@ module.exports = {
             });
             dbconn.end();
         })
+    },
+    registUser : function (){
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `insert into ${table} set ?`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    }else {
+                        resolve(result);
+                    }
+            });
+            dbcoon.end();
+        })
     }
 }

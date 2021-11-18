@@ -40,8 +40,8 @@ module.exports = {
         user.password = req.body.userpassword;
         user.id = req.body.userid;
         user.age = req.body.userage;
-
-        user.save(function(err,user) {
+        
+        user.registUser(function(err,user) {
             if(err) {
                 console.error(err);
                 res.json({result:0});

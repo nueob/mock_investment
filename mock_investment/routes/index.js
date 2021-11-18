@@ -8,7 +8,8 @@ router.post('/', userController.loginProc);
 
 // router.get('/main',userController.doDashbord);
 
-router.get('/regist',userController.doRegistUser);
+router.get('/register',userController.doRegistUser);
+router.post('/register',userController.createUser);
 
 router.get('/password',userController.doPasswordUser);
 
