@@ -12,7 +12,7 @@ module.exports = {
         res.render('user-auth/auth-login.ejs');
     },
     doRegistUser : function(req,res,next) {
-        res.render('user-auth/auth-login.ejs');
+        res.render('user-auth/auth-register.ejs');
     },
     doPasswordUser : function(req,res,next) {
         res.render('user-auth/auth-forgot-password', {title: 'Express'});
@@ -35,22 +35,19 @@ module.exports = {
         })
     },
     createUser : function(req,res,next) {
-        var user = new User();
-        user.name = req.body.username;
-        user.password = req.body.userpassword;
-        user.id = req.body.userid;
-        user.age = req.body.userage;
-        
-        user.registUser(function(err,user) {
-            if(err) {
-                console.error(err);
-                res.json({result:0});
-                return;
-            }else{
-                res.render('user-auth/auth-login.ejs');
-            }
+        var name = req.body.display_name;
+        var password = req.body.pass_word;
+        var id = req.body.user_name;
 
-            res.json({result:1});
-        })
+        User.save(name, id, password).then((result)=> {
+            // if(result != '') {
+            //     res.render('dashboard/index');
+            // } else {
+            //     res.render('user-auth/auth-login.ejs');
+            // }
+            console.log(result);
+            res.render('dashboard/index');
+        });
+        
     }
 }

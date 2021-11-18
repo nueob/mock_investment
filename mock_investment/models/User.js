@@ -32,10 +32,10 @@ module.exports = {
             dbconn.end();
         })
     },
-    registUser : function (){
+    save : function (username, id, password){
         return new Promise ((resolve, reject) => {
             dbconn.query(
-                `insert into ${table} set ?`, (err,result,fields) =>
+                `insert into ${table} (user_name, user_id, user_password) values ('${username}', '${id}', '${password}')`, (err,result,fields) =>
                 {
                     if(err){
                         reject(err);
@@ -43,7 +43,8 @@ module.exports = {
                         resolve(result);
                     }
             });
-            dbcoon.end();
+            dbconn.end();
         })
     }
+    
 }
