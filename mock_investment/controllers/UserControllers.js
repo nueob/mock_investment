@@ -46,6 +46,8 @@ module.exports = {
                 console.error(err);
                 res.json({result:0});
                 return;
+            }else{
+                res.render('user-auth/auth-login.ejs');
             }
 
             res.json({result:1});
