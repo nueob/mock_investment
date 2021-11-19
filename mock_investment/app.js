@@ -17,7 +17,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store:new MySQLStore({
-    host : 'localhost',
+    host : '219.254.137.107',
     port:3306,
     user : "hannam",
     password : "",
