@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/my', function(req, res, next) {
-  res.render('myInfo/my1', { title: 'Express', data: req.session.username });
+  res.render('myInfo/my1', { title: 'Express', data: req.session.userNickname });
 });
 
 router.get('/asset', function(req, res, next) {

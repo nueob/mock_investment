@@ -14,7 +14,7 @@ router.post('/nickDupcheck',userController.doNickDupCheck);
 
 router.get('/password',userController.doPasswordUser);
 
-router.get('/checkout',userController.doCheckoutUser);
+router.get('/logout',userController.doLogoutUser);
 
 module.exports = router;
 

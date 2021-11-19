@@ -9,7 +9,11 @@ module.exports = {
         // User.getUser().then((result) => {
         //     res.render('user-auth/auth-login.ejs',{user:result});
         // })
-        res.render('user-auth/auth-login.ejs');
+        if(typeof req.session.userIdx != 'undefined') {
+            res.render('dashboard/index',{ nickname : req.session.user_nickname });
+        } else {
+            res.render('user-auth/auth-login.ejs');
+        }
     },
     doRegistUser : function(req,res,next) {
         res.render('user-auth/auth-register.ejs');
@@ -17,8 +21,11 @@ module.exports = {
     doPasswordUser : function(req,res,next) {
         res.render('user-auth/auth-forgot-password', {title: 'Express'});
     },
-    doCheckoutUser : function(req,res,next) {
-        res.render('user-auth/application-checkout', {title: 'Express'});
+    doLogoutUser : function(req,res,next) {
+        delete req.session.userIdx;
+        delete req.session.userNickname;
+
+        res.render('user-auth/auth-login.ejs', {title: 'Express'});
     },
     doDashbord : function(req,res,next) {
         res.render('dashbord/index', {title: 'Express'});
@@ -28,13 +35,15 @@ module.exports = {
     loginProc : function(req,res,next) {
         User.findUser(req.body.username,req.body.password).then((result) =>{
             if(result != '') {
-                req.session.userIdx = result;
-                res.render('dashboard/index');
+                req.session.userIdx = result.user_idx;
+                req.session.userNickname = result.user_nickname;
+                res.render('dashboard/index',{ nickname : result.user_nickname });
             } else {
                 res.render('user-auth/auth-login.ejs');
             }
         })
     },
+
     doIdDupCheck : function(req,res,next) {
         console.log(req.body.id);
         User.idDupCheck(req.body.id).then((result) => {
