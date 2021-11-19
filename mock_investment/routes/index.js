@@ -6,8 +6,6 @@ var userController = require('../controllers/UserControllers');
 router.get('/',userController.doLoginUser);
 router.post('/', userController.loginProc);
 
-// router.get('/main',userController.doDashbord);
-
 router.get('/register',userController.doRegistUser);
 router.post('/register',userController.createUser);
 
@@ -19,6 +17,7 @@ router.get('/password',userController.doPasswordUser);
 router.get('/checkout',userController.doCheckoutUser);
 
 module.exports = router;
+
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   res.render('user-auth/auth-login', { title: 'Express' });

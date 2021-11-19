@@ -28,6 +28,7 @@ module.exports = {
     loginProc : function(req,res,next) {
         User.findUser(req.body.username,req.body.password).then((result) =>{
             if(result != '') {
+                req.session.userIdx = result;
                 res.render('dashboard/index');
             } else {
                 res.render('user-auth/auth-login.ejs');
