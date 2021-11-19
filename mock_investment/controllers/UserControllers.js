@@ -40,11 +40,6 @@ module.exports = {
         var id = req.body.user_name;
 
         User.save(name, id, password).then((result)=> {
-            // if(result != '') {
-            //     res.render('dashboard/index');
-            // } else {
-            //     res.render('user-auth/auth-login.ejs');
-            // }
             console.log(result);
             res.render('dashboard/index');
         });
