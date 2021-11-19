@@ -34,9 +34,16 @@ module.exports = {
             }
         })
     },
-    doDupCheck : function(req,res,next) {
+    doIdDupCheck : function(req,res,next) {
+        console.log(req.body.id);
+        User.idDupCheck(req.body.id).then((result) => {
+            console.log(result);
+            res.json(result);
+        })
+    },
+    doNickDupCheck : function(req,res,next) {
         console.log(req.body.nickname);
-        User.dupCheck(req.body.nickname).then((result) => {
+        User.nickDupCheck(req.body.nickname).then((result) => {
             console.log(result);
             res.json(result);
         })
@@ -46,7 +53,7 @@ module.exports = {
         var name = req.body.name;
         var nickname = req.body.nickname;
         var password = req.body.password;
-        
+
         User.save(id,name,nickname,password).then((result)=> {
             console.log(result);
             res.json(result);

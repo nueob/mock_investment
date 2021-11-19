@@ -29,6 +29,7 @@
                             <input type="text" id="user_id" name="user_id" class="form-control form-control-xl" placeholder="아이디">
                             <div class="form-control-icon">
                                 <i class="bi bi-envelope"></i>
+                                <i class="btn btn-primary" id="id_button" style="position:relative;left: 310px;top: -2px;width: 70%;height: 40px;font-size: 1rem;color: white;padding-right: 20px;">중복 검사</i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
@@ -54,6 +55,7 @@
                             <input type="password" id="confirm_password" name="confirm_password" class="form-control form-control-xl" placeholder="비밀번호 확인">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
+                                <i class="btn btn-primary" id="password_button" style="position:relative;left: 365px;top: -18px;width: 70%;height: 40px;font-size: 1rem;color: white;padding-right: 20px;">확인</i>
                             </div>
                         </div>
                         <button name="register" id="register-button" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">회원등록</button>
@@ -71,14 +73,37 @@
 
 </html>
 <script>
-    var dupCheck = false;
+    var idDupCheck = false;
+    var nickDupCheck = false;
+    var password_same = false;
+
     $(document).ready(function() {
+        $('#id_button').on('click',function() {
+            console.log('idDupCheck');
+            var id = $('input[name=user_id]').val();
+            console.log(id);
+            $.ajax({
+                url:'/idDupcheck',
+                type:'POST',
+                data:{'id':id},
+                success : function(result) {
+                    if(result > 0) {
+                        var input = document.getElementById('user_id'); 
+                        input.value = null;
+                        alert('중복된 아이디 입니다');
+                    } else {
+                        idDupCheck = true;
+                        alert('사용 가능한 아이디 입니다.');
+                    }
+                }
+            })
+        }),
         $('#nickname_button').on('click',function(){
-            console.log('dupCheck');
+            console.log('nickDupCheck');
             var nickname = $('input[name=user_nickname]').val();
             console.log(nickname);
             $.ajax({
-                url:'/dupcheck',
+                url:'/nickDupcheck',
                 type:'POST',
                 data:{'nickname':nickname},
                 success : function(result) {
@@ -87,37 +112,57 @@
                         input.value = null;
                         alert('중복된 닉네임 입니다');
                     } else {
-                        dupCheck = true;
+                        nickDupCheck = true;
                         alert('사용 가능한 닉네임 입니다.');
                     }
                 }
             })
         }),
-        $('#register-button').on('click',function() {
-            console.log(dupCheck);
-            console.log('register');
-            if(dupCheck) {
-                var id = $('input[name=user_id]').val();
-                var name = $('input[name=user_name]').val();
-                var nickname = $('input[name=user_nickname]').val();
-                var password = $('input[name=pass_word]').val();
+        $('#password_button').on('click',function(){
+            var password = $('input[name=pass_word]').val();
+            var confirm_password = $('input[name=confirm_password]').val();
 
-                $.ajax({
-                    url:'/register',
-                    type:'POST',
-                    data:{
-                        'id' : id,
-                        'name' : name,
-                        'nickname':nickname,
-                        'password' : password
-                    },
-                    success : function(result) {
-                        alert('회원가입 성공');
-                        location.href = '/';
-                    }
-                })
+            if(password == confirm_password) {
+                password_same = true;
+                alert('비밀번호가 일치합니다.');
             } else {
-                alert('닉네임 중복 체크를 하세요');
+                alert('비밀번호가 일치하지 않습니다.');
+            }
+
+        }),
+        $('#register-button').on('click',function() {
+            console.log(nickDupCheck);
+            console.log('register');
+            if(idDupCheck) {
+                if(nickDupCheck) {
+                    if(password_same) {
+                        var id = $('input[name=user_id]').val();
+                        var name = $('input[name=user_name]').val();
+                        var nickname = $('input[name=user_nickname]').val();
+                        var password = $('input[name=pass_word]').val();
+
+                        $.ajax({
+                            url:'/register',
+                            type:'POST',
+                            data:{
+                                'id' : id,
+                                'name' : name,
+                                'nickname':nickname,
+                                'password' : password
+                            },
+                            success : function(result) {
+                                alert('회원가입 성공');
+                                location.href = '/';
+                            }
+                        })
+                    } else {
+                        alert('비밀번호를 확인하세요');
+                    }
+                } else {
+                    alert('닉네임 중복 체크를 하세요');
+                }
+            } else {
+                alert('아이디 중복 체크를 하세요');
             }
         })
     })

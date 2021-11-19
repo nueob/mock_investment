@@ -11,7 +11,8 @@ router.post('/', userController.loginProc);
 router.get('/register',userController.doRegistUser);
 router.post('/register',userController.createUser);
 
-router.post('/dupcheck',userController.doDupCheck);
+router.post('/idDupcheck',userController.doIdDupCheck);
+router.post('/nickDupcheck',userController.doNickDupCheck);
 
 router.get('/password',userController.doPasswordUser);
 

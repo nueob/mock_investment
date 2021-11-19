@@ -47,7 +47,23 @@ module.exports = {
             // dbconn.end();
         })
     },
-    dupCheck : function (nickname) {
+    idDupCheck : function(id) {
+        console.log(id);
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `select count(*) as count from ${table} where user_id = '${id}'`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res[0].count);
+                    }
+            });
+            // dbconn.end();
+        })
+    },
+    nickDupCheck : function (nickname) {
         console.log(nickname);
         return new Promise ((resolve, reject) => {
             dbconn.query(
