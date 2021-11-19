@@ -22,7 +22,7 @@ module.exports = {
     findUser : function (id,password) {
         return new Promise ((resolve,reject) => {
             dbconn.query(
-                `select user_idx,user_nickname from ${table} where user_id = ${id} and user_password = ${password}` , (err,result,fields) =>
+                `select user_idx,user_nickname from ${table} where user_id = '${id}' and user_password = ${password}` , (err,result,fields) =>
                 {
                     if(err) {
                         reject(err);
