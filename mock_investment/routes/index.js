@@ -10,7 +10,8 @@ router.post('/', userController.loginProc);
 
 router.get('/register',userController.doRegistUser);
 router.post('/register',userController.createUser);
-router.get('/dupcheck',userController.doDupCheck);
+
+router.post('/dupcheck',userController.doDupCheck);
 
 router.get('/password',userController.doPasswordUser);
 

@@ -38,26 +38,29 @@ module.exports = {
                 `insert into ${table} (user_id, user_name,user_nickname, user_password) values ('${id}', '${name}', '${nickname}','${password}')`, (err,result,fields) =>
                 {
                     if(err){
+                        console.log(err);
                         reject(err);
-                    }else {
+                    } else {
                         resolve(result);
                     }
             });
-            dbconn.end();
+            // dbconn.end();
         })
     },
     dupCheck : function (nickname) {
+        console.log(nickname);
         return new Promise ((resolve, reject) => {
             dbconn.query(
-                `select count(*) from ${table} where user_nickname = '${nickname}'`, (err,result,fields) =>
+                `select count(*) as count from ${table} where user_nickname = '${nickname}'`, (err,result,fields) =>
                 {
                     if(err){
                         reject(err);
-                    }else {
-                        resolve(result);
+                    } else {
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res[0].count);
                     }
             });
-            dbconn.end();
+            // dbconn.end();
         })
     }
 }
