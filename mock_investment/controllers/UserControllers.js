@@ -34,15 +34,25 @@ module.exports = {
             }
         })
     },
+    // doDupCheck : function(req,res,next) {
+    //     User.dupCheck(req.user_nickname).then((result) => {
+    //         if(result > 0) {
+    //             res.send("<script>alert('중복 된 닉네임입니다.')</script>");
+    //         } else {
+    //             res.send("<script>alert('사용 가능한 닉네임입니다.')</script>");
+    //         }
+    //     })
+    // },
     createUser : function(req,res,next) {
-        var name = req.body.display_name;
+        var id = req.body.user_id;
+        var name = req.body.user_name;
+        var nickname = req.body.user_nickname;
         var password = req.body.pass_word;
-        var id = req.body.user_name;
 
-        User.save(name, id, password).then((result)=> {
+        User.save(id,name, nickname, password).then((result)=> {
             console.log(result);
             res.render('dashboard/index');
         });
         
-    }
+    },
 }

@@ -32,10 +32,24 @@ module.exports = {
             dbconn.end();
         })
     },
-    save : function (username, id, password){
+    save : function (id,name, nickname, password){
         return new Promise ((resolve, reject) => {
             dbconn.query(
-                `insert into ${table} (user_name, user_id, user_password) values ('${username}', '${id}', '${password}')`, (err,result,fields) =>
+                `insert into ${table} (user_id, user_name,user_nickname, user_password) values ('${id}', '${name}', '${nickname}','${password}')`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    }else {
+                        resolve(result);
+                    }
+            });
+            dbconn.end();
+        })
+    },
+    dupCheck : function (nickname) {
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `select count(*) from ${table} where user_nickname = '${nickname}'`, (err,result,fields) =>
                 {
                     if(err){
                         reject(err);
@@ -46,5 +60,4 @@ module.exports = {
             dbconn.end();
         })
     }
-    
 }
