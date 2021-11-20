@@ -5,11 +5,11 @@ var stockControllers = require('../controllers/StockControllers');
 
 /* 종목 검색 page */
 router.get('/', function(req, res, next) {
-  res.render('stock-search/stock-search', { title: 'Express' });
+  res.render('stock-search/stock-mongsim', { title: 'Express' });
 });
 
-router.get('/b', function(req, res, next) {
-  res.render('stock-search/stock-searchb', { title: 'Express'});
+router.get('/yesunine', function(req, res, next) {
+  res.render('stock-search/stock-yesunine', { title: 'Express'});
 });
 
 router.get('/companyInfo', function(req, res, next) {

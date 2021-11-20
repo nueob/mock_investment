@@ -38,7 +38,7 @@ body {
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit" onclick="selector()" style="background-color: #435ebe;border-color: #435ebe; ">Search</button>
+                            <button class="btn btn-lg btn-success" type="submit" id= "searching_button" onclick="select(); return false;" style="background-color: #435ebe;border-color: #435ebe; ">Search</button>
                         </div>
                         <!--end of col-->
                     </div>
@@ -365,6 +365,17 @@ body {
 </body>
 <script src="javascripts/main.js"></script>
 <script>
+function select(){
+    var search_value = $('#searching').val();
+    if(search_value == '예순이네'){
+        location.href = '/search/yesunine';
+    }
+    else if(search_value == '몽심'){
+        location.href = '/search';
+    }else{
+        alert('다른 기업을 검색해주세요');
+    }
+}
 function fnCalCount(type, ths){
     var $input = $(ths).parents("td").find("input[id='get_count']");
     var tCount = Number($input.val());
@@ -393,10 +404,6 @@ function fnCalCount2(type, ths){
             $input2.val(Number(tCount)-1);    
         }
 }
-function selector(){
-    var $input = $("#searching");
-    var search = $input.val();
-    console.log(search);
-}
+
 
 </script>
