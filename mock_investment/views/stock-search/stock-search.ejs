@@ -20,6 +20,7 @@ body {
 }
 </style>
 <style>.cen{text-align: center;}</style>
+<!-- <style>.cen{justify-content: center;align-items: center;}</style> -->
 <body>
 <div class="page-heading">
     <div class="container">
@@ -312,25 +313,21 @@ body {
                                 <div class="table-responsive">
                                     <table class="table ">
                                         <tbody>
-                                            <tr>
-                                                <th><button>+</button></th>
-                                                <td>9,981,000</td>
-                                                <th><button>-</button></th>
-
+                                            <tr style="text-align:center;">
+                                                <th>수량</th>
+                                                <td>
+                                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%; "type ="button" onclick="fnCalCount('p',this);">+</button>
+                                                    <input type="number" id="get_count" value="0" readonly="readonly" style="text-align:center;"/>
+                                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%;"type="button" onclick="fnCalCount('m', this);">-</button>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <th class="text-bold-500">가용 자산</th>
-                                                <td>9,352,000</td>
-    
-                                            </tr>
-                                            <tr>
-                                                <th class="text-bold-500">보유 주식 총액</th>
-                                                <td>629,000</td>
-                                            </tr>
-
-                                            <tr>
-                                                <th class="text-bold-500">보유 종목 수</th>
-                                                <td>1종목</td>
+                                                <tr style="text-align:center;">
+                                                    <th>주문금액</th>
+                                                    <td>
+                                                        <input type="number" id="total" value="0" readonly="readonly"/>
+                                                    </td>
+        
                                             </tr>
                                         </tbody>
                                     </table>
@@ -343,24 +340,17 @@ body {
                                     <table class="table ">
                                         
                                         <tbody>
-                                            <tr>
-                                                <th class="text-bold-500" >총 자산</th>
-                                                <td>9,981,000</td>
-
+                                            <tr style="text-align:center;">
+                                                <th>수량</th>
+                                                <td>
+                                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%; "type ="button" onclick="fnCalCount2('z',this);">+</button>
+                                                    <input type="text" id="sell_count" value="0" readonly="readonly" style="text-align:center;"/>
+                                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%;"type="button" onclick="fnCalCount2('k', this);">-</button>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <th class="text-bold-500">가용 자산</th>
-                                                <td>9,352,000</td>
-    
-                                            </tr>
-                                            <tr>
-                                                <th class="text-bold-500">보유 주식 총액</th>
-                                                <td>629,000</td>
-                                            </tr>
-
-                                            <tr>
-                                                <th class="text-bold-500">보유 종목 수</th>
-                                                <td>1종목</td>
+                                                <th class="text-bold-500">주문금액</th>
+                                                <td><input type="number" id="total2" value="0" readonly="readonly"/></td>
                                             </tr>
                                             
                                         </tbody>
@@ -374,3 +364,34 @@ body {
     </div>
 </body>
 <script src="javascripts/main.js"></script>
+<script>
+function fnCalCount(type, ths){
+    var $input = $(ths).parents("td").find("input[id='get_count']");
+    var tCount = Number($input.val());
+    var $input2 = $("#total");
+    
+    if(type=='p'){
+        $input.val(Number(tCount)+1);
+        $input2.val(Number(tCount)+Number(tCount));
+    }else{
+        if(tCount >0) $input.val(Number(tCount)-1);
+        $input2.val(Number(tCount)-Number(tCount));    
+        }
+}
+function fnCalCount2(type, ths){
+    var $input = $(ths).parents("td").find("input[id='sell_count']");
+    var $input2 = $('#total2');
+    var tCount = Number($input.val());
+    
+    if(type=='z'){
+        $input.val(Number(tCount)+1);
+        $input2.val(Number(tCount));
+        
+    }else{
+        if(tCount >0)
+            $input.val(Number(tCount)-1);
+            $input2.val(Number(tCount)-1);    
+        }
+}
+
+</script>
