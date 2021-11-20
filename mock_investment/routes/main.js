@@ -6,6 +6,9 @@ var router = express.Router();
 
 // router.get('/',userController.doDashbord);
 
+router.get('/',function(req, res, next){
+  res.render('dashboard/index', { nickname: req.session.userNickname });
+})
 router.post('/', function(req, res, next){
 //   um = req.body.username;
 //   pwd = req.body.password;
@@ -21,19 +24,19 @@ router.post('/', function(req, res, next){
 //     }    
 //   });
 // });
-  var user = {
-    user_name: '123',
-    user_password: '123'
-  };
-  var um = req.body.username;
-  var pwd = req.body.password;
-  console.log('hi');
-  if( um ===  user.user_name && pwd === user.user_password){
-    req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
-    res.render('dashboard/index', { title: 'Express' });
-  }else{
-    res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
-  }
+  // var user = {
+  //   user_name: '123',
+  //   user_password: '123'
+  // };
+  // var um = req.body.username;
+  // var pwd = req.body.password;
+  // console.log('hi');
+  // if( um ===  user.user_name && pwd === user.user_password){
+  //   req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
+    res.render('dashboard/index', { nickname: req.session.userNickname });
+  // }else{
+  //   res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
+  // }
 });
 module.exports = router;
 

@@ -33,19 +33,13 @@ module.exports = {
 
     // data controllers
     loginProc : function(req,res,next) {
-        User.findUser(req.body.username,req.body.password).then((result) =>{
-            if(result != '') {
-                if(result == 100) {
-                    res.render('user-auth/auth-login.ejs');
-                } else {
-                    console.log(result);
-                    req.session.userIdx = result.user_idx;
-                    req.session.userNickname = result.user_nickname;
-                    res.render('dashboard/index',{ nickname : result.user_nickname });
-                }
-            } else {
-                res.render('user-auth/auth-login.ejs');
-            }
+        User.findUser(req.body.userId,req.body.password).then((result) =>{
+            console.log(result);
+            if(result != 100) {
+                req.session.userIdx = result.user_idx;
+                req.session.userNickname = result.user_nickname;
+            } 
+            res.json(result);
         })
     },
     doIdDupCheck : function(req,res,next) {

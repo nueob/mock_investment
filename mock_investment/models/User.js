@@ -22,20 +22,20 @@ module.exports = {
     findUser : function (id,password) {
         return new Promise ((resolve,reject) => {
             dbconn.query(
-                `select user_idx,user_nickname from ${table} where user_id = '${id}' and user_password = ${password}` , (err,result,fields) =>
+                `select user_idx,user_nickname from ${table} where user_id = '${id}' and user_password = '${password}'` , (err,result,fields) =>
                 {
                     if(err) {
                         reject(err);
                     } else {
-                        let res = JSON.parse(JSON.stringify(result));
-                        if(res.length > 0) {
-                            resolve(res[0]);
-                        } else {
+                        console.log('model');
+                        if(typeof result == 'undefined' || result == "" || result.length == 0 || result == null) {
                             resolve(100);
+                        } else {
+                            let res = JSON.parse(JSON.stringify(result));  
+                            resolve(res[0]);  
                         }
                     }
             });
-            dbconn.end();
         })
     },
     save : function (id,name, nickname, password){
