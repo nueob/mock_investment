@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>EJS</title>
+    </head>
+    <body class="container" style="margin-top:80px;">
+        <div id="header">
+            <%- include('header') %>
+        </div>
+        <section> 
+           
+            <div style="clear:both"></div>
+            <div id="app" style="margin-left:150px;width:100%">
+                <%- body%>
+            </div>
+        </section> 
+        <section id = "footer">
+            <hr>
+            <%- include('footer') %>
+        </section>
+    </body>
+</html>
