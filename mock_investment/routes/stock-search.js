@@ -1,6 +1,7 @@
 // 종목 검색 창
 var express = require('express');
 var router = express.Router();
+var stockControllers = require('../controllers/StockControllers');
 
 /* 종목 검색 page */
 router.get('/', function(req, res, next) {
@@ -15,9 +16,9 @@ router.get('/companyInfo', function(req, res, next) {
   res.render('stock-search/stock-companyInfo', { title: 'Express' });
 });
 
-router.get('/discussion', function(req, res, next) {
-  res.render('stock-search/stock-discussion', { title: 'Express' });
-});
+router.get('/discussion', stockControllers.doDiscussionView);
+router.post('/discussion_comment', stockControllers.doDiscussionComment);
+router.post('/discussion_search', stockControllers.doDiscussionSearch);
 
 /* sample page */
 router.get('/gallery', function(req, res, next) {

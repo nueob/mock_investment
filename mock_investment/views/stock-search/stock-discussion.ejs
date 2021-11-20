@@ -26,11 +26,11 @@ body {
                         </div>
                         <!--end of col-->
                         <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                            <input name="company_name_input" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit" style="background-color: #435ebe;border-color: #435ebe;">Search</button>
+                            <button id="search_btn" class="btn btn-lg btn-success" type="submit" style="background-color: #435ebe;border-color: #435ebe;">Search</button>
                         </div>
                         <!--end of col-->
                     </div>
@@ -40,7 +40,7 @@ body {
         </div>
     </div>    
 </div>
-<div class="page-content">
+<div id="page-content" class="page-content">
     <div class="row">
         <h5 class="cen">기본 정보</h5>
         <div class="card" style="border:0">
@@ -78,89 +78,81 @@ body {
                     <div class="form-group">
                         <label for="basicInput"></label>
                         <div id="input-button">
-                            <input type="text" class="form-control" id="basicInput"
+                            <input type="text" class="form-control" id="comment" name="comment"
                                 placeholder="Enter email" style="float:left;width: 85%;">
                             <div class="buttons" style="float:left;padding-left:20px">
-                                <a href="#" class="btn btn-primary rounded-pill">Primary</a>
+                                <a id="comment_btn" class="btn btn-primary rounded-pill">작성</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <% for (com of comment ) { %>
                 <div class="row">
                     <section class="section">
                         <div class="row">
                             <div class="card" style="margin-bottom:0rem;">
                                 <div class="card-body" style="padding:0rem">
                                     <div class="divider-comment-time" style="float:right;padding-right:10px">
-                                        <div class="divider-text">댓글 작성 시간</div>
+                                        <div class="divider-text"><%= com.create_dt %></div>
                                     </div>
                                     <br>
                                     <div class="divider-comment-nickname" style="float:left;padding-left:10px">
-                                        <h6 class="font-extrabold mb-0">작성자 닉네임</h6>
+                                        <h6 class="font-extrabold mb-0"><%= com.user_nickname %></h6>
                                     </div>
                                     <br>
                                     <div class="divider-comment-content" style="float:left;padding-left:25px;padding-top:5px;padding-bottom: 10px;">
-                                        <div class="divider-text">댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용</div>
+                                        <div class="divider-text"><%= com.comment %></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="div-padding" style="padding-bottom: 10px;"></div>
-                            <div class="card" style="margin-bottom:0rem;">
-                                <div class="card-body" style="padding:0rem">
-                                    <div class="divider-comment-time" style="float:right;padding-right:10px">
-                                        <div class="divider-text">댓글 작성 시간</div>
-                                    </div>
-                                    <br>
-                                    <div class="divider-comment-nickname" style="float:left;padding-left:10px">
-                                        <h6 class="font-extrabold mb-0">작성자 닉네임</h6>
-                                    </div>
-                                    <br>
-                                    <div class="divider-comment-content" style="float:left;padding-left:25px;padding-top:5px;padding-bottom: 10px;">
-                                        <div class="divider-text">댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="div-padding" style="padding-bottom: 10px;"></div>
-                            <div class="card" style="margin-bottom:0rem;">
-                                <div class="card-body" style="padding:0rem">
-                                    <div class="divider-comment-time" style="float:right;padding-right:10px">
-                                        <div class="divider-text">댓글 작성 시간</div>
-                                    </div>
-                                    <br>
-                                    <div class="divider-comment-nickname" style="float:left;padding-left:10px">
-                                        <h6 class="font-extrabold mb-0">작성자 닉네임</h6>
-                                    </div>
-                                    <br>
-                                    <div class="divider-comment-content" style="float:left;padding-left:25px;padding-top:5px;padding-bottom: 10px;">
-                                        <div class="divider-text">댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="div-padding" style="padding-bottom: 10px;"></div>
-                            <div class="card" style="margin-bottom:0rem;">
-                                <div class="card-body" style="padding:0rem">
-                                    <div class="divider-comment-time" style="float:right;padding-right:10px">
-                                        <div class="divider-text">댓글 작성 시간</div>
-                                    </div>
-                                    <br>
-                                    <div class="divider-comment-nickname" style="float:left;padding-left:10px">
-                                        <h6 class="font-extrabold mb-0">작성자 닉네임</h6>
-                                    </div>
-                                    <br>
-                                    <div class="divider-comment-content" style="float:left;padding-left:25px;padding-top:5px;padding-bottom: 10px;">
-                                        <div class="divider-text">댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용</div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </section>
-                    <!-- <div class="col-md">
-                        <h6 class="text-muted font-semibold">52주 최고/최저</h6>
-                        <h6 class="font-extrabold mb-0">10,500/8,500</h6>
-                    </div> -->
                 </div>
+                <% } %>
             </div>
         </div>
     </div>
-</div>
+</div> 
 <script src="/javascripts/main.js"></script>
+<script>
+    $(document).ready(function(){ 
+        // $('#search_btn').on('click',function(){
+        //     console.log('search_btn click');
+
+        //     var companyName = $('input[name=company_name_input]').val();
+
+        //     $.ajax({
+        //         url:'/search/discussion_search',
+        //         type:'POST',
+        //         data: {
+        //             'companyName' : companyName,
+        //         },
+        //         success : function(result) {
+        //             var con = document.getElementById('page-content');
+        //             con.style.display = 'visible';
+        //             console.log(con.style.display); 
+        //             console.log(result);
+        //         }
+        //     })
+        // }),
+        $('#comment_btn').on('click',function(){
+            console.log('comment_btn click');
+
+            var comment = $('input[name=comment]').val();
+            var companyIdx = 1; //임시
+
+            $.ajax({
+                url:'/search/discussion_comment',
+                type:'POST',
+                data: {
+                    'comment' : comment,
+                    'companyIdx' : companyIdx
+                },
+                success : function(result) {
+                    location.reload();
+                }
+            })
+        })
+    })
+</script>
