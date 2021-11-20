@@ -7,6 +7,10 @@ router.get('/', function(req, res, next) {
   res.render('stock-search/stock-search', { title: 'Express' });
 });
 
+router.get('/b', function(req, res, next) {
+  res.render('stock-search/stock-searchb', { title: 'Express'});
+});
+
 router.get('/companyInfo', function(req, res, next) {
   res.render('stock-search/stock-companyInfo', { title: 'Express' });
 });

@@ -38,7 +38,7 @@ body {
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit" id= "searching_button" onclick="select(); return false;" style="background-color: #435ebe;border-color: #435ebe; ">Search</button>
+                            <button class="btn btn-lg btn-success" type="submit" onclick="selector()" style="background-color: #435ebe;border-color: #435ebe; ">Search</button>
                         </div>
                         <!--end of col-->
                     </div>
@@ -51,7 +51,7 @@ body {
     <div class="page-content">
         <section class="row">
             <div class="col-12 col-lg-9">
-                <h3 class="card-body" style="padding-bottom: 10px;">A기업</h3>
+                <h3 class="card-body" style="padding-bottom: 10px;">몽심</h3>
                 <div class="card-body" style="border:0">
                     <div class="card-body px-3 py-4-5" style="background-color: #fff;border:0">
                         <div class="row">
@@ -365,14 +365,6 @@ body {
 </body>
 <script src="javascripts/main.js"></script>
 <script>
-function select(){
-    var search_value = $('#searching').val();
-    if(search_value == 'B'){
-        location.href = '/search/b';
-    }else{
-        alert('다른 기업을 검색해주세요');
-    }
-}
 function fnCalCount(type, ths){
     var $input = $(ths).parents("td").find("input[id='get_count']");
     var tCount = Number($input.val());
@@ -401,9 +393,10 @@ function fnCalCount2(type, ths){
             $input2.val(Number(tCount)-1);    
         }
 }
-// function selector(){
-//     var $input = $("#searching");
-//     var search = $input.val();
-// }
+function selector(){
+    var $input = $("#searching");
+    var search = $input.val();
+    console.log(search);
+}
 
 </script>
