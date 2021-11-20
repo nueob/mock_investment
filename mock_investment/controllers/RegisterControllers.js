@@ -38,11 +38,11 @@ module.exports = {
             if(result != 100) {
                 req.session.userIdx = result.user_idx;
                 req.session.userNickname = result.user_nickname;
+                req.session.userName = result.user_name;
             } 
             res.json(result);
         })
     },
-    
     doIdDupCheck : function(req,res,next) {
         console.log(req.body.id);
         User.idDupCheck(req.body.id).then((result) => {
