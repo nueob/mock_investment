@@ -25,7 +25,7 @@ module.exports = {
         delete req.session.userIdx;
         delete req.session.userNickname;
 
-        res.render('user-auth/auth-login.ejs', {title: 'Express'});
+        res.render('user-auth/auth-login.ejs', {title: 'Express',layout:'layouta'});
     },
     doDashbord : function(req,res,next) {
         res.render('dashbord/index', {title: 'Express'});
