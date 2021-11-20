@@ -3,21 +3,20 @@ var express = require('express');
 var session = require('express-session');
 var router = express.Router();
 
+var userControllers = require('../controllers/UserControllers');
+
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('sample/ui-icons-bootstrap-icons', { title: 'Express' });
-});
+// router.get('/', function(req, res, next) {
+//   res.render('sample/ui-icons-bootstrap-icons', { title: 'Express' });
+// });
 
-router.get('/my', function(req, res, next) {
-  res.render('myInfo/my1', { title: 'Express', data: req.session.userNickname });
-});
+router.get('/', userControllers.doMyPageView);
 
-router.get('/asset', function(req, res, next) {
-  res.render('myInfo/assetvalue', { title: 'Express' });
-});
+router.get('/my', userControllers.doMyPageView);
+router.post('/change_nickname', userControllers.changeNickname);
+router.post('/change_password', userControllers.changePassword);
 
-
-
+router.get('/asset', userControllers.doAssetView);
 
 
 module.exports = router;

@@ -53,28 +53,48 @@
                                   
                                         <button id="password"
                                             class="btn btn-info btn-md font-bold mt-3" data-bs-toggle="modal"
-                                            data-bs-target="#inlineForm"  >닉네임 변경</button>
+                                            data-bs-target="#passwordChange"  >비밀번호 변경</button>
                                 </div>
                                 
-                                
-                                <div class="modal fade text-left" id="inlineForm" tabindex="-1"
-                                role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                    role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel33">변경할 닉네임을 입력해주세요 </h4>
-                                            <button type="button" class="close" data-bs-dismiss="modal"
-                                                aria-label="Close">
-                                                <i data-feather="x"></i>
-                                            </button>
-                                        </div>
-                                        <form action="#">
+                                <div class="card-footer d-flex justify-content-center">
+                                  
+                                    <button id="password"
+                                        class="btn btn-info btn-md font-bold mt-3" data-bs-toggle="modal"
+                                        data-bs-target="#inlineForm"  >닉네임 변경</button>
+                                </div>
+
+                                <div class="modal fade text-left" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel33">변경할 비밀번호를 입력해주세요 </h4>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
                                             <div class="modal-body">
 
                                                 <div class="form-group">
-                                                    <input type="text" placeholder="닉네임"
-                                                        class="form-control">
+                                                    <input type="text" placeholder="현재 비밀번호를 입력하세요"
+                                                        class="form-control" name="current_password">
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="변경 할 비밀번호를 입력하세요"
+                                                        class="form-control" name="change_password">
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="변경 할 비밀번호를 한번 더 입력하세요"
+                                                        class="form-control" name="change_repassword">
                                                 </div>
                                                 
                                             </div>
@@ -85,14 +105,48 @@
                                                     <span class="d-none d-sm-block">취소</span>
                                                 </button>
                                                 <button type="button" class="btn btn-primary ml-1"
-                                                    data-bs-dismiss="modal">
+                                                    id="password_change_btn" data-bs-dismiss="modal">
                                                     <i class="bx bx-check d-block d-sm-none"></i>
                                                     <span class="d-none d-sm-block">확인</span>
                                                 </button>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
-                                 </div>
+                                </div>
+
+                                <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel33">변경할 닉네임을 입력해주세요 </h4>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="닉네임"
+                                                        class="form-control" name="nickname_change">
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-secondary"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">취소</span>
+                                                </button>
+                                                <button type="button" class="btn btn-primary ml-1"
+                                                    id="nickname_change_btn" data-bs-dismiss="modal">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">확인</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -274,26 +328,56 @@
                     </div>
                 </section>
             </div>
-            
-
-               
-            
-            <!-- <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">A. Saugi</a></p>
-                    </div>
-                </div>
-            </footer> -->
         </div>
     </div>
-    <!-- <script src="/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="/javascripts/bootstrap.bundle.min.js"></script> -->
     <script src="/javascripts/main.js"></script>
 </body>
-
 </html>
+<script>
+    $(document).ready(function(){
+        $('#nickname_change_btn').on('click',function(){
+            console.log('nickname_change_btn click');
+
+            var nickname = $('input[name=nickname_change]').val();
+            $.ajax({
+                url:'/users/change_nickname',
+                type:'POST',
+                data: {'nickname':nickname},
+                success : function(result) {
+                    console.log('닉네임 변경 완료');
+                    alert('닉네임이 변경되었습니다.');
+                    location.reload();
+                }
+            })
+        }),
+        $('#password_change_btn').on('click',function(){
+            console.log('password_change_btn click');
+            var currentPassword = $('input[name=current_password]').val();
+            var changePassword = $('input[name=change_password]').val(); 
+            var rechangePassword = $('input[name=change_repassword]').val();
+
+            if(changePassword == rechangePassword) {
+                $.ajax({
+                    url:'/users/change_password',
+                    type:'POST',
+                    data: {
+                        'currentPassword':currentPassword,
+                        'changePassword' : changePassword
+                    },
+                    success : function(result) {
+                        if(result == 100) {
+                            alert('현재 비밀번호가 맞지 않습니다.');
+                        } else if(result == 200) {
+                            alert('비밀번호가 변경되었습니다.');
+                        } else {
+                            alert('ERROR');
+                        }
+                        location.reload();
+                    }
+                })
+            } else {
+                alert('변경할 비밀번호가 다릅니다.');
+            }
+        })
+    })
+</script>

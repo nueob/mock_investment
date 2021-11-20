@@ -1,20 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-var userController = require('../controllers/RegisterControllers');
+var regiterControllers = require('../controllers/RegisterControllers');
 
-router.get('/',userController.doLoginUser);
-router.post('/', userController.loginProc);
+router.get('/',regiterControllers.doLoginUser);
+router.post('/', regiterControllers.loginProc);
 
-router.get('/register',userController.doRegistUser);
-router.post('/register',userController.createUser);
+router.get('/register',regiterControllers.doRegistUser);
+router.post('/register',regiterControllers.createUser);
 
-router.post('/idDupcheck',userController.doIdDupCheck);
-router.post('/nickDupcheck',userController.doNickDupCheck);
+router.post('/idDupcheck',regiterControllers.doIdDupCheck);
+router.post('/nickDupcheck',regiterControllers.doNickDupCheck);
 
-router.get('/password',userController.doPasswordUser);
+router.get('/password',regiterControllers.doPasswordUser);
 
-router.get('/logout',userController.doLogoutUser);
+router.get('/logout',regiterControllers.doLogoutUser);
 
 module.exports = router;
 

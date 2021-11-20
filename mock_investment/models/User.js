@@ -80,5 +80,61 @@ module.exports = {
             });
             // dbconn.end();
         })
+    },
+    changeNickname : function(idx,nickname) {
+        console.log('model');
+        console.log(idx);
+        console.log(nickname);
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `update ${table} set user_nickname = '${nickname}' where user_idx = ${idx}`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+            });
+            // dbconn.end();
+        })
+    },
+    currentPasswordConfirm: function(idx,currentPassword,changePassword) {
+        console.log('model');
+        console.log(idx);
+        console.log(currentPassword);
+        console.log(changePassword);
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `select count(*) as count from ${table} where user_idx = ${idx} and user_password = ${currentPassword}`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        let res = JSON.parse(JSON.stringify(result));
+                        
+                        if(res[0].count > 0) {
+                            this.changePassword(idx,changePassword);
+                        } else {
+                            resolve(100);
+                        }
+                    }
+            });
+            // dbconn.end();
+        })
+    },
+    changePassword : function(idx,changePassword) {
+        console.log('changePassword');
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `update ${table} set user_password =  ${changePassword} where user_idx = ${idx}`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        resolve(200);
+                    }
+            });
+            // dbconn.end();
+        })
     }
 }
