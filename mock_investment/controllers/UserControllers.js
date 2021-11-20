@@ -12,14 +12,14 @@ module.exports = {
         if(typeof req.session.userIdx != 'undefined') {
             res.render('dashboard/index',{ nickname : req.session.user_nickname });
         } else {
-            res.render('user-auth/auth-login.ejs');
+            res.render('user-auth/auth-login.ejs',{layout:'layouta'});
         }
     },
     doRegistUser : function(req,res,next) {
-        res.render('user-auth/auth-register.ejs');
+        res.render('user-auth/auth-register.ejs',{layout:'layouta'});
     },
     doPasswordUser : function(req,res,next) {
-        res.render('user-auth/auth-forgot-password', {title: 'Express'});
+        res.render('user-auth/auth-forgot-password', {title: 'Express' ,layout:'layouta'});
     },
     doLogoutUser : function(req,res,next) {
         delete req.session.userIdx;

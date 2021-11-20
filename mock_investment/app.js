@@ -29,7 +29,7 @@ app.use(session({
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.set('layout','layout');
+app.set('layout','layout','layouta');
 app.set('layout extractScriptes',true);
 app.use(expressLayouts);
 
