@@ -10,7 +10,7 @@ module.exports = {
         //     res.render('user-auth/auth-login.ejs',{user:result});
         // })
         if(typeof req.session.userIdx != 'undefined') {
-            res.render('dashboard/index',{ nickname : req.session.user_nickname });
+            res.render('dashboard/index',{ nickname : req.session.userNickname });
         } else {
             res.render('user-auth/auth-login.ejs',{layout:'layouta'});
         }
