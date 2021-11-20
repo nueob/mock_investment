@@ -1,5 +1,6 @@
 const express = require('express');
 const Comment = require('../models/CompanyComment');
+const Buy = require('../models/Buy');
 const router = require('../routes');
 
 module.exports = {
@@ -25,5 +26,30 @@ module.exports = {
             console.log(result);
             res.json(result);
         }) 
+    },
+
+    getBuyStock : function(req,res,next){
+        var stock = req.body.stock;
+        var stock2 = req.body.stock2;
+        if(stock != ''){
+            Buy.buyStock(stock).then((result)=>{
+                console.log(result);
+                res.json(result);
+            })
+        }else{
+            Buy.sellStock(stock2).then((result)=>{
+                console.log(result);
+                res.json(result);
+            })        
+        }
+
+    },
+
+    sellStock : function(req,res,next){
+        var stock2 = req.body.stock2;
+        Buy.sellStock(stock2).then((result)=>{
+            console.log(result);
+            res.json(result);
+        })
     }
 }
