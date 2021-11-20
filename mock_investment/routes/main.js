@@ -2,7 +2,7 @@
 var express = require('express');
 var session = require('express-session');
 var router = express.Router();
-// var userController = require('../controllers/UserControllers');
+// var userController = require('../controllers/RegisterControllers');
 
 // router.get('/',userController.doDashbord);
 
