@@ -20,7 +20,6 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header> -->
-
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
@@ -31,38 +30,27 @@
                         
                     </div>
                 </div>
-                
                 <section class="section">
-
-                    <div class="row">
-                        
+                    <div class="row">                
                         <div class="col-md-4 col-sm-12">
-
                             <div class="card">
-                               
-                            
                                 <div class="avatar avatar-xl">
                                     <img src="/images/faces/1.jpg" class="mx-auto d-block" alt="Face 1">
                                 </div>
                                 <div class="ms-3 name ">
                                     <h5 class="font-bold text-center"><%= data %>님</h5>
                                     <h6 class="text-muted mb-0 text-center">@johnducky</h6>
-                                </div>
-                               
+                                </div>                    
                                 <div class="card-footer d-flex justify-content-center">
-                                  
                                         <button id="password"
                                             class="btn btn-info btn-md font-bold mt-3" data-bs-toggle="modal"
                                             data-bs-target="#passwordChange"  >비밀번호 변경</button>
                                 </div>
-                                
                                 <div class="card-footer d-flex justify-content-center">
-                                  
                                     <button id="password"
                                         class="btn btn-info btn-md font-bold mt-3" data-bs-toggle="modal"
                                         data-bs-target="#inlineForm"  >닉네임 변경</button>
                                 </div>
-
                                 <div class="modal fade text-left" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                         role="document">
@@ -149,13 +137,10 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="card">
-                   
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                       
                                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                                 aria-orientation="vertical">
                                                 <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
@@ -172,7 +157,6 @@
                                                     aria-selected="false">관심 종목</a> 
                                             </div> 
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -184,43 +168,31 @@
                                     <div class="card-body">
                                      
                                         <div class="tab-content" id="v-pills-tabContent">
-                                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                                                 aria-labelledby="v-pills-home-tab">
                                                 <h1>자산정보</h1>
                                                 <div class="table-responsive">
                                                     <table class="table ">
-                                                       
                                                         <tbody>
                                                             <tr>
                                                                 <th class="text-bold-500" >총 자산</th>
-                                                                <td>9,981,000</td>
-                                                              
-                                                               
-                                                            
+                                                                <td><%= result[0][0].assets %></td>
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-bold-500">가용 자산</th>
-                                                                <td>9,352,000</td>
-                                                        
+                                                                <td><%= result[1][0].realAssets %></td>
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-bold-500">보유 주식 총액</th>
-                                                                <td>629,000</td>
-                                                                
-            
+                                                                <td><%= result[1][0].allAssets %></td>
                                                             </tr>
-
                                                             <tr>
                                                                 <th class="text-bold-500">보유 종목 수</th>
-                                                                <td>1종목</td>
+                                                                <td><%= result[1][0].share %> 종목</td>
                                                             </tr>
-                                                            
                                                         </tbody>
                                                     </table>
-                                                </div>
-
-                                               
-                                            
+                                                </div> 
                                             </div>
                                             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                                 aria-labelledby="v-pills-profile-tab">
@@ -233,24 +205,14 @@
                                                             <th>Awards</th>
                                                         </tr>
                                                     </thead>
-                                                    
-                                               
                                                     <tbody>
+                                                        <% for(info of result[2]) { %>
                                                         <tr>
-                                                            <td><a href="#">삼성전자</a></td>
-                                                            <td>71000</td>
-                                                            <td>매도진행중</td>
+                                                            <td><a href="#"><%= info.company_name %></a></td>
+                                                            <td><%= info.stock %></td>
+                                                            <td><%= info.memo %></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td><a href="#">카카오</a></td>
-                                                            <td>71000</td>
-                                                            <td>매도진행중</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="#">SK하이닉스</a></td>
-                                                            <td>71000</td>
-                                                            <td>매도진행중</td>
-                                                        </tr>
+                                                        <% } %>
                                                     </tbody>
                                                 </table>
                                           
@@ -260,71 +222,35 @@
                                                 <h1>거래내역</h1>
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered mb-0">
-                                                       
                                                         <tbody>
+                                                            <% for(info of result[3]) { %>
                                                             <tr>
-                                                                <th class="text-bold-500" >엔씨소프트</th>
-                                                                <td>매수가 648,000<br>1주</td>
-                                                                
-                                                               
-                                                            
+                                                                <th class="text-bold-500" ><%= info.company_name %></th>
+                                                                <td><%= info.memo %> <%= info.stock %><br>1주</td>
                                                             </tr>
-                                                            
-                                                            
+                                                            <% } %>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered mb-0">
-                                                       
-                                                        <tbody>
-                                                            <tr>
-                                                                <th class="text-bold-500" >엔씨소프트</th>
-                                                                <td>매수가 648,000<br>1주</td>
-                                                                
-                                                               
-                                                                
-                                                            </tr>
-                                                            
-                                                            
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                             </div>
+                                            </div>
                                             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
                                                 aria-labelledby="v-pills-settings-tab">
                                                 <h1>관심 종목</h1>
                                                 <div class="col-lg-12 col-md-12">
-                                                
-                                                              
-                                                      <div class="list-group">
-                                                                 <span class="list-group-item">
-                                                                       종목1
-                                                                 </span>
-                                                                    <span class="list-group-item">종목2</span>
-                                                                    <span class="list-group-item ">종목3</span>
-                                                                    <span class="list-group-item">종목4</span>
-                                                                    <span class="list-group-item">종목5</span>
-                                                                    <span class="list-group-item">
-                                                                        </span>
-                                                                
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div class="list-group">
+                                                        <% for(info of result[4]) { %>
+                                                        <span class="list-group-item">
+                                                            <%= info.company_name %>
+                                                        </span>
+                                                        <% } %>
                                                     </div>
                                                 </div>
                                             </div>
-                                           
                                         </div>
-                                       
-                                      
                                     </div>
-                                    
                                 </div>
-                            </div>
-
-                            
-                        </div>
+                            </div>          
+                        </div>  
                     </div>
                 </section>
             </div>

@@ -42,6 +42,7 @@ module.exports = {
             res.json(result);
         })
     },
+    
     doIdDupCheck : function(req,res,next) {
         console.log(req.body.id);
         User.idDupCheck(req.body.id).then((result) => {

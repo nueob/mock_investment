@@ -5,7 +5,9 @@ const router = require('../routes');
 module.exports = {
     // views
     doMyPageView : function(req,res,next) {
-        res.render('myInfo/my1', { title: 'Express', data: req.session.userNickname });
+        User.getMyInfo(req.session.userIdx).then((result) =>{
+            res.render('myInfo/my1', { title: 'Express', data : req.session.userNickname , result: result});
+        })
     },
     doAssetView : function(req,res,next) {
         res.render('myInfo/assetvalue', { title: 'Express' });

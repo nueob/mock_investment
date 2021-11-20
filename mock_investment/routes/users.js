@@ -11,8 +11,9 @@ var userControllers = require('../controllers/UserControllers');
 // });
 
 router.get('/', userControllers.doMyPageView);
+// router.get('/my', userControllers.doMyPageView);
 
-router.get('/my', userControllers.doMyPageView);
+// router.get('/my', userControllers.doMyPageView);
 router.post('/change_nickname', userControllers.changeNickname);
 router.post('/change_password', userControllers.changePassword);
 

@@ -19,6 +19,7 @@ module.exports = {
             dbconn.end();
         })
     },
+    // login
     findUser : function (id,password) {
         return new Promise ((resolve,reject) => {
             dbconn.query(
@@ -38,6 +39,7 @@ module.exports = {
             });
         })
     },
+    // register
     save : function (id,name, nickname, password){
         return new Promise ((resolve, reject) => {
             dbconn.query(
@@ -85,10 +87,60 @@ module.exports = {
             // dbconn.end();
         })
     },
+    // myinfo
+    getMyInfo : function(idx) {
+        return new Promise ((resolve, reject) => {
+            var query = `select assets from ${table} where user_idx = ${idx};` + //보유 자산 
+
+                        `select count(*) as share, sum(get_buy_stock) as allAssets , (assets - sum(get_buy_stock)) as realAssets
+                        from stock_buy_item b
+                        inner join user_info u on b.user_idx = u.user_idx 
+                        where b.user_idx = ${idx} and allow_buy = 'y';` + // 보유 주, 보유 주식 총액
+                        
+                        `select company_name, get_buy_stock as stock , '매수 준비 중' as memo ,
+                        (select count(*) from stock_buy_item b2 where b2.company_idx = b.company_idx and b2.get_buy_stock = b.get_buy_stock group by get_buy_stock) as cnt
+                        from stock_buy_item b
+                        inner join company_info c on b.company_idx = c.company_idx  
+                        where b.user_idx = ${idx} and allow_buy = 'n'
+                        
+                        union
+
+                        select company_name, get_sell_stock as stock , '매도 준비 중' as memo , 
+                        (select count(*) from stock_sell_item s2 where s2.company_idx = s.company_idx and s2.get_sell_stock = s.get_sell_stock group by get_sell_stock) as cnt
+                        from stock_sell_item s
+                        inner join company_info c on s.company_idx = c.company_idx  
+                        where s.user_idx = ${idx} and allow_sell = 'n';` + //진행중인 거래
+
+                        `select company_name, get_buy_stock as stock , '매수' as memo , 
+                        (select count(*) from stock_buy_item b2 where b2.company_idx = b.company_idx and b2.get_buy_stock = b.get_buy_stock group by get_buy_stock) as cnt
+                        from stock_buy_item b
+                        inner join company_info c on b.company_idx = c.company_idx  
+                        where b.user_idx = ${idx} and allow_buy = 'y' 
+                        
+                        union
+
+                        select company_name, get_sell_stock as stock , '매도' as memo ,
+                        (select count(*) from stock_sell_item s2 where s2.company_idx = s.company_idx and s2.get_sell_stock = s.get_sell_stock group by get_sell_stock) as cnt
+                        from stock_sell_item s
+                        inner join company_info c on s.company_idx = c.company_idx  
+                        where s.user_idx = ${idx} and allow_sell = 'y';` + //거래 내역
+
+                        `select company_name from interest_item i
+                        inner join company_info c on i.company_idx = c.company_idx
+                        where i.user_idx = ${idx}`; // 관심 종목
+
+            dbconn.query(query, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res);
+                    }
+            });
+        })
+    },
     changeNickname : function(idx,nickname) {
-        console.log('model');
-        console.log(idx);
-        console.log(nickname);
         return new Promise ((resolve, reject) => {
             dbconn.query(
                 `update ${table} set user_nickname = '${nickname}' where user_idx = ${idx}`, (err,result,fields) =>
@@ -103,10 +155,6 @@ module.exports = {
         })
     },
     currentPasswordConfirm: function(idx,currentPassword,changePassword) {
-        console.log('model');
-        console.log(idx);
-        console.log(currentPassword);
-        console.log(changePassword);
         return new Promise ((resolve, reject) => {
             dbconn.query(
                 `select count(*) as count from ${table} where user_idx = ${idx} and user_password = ${currentPassword}`, (err,result,fields) =>
@@ -127,7 +175,6 @@ module.exports = {
         })
     },
     changePassword : function(idx,changePassword) {
-        console.log('changePassword');
         return new Promise ((resolve, reject) => {
             dbconn.query(
                 `update ${table} set user_password =  ${changePassword} where user_idx = ${idx}`, (err,result,fields) =>
