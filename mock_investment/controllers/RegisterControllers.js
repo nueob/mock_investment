@@ -35,9 +35,14 @@ module.exports = {
     loginProc : function(req,res,next) {
         User.findUser(req.body.username,req.body.password).then((result) =>{
             if(result != '') {
-                req.session.userIdx = result.user_idx;
-                req.session.userNickname = result.user_nickname;
-                res.render('dashboard/index',{ nickname : result.user_nickname });
+                if(result == 100) {
+                    res.render('user-auth/auth-login.ejs');
+                } else {
+                    console.log(result);
+                    req.session.userIdx = result.user_idx;
+                    req.session.userNickname = result.user_nickname;
+                    res.render('dashboard/index',{ nickname : result.user_nickname });
+                }
             } else {
                 res.render('user-auth/auth-login.ejs');
             }

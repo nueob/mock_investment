@@ -28,7 +28,11 @@ module.exports = {
                         reject(err);
                     } else {
                         let res = JSON.parse(JSON.stringify(result));
-                        resolve(res[0]);
+                        if(res.length > 0) {
+                            resolve(res[0]);
+                        } else {
+                            resolve(100);
+                        }
                     }
             });
             dbconn.end();
