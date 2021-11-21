@@ -10,7 +10,11 @@ module.exports = {
         })
     },
     doAssetView : function(req,res,next) {
-        res.render('myInfo/assetvalue', { title: 'Express' });
+        User.getAssetsInfo(req.session.userIdx).then((result) => {
+            console.log(result);
+            console.log(result[2][0]);
+            res.render('myInfo/assetvalue', { title: 'Express' , info : result });
+        } )
     },
     changeNickname : function(req,res,next) {
         User.changeNickname(req.session.userIdx,req.body.nickname).then((result)=>{

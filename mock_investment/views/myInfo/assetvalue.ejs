@@ -35,21 +35,21 @@
                                                 <tbody>
                                                     <tr>
                                                         <th class="text-bold-500" >총매입</th>
-                                                        <td>706,650</td>
+                                                        <td><%= info[0][0].total_evaluation %></td>
                                                         <th class="text-bold-500">평가손익</th>
-                                                        <td>1,533</td>
+                                                        <td><%= info[0][0].company_stock * info[0][0].cnt - info[0][0].total_evaluation %></td>
                                                     </tr>
                                                     <tr>
                                                         <th class="text-bold-500">총평가</th>
-                                                        <td>710,350</td>
+                                                        <td><%= info[0][0].company_stock * info[0][0].cnt %></td>
                                                         <th class="text-bold-500">평가수익률</th>
-                                                        <td>0.22</td>
+                                                        <td><%= (info[0][0].company_stock - (info[0][0].total_evaluation / info[0][0].cnt)) / 100000 * 100 %></td>
                                                     </tr>
                                                     <tr>
                                                         <th class="text-bold-500">추정자산</th>
-                                                        <td>708,203</td>
+                                                        <td><%= info[0][0].company_stock * info[0][0].cnt + info[1][0].stock %></td>
                                                         <th class="text-bold-500">실현손익</th>
-                                                        <td>Remote</td>
+                                                        <td><%= info[1][0].stock %></td>
                                                     </tr>                                            
                                                 </tbody>
                                             </table>
@@ -74,149 +74,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% for(my of info[2] ) {%>
                                         <tr>
-                                            <td  rowspan="2" class="align-middle" >SK하이닉스</td>
-                                            <td class="text-right">3,225</td>
-                                            <td class="text-center">113,500</td>
-                                            <td class="text-right">15</td>
+                                            <td  rowspan="2" class="align-middle" ><%=my.company_name%></td>
+                                            <td class="text-right"><%= my.current_price - my.unit_price%></td>
+                                            <td class="text-center"><%= my.unit_price / my.cnt %></td>
+                                            <td class="text-right"><%=my.cnt%></td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right">0.19%</td>
-                                            <td class="text-center">114000</td>
-                                            <td class="text-right">15</td>
+                                            <td class="text-right"><%= my.current_price - my.unit_price / 100000 * 100%>%</td>
+                                            <td class="text-center"><%= my.current_price / my.cnt %></td>
+                                            <td class="text-right"><%=my.cnt%></td>
                                         </tr>
-                                        <tr>
-                                            <td  class="align-middle" rowspan="2" >삼성전자</td>
-                                            <td class="text-right">1,059</td>
-                                            <td class="text-center">72,500</td>
-                                            <td class="text-right">58</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">0.03%</td>
-                                            <td class="text-center">72,700</td>
-                                            <td class="text-right">58</td>
-                                        </tr>
-                                        <tr>
-                                            <td   class="align-middle" rowspan="2">NAVER</td>
-                                            <td class="text-right">1,382</td>
-                                            <td class="text-center">288,500</td>
-                                            <td class="text-right">5</td>
-                                        </tr>
-                                        <tr>
-                                            <td  class="text-right">0.10%</td>
-                                            <td  class="text-center">289,500</td>
-                                            <td  class="text-right">5</td>
-                                        </tr>
-                                        <tr>
-                                            <td  class="align-middle" rowspan="2">카카오</td>
-                                            <td class="text-right">113</td>
-                                            <td  class="text-center">384,000</td>
-                                            <td class="text-right">3</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">0.01%</td>
-                                            <td  class="text-center">385,000</td>
-                                            <td class="text-right">3</td>
-                                        </tr>
-                                        <tr>
-                                            <td   class="align-middle" rowspan="2">Kuame</td>
-                                            <td>Quisque.purus@mauris.org</td>
-                                            <td>(0151) 561 8896</td>
-                                            <td>Tresigallo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Deacon</td>
-                                            <td>Duis.a.mi@sociisnatoquepenatibus.com</td>
-                                            <td>07740 599321</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">Channing</td>
-                                            <td>tempor.bibendum.Donec@ornarelectusante.ca</td>
-                                            <td>0845 46 49</td>
-                                            <td>Warrnambool</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Aladdin</td>
-                                            <td>sem.ut@pellentesqueafacilisis.ca</td>
-                                            <td>0800 1111</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">Cruz</td>
-                                            <td>non@quisturpisvitae.ca</td>
-                                            <td>07624 944915</td>
-                                            <td>Shikarpur</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Keegan</td>
-                                            <td>molestie.dapibus@condimentumDonecat.edu</td>
-                                            <td>0800 200103</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">Ray</td>
-                                            <td>placerat.eget@sagittislobortis.edu</td>
-                                            <td>(0112) 896 6829</td>
-                                            <td>Hofors</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Maxwell</td>
-                                            <td>diam@dapibus.org</td>
-                                            <td>0334 836 4028</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">Carter</td>
-                                            <td>urna.justo.faucibus@orci.com</td>
-                                            <td>07079 826350</td>
-                                            <td>Biez</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stone</td>
-                                            <td>velit.Aliquam.nisl@sitametrisus.com</td>
-                                            <td>0800 1111</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">Berk</td>
-                                            <td>fringilla.porttitor.vulputate@taciti.edu</td>
-                                            <td>(0101) 043 2822</td>
-                                            <td>Sanquhar</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Philip</td>
-                                            <td>turpis@euenimEtiam.org</td>
-                                            <td>0500 571108</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">Kibo</td>
-                                            <td>feugiat@urnajustofaucibus.co.uk</td>
-                                            <td>07624 682306</td>
-                                            <td>La Cisterna</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno</td>
-                                            <td>elit.Etiam.laoreet@luctuslobortisClass.edu</td>
-                                            <td>07624 869434</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">Leonard</td>
-                                            <td>blandit.enim.consequat@mollislectuspede.net</td>
-                                            <td>0800 1111</td>
-                                            <td>Lobbes</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hamilton</td>
-                                            <td>mauris@diam.org</td>
-                                            <td>0800 256 8788</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">Harding</td>
-                                            <td>Lorem.ipsum.dolor@etnetuset.com</td>
-                                            <td>0800 1111</td>
-                                            <td>Obaix</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Emmanuel</td>
-                                            <td>eget.lacus.Mauris@feugiatSednec.org</td>
-                                            <td>(016977) 8208</td>
-                                        </tr>
+                                        <% } %>
                                     </tbody>
                                 </table>
                             </div>

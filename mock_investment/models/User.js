@@ -203,5 +203,34 @@ module.exports = {
             });
             // dbconn.end();
         })
+    },
+    //assets
+    getAssetsInfo : function(idx) {
+        //(uint_price - current_price) as profit , (profit*100) as profit_percentage 
+        console.log(idx);
+        return new Promise ((resolve, reject) => {
+            var query = `select company_name , sum(get_buy_stock) as total_evaluation , (select count(*) from stock_buy_item b where user_idx = 1 group by b.company_idx ) as cnt , company_stock 
+                        from company_info c
+                        inner join stock_buy_item b2 on c.company_idx = b2.company_idx 
+                        where b2.user_idx = ${idx};`+ //총 매입액 , 총 평가액
+
+                        `select sum(get_sell_stock) as stock from stock_sell_item where user_idx = ${idx} and allow_sell = 'y';` + //실현 수익
+
+                        `select count(*) as cnt , sum(get_buy_stock) as unit_price , sum(company_stock) as current_price , company_name
+                        from stock_buy_item b 
+                        inner join company_info c on b.company_idx = c.company_idx
+                        where b.user_idx = ${idx} and allow_buy = 'y';`; //종목 별 수익률 등등
+            
+            dbconn.query(query, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res);
+                    }
+            });
+            // dbconn.end();
+        })
     }
 }
