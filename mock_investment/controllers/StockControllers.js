@@ -29,25 +29,16 @@ module.exports = {
     },
 
     getBuyStock : function(req,res,next){
-        var stock = req.body.stock;
-        var stock2 = req.body.stock2;
-        if(stock != ''){
-            Buy.buyStock(stock).then((result)=>{
+            Buy.buyStock(req.body.stock, req.session.userIdx, req.body.company_Idx).then((result)=>{
                 console.log(result);
                 res.json(result);
-            })
-        }else{
-            Buy.sellStock(stock2).then((result)=>{
-                console.log(result);
-                res.json(result);
-            })        
-        }
 
+        })        
+        
     },
 
     sellStock : function(req,res,next){
-        var stock2 = req.body.stock2;
-        Buy.sellStock(stock2).then((result)=>{
+        Buy.sellStock(req.body.stock,req.session.userIdx, req.body.company_Idx).then((result)=>{
             console.log(result);
             res.json(result);
         })

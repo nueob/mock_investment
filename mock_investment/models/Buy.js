@@ -6,10 +6,10 @@ const table = 'stock_buy_item';
 const table2 = 'stock_sell_item';
 
 module.exports = {
-    buyStock : function(stock) {
+    buyStock : function(stock, user_idx, company_Idx) {
         return new Promise ((resolve,reject)=> {
             dbconn.query(
-                `insert into ${table} (get_buy_stock) values ('${stock}')`, (err,result,fields) =>
+                `insert into ${table} (get_buy_stock, user_idx, company_Idx) values ('${stock}','${user_idx}','${company_Idx}')`, (err,result,fields) =>
                 {
                     if(err){
                         console.log(err);
@@ -22,10 +22,10 @@ module.exports = {
         })
     },
 
-    sellStock : function(stock) {
+    sellStock : function(stock, user_idx, company_Idx) {
         return new Promise ((resolve, reject)=>{
             dbconn.query(
-                `insert into ${table2} (get_sell_stock) values ('${stock})`, (err,result,fields) =>
+                `insert into ${table2} (get_sell_stock, user_idx, company_Idx) values ('${stock}','${user_idx}','${company_Idx}')`, (err,result,fields) =>
                 {
                     if(err){
                         console.log(err);

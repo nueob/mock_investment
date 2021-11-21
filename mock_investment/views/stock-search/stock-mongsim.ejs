@@ -366,35 +366,42 @@ body {
 <script src="javascripts/main.js"></script>
 <script>
 function buy(){
-    var stock = $("input[id='get_count").val();
+    var stock = $("input[id='get_count']").val();
+    var company_Idx = 1;
     if(stock != ""){
         alert(stock);
         $.ajax({
-                                url:'/search',
-                                type:'POST',
-                                data:{
-                                    'stock': stock
-                                },
-                                success : function(result) {
-                                    alert('매수 성공');
-                                }
-                            })
-                    }else{
-                        alert('매수 실패');
-                    }
+                url:'/search/buy',
+                type:'POST',
+                data:{
+                    'stock': stock,
+                    'company_Idx' : company_Idx
+                },
+                success : function(result) {
+                    alert('매수 성공');
+                    location.reload();
+                }
+            })
+    }else{
+        alert('매수 실패');
+    }
 }
 function sell(){
-    var stock = $("input[id='sell_count").val()
+    var stock = $("input[id='sell_count']").val()
+    var company_Idx = 1;
     if(stock != ""){
         alert(stock);
         $.ajax({
-            url:'/search',
+            url:'/search/sell',
             type:'POST',
             data:{
-                'stock2':stock
+                'stock':stock,
+                'company_Idx' : company_Idx
+
             },
             success : function(result) {
                 alert('매도 성공');
+                location.reload();
             }
         })
     }else{

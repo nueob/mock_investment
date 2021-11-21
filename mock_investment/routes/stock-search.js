@@ -7,7 +7,8 @@ var stockControllers = require('../controllers/StockControllers');
 router.get('/', function(req, res, next) {
   res.render('stock-search/stock-mongsim', { title: 'Express' });
 });
-router.post('/',stockControllers.getBuyStock);
+router.post('/buy',stockControllers.getBuyStock);
+router.post('/sell',stockControllers.sellStock);
 
 router.get('/yesunine', function(req, res, next) {
   res.render('stock-search/stock-yesunine', { title: 'Express'});
