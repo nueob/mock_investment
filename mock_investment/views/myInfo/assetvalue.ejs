@@ -1,380 +1,230 @@
+<style> 
+    .table thead th {
+        background-color: #ebf3ff;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
-<style> .table thead th {
-  background-color: #ebf3ff;
-  }</style>
-
-
-<body>
-    <div id="app">
-        <div id="main">
-            <style>
-                body {
-                 background-color:#f2f7ff;
-                }
-            </style>
-                <!-- <header class="mb-3">
-                    <a href="#" class="burger-btn d-block ">
-                        <i class="bi bi-justify fs-3"></i>
-                    </a>
-                </header> -->
-
-            <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <h3>자산평가</h3>
-                            
+    <body>
+        <div id="app">
+            <div id="main">
+                <style>
+                    body {
+                    background-color:#f2f7ff;
+                    }
+                </style>
+                <div class="page-heading">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <h3>자산평가</h3>
+                                
+                            </div>
+        
                         </div>
-    
                     </div>
-                </div>
-
-            
-
-               
-                
-
-               
-
-                
-
-                <!-- Bordered table start -->
-                <section class="section">
-                    <div class="row" id="table-bordered">
-                        <div class="col-12">
-                            <div class="card border-0">
-                               
-                                <div class="card-content">
-                                 
-                                    <!-- table bordered -->
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered mb-0">
-                                           
-                                            <tbody>
-                                                <tr>
-                                                    <th class="text-bold-500" >총매입</th>
-                                                    <td>706,650</td>
-                                                    <th class="text-bold-500">평가손익</th>
-                                                    <td>1,533</td>
-                                                   
-                                                    <!-- <td><a href="#"><i
-                                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                data-feather="mail"></i></a></td> -->
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-bold-500">총평가</th>
-                                                    <td>710,350</td>
-                                                    <th class="text-bold-500">평가수익률</th>
-                                                    <td>0.22</td>
-                                                
-                                                    <!-- <td><a href="#"><i
-                                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                data-feather="mail"></i></a></td> -->
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-bold-500">추정자산</th>
-                                                    <td>708,203</td>
-                                                    <th class="text-bold-500">실현손익</th>
-                                                    <td>Remote</td>
-<!--                                                    
-                                                    <td><a href="#"><i
-                                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                data-feather="mail"></i></a></td> -->
-                                                </tr>
-                                                
-                                            </tbody>
-                                        </table>
+                    <!-- Bordered table start -->
+                    <section class="section">
+                        <div class="row" id="table-bordered">
+                            <div class="col-12">
+                                <div class="card border-0">
+                                    <div class="card-content">
+                                        <!-- table bordered -->
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <th class="text-bold-500" >총매입</th>
+                                                        <td>706,650</td>
+                                                        <th class="text-bold-500">평가손익</th>
+                                                        <td>1,533</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-bold-500">총평가</th>
+                                                        <td>710,350</td>
+                                                        <th class="text-bold-500">평가수익률</th>
+                                                        <td>0.22</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-bold-500">추정자산</th>
+                                                        <td>708,203</td>
+                                                        <th class="text-bold-500">실현손익</th>
+                                                        <td>Remote</td>
+                                                    </tr>                                            
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <!-- Bordered table end -->
-
-                <section class="section">
-                    <div class="card border-0">
-                        
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="table1">
-                                <thead>
-                                    <tr class="table-secondary">
-                                        <th rowspan="2" cope="col"  class="align-middle" >종목명</th>
-                                        <th cope="col" class="text-center">평가손익<br> 손익률</th>
-                                        <th cope="col" class="text-center" >평균단가<br>현재가</th>
-                                        <th cope="col" class="text-center" >보유수량<br>매도가능</th>
-                                        <!-- <th cope="col" class="text-center" >Status</th> -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td  rowspan="2" class="align-middle" >SK하이닉스</td>
-                                        <td class="text-right">3,225</td>
-                                        <td class="text-center">113,500</td>
-                                        <td class="text-right">15</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right">0.19%</td>
-                                        <td class="text-center">114000</td>
-                                        <td class="text-right">15</td>
-                                        <!-- <td>New Quay</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td  class="align-middle" rowspan="2" >삼성전자</td>
-                                        <td class="text-right">1,059</td>
-                                        <td class="text-center">72,500</td>
-                                        <td class="text-right">58</td>
-                                        <!-- <td>
-                                            <span class="badge bg-danger">Inactive</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right">0.03%</td>
-                                        <td class="text-center">72,700</td>
-                                        <td class="text-right">58</td>
-                                        <!-- <td>Ways</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td   class="align-middle" rowspan="2">NAVER</td>
-                                        <td class="text-right">1,382</td>
-                                        <td class="text-center">288,500</td>
-                                        <td class="text-right">5</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td  class="text-right">0.10%</td>
-                                        <td  class="text-center">289,500</td>
-                                        <td  class="text-right">5</td>
-                                        <!-- <td>Patna</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td  class="align-middle" rowspan="2">카카오</td>
-                                        <td class="text-right">113</td>
-                                        <td  class="text-center">384,000</td>
-                                        <td class="text-right">3</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right">0.01%</td>
-                                        <td  class="text-center">385,000</td>
-                                        <td class="text-right">3</td>
-                                        <!-- <td>Marlborough</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-danger">Inactive</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td   class="align-middle" rowspan="2">Kuame</td>
-                                        <td>Quisque.purus@mauris.org</td>
-                                        <td>(0151) 561 8896</td>
-                                        <td>Tresigallo</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Deacon</td>
-                                        <td>Duis.a.mi@sociisnatoquepenatibus.com</td>
-                                        <td>07740 599321</td>
-                                        <!-- <td>Karapınar</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Channing</td>
-                                        <td>tempor.bibendum.Donec@ornarelectusante.ca</td>
-                                        <td>0845 46 49</td>
-                                        <td>Warrnambool</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Aladdin</td>
-                                        <td>sem.ut@pellentesqueafacilisis.ca</td>
-                                        <td>0800 1111</td>
-                                        <!-- <td>Bothey</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Cruz</td>
-                                        <td>non@quisturpisvitae.ca</td>
-                                        <td>07624 944915</td>
-                                        <td>Shikarpur</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Keegan</td>
-                                        <td>molestie.dapibus@condimentumDonecat.edu</td>
-                                        <td>0800 200103</td>
-                                        <!-- <td>Assen</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Ray</td>
-                                        <td>placerat.eget@sagittislobortis.edu</td>
-                                        <td>(0112) 896 6829</td>
-                                        <td>Hofors</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Maxwell</td>
-                                        <td>diam@dapibus.org</td>
-                                        <td>0334 836 4028</td>
-                                        <!-- <td>Thane</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Carter</td>
-                                        <td>urna.justo.faucibus@orci.com</td>
-                                        <td>07079 826350</td>
-                                        <td>Biez</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Stone</td>
-                                        <td>velit.Aliquam.nisl@sitametrisus.com</td>
-                                        <td>0800 1111</td>
-                                        <!-- <td>Olivar</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Berk</td>
-                                        <td>fringilla.porttitor.vulputate@taciti.edu</td>
-                                        <td>(0101) 043 2822</td>
-                                        <td>Sanquhar</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Philip</td>
-                                        <td>turpis@euenimEtiam.org</td>
-                                        <td>0500 571108</td>
-                                        <!-- <td>Okara</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Kibo</td>
-                                        <td>feugiat@urnajustofaucibus.co.uk</td>
-                                        <td>07624 682306</td>
-                                        <td>La Cisterna</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Bruno</td>
-                                        <td>elit.Etiam.laoreet@luctuslobortisClass.edu</td>
-                                        <td>07624 869434</td>
-                                        <!-- <td>Rocca d"Arce</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Leonard</td>
-                                        <td>blandit.enim.consequat@mollislectuspede.net</td>
-                                        <td>0800 1111</td>
-                                        <td>Lobbes</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Hamilton</td>
-                                        <td>mauris@diam.org</td>
-                                        <td>0800 256 8788</td>
-                                        <!-- <td>Sanzeno</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2">Harding</td>
-                                        <td>Lorem.ipsum.dolor@etnetuset.com</td>
-                                        <td>0800 1111</td>
-                                        <td>Obaix</td>
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>Emmanuel</td>
-                                        <td>eget.lacus.Mauris@feugiatSednec.org</td>
-                                        <td>(016977) 8208</td>
-                                        <!-- <td>Saint-Remy-Geest</td> -->
-                                        <!-- <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td> -->
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </section>
+                    <!-- Bordered table end -->
+                    <section class="section">
+                        <div class="card border-0">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="table1">
+                                    <thead>
+                                        <tr class="table-secondary">
+                                            <th rowspan="2" cope="col"  class="align-middle" >종목명</th>
+                                            <th cope="col" class="text-center">평가손익<br> 손익률</th>
+                                            <th cope="col" class="text-center" >평균단가<br>현재가</th>
+                                            <th cope="col" class="text-center" >보유수량<br>매도가능</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td  rowspan="2" class="align-middle" >SK하이닉스</td>
+                                            <td class="text-right">3,225</td>
+                                            <td class="text-center">113,500</td>
+                                            <td class="text-right">15</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">0.19%</td>
+                                            <td class="text-center">114000</td>
+                                            <td class="text-right">15</td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="align-middle" rowspan="2" >삼성전자</td>
+                                            <td class="text-right">1,059</td>
+                                            <td class="text-center">72,500</td>
+                                            <td class="text-right">58</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">0.03%</td>
+                                            <td class="text-center">72,700</td>
+                                            <td class="text-right">58</td>
+                                        </tr>
+                                        <tr>
+                                            <td   class="align-middle" rowspan="2">NAVER</td>
+                                            <td class="text-right">1,382</td>
+                                            <td class="text-center">288,500</td>
+                                            <td class="text-right">5</td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="text-right">0.10%</td>
+                                            <td  class="text-center">289,500</td>
+                                            <td  class="text-right">5</td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="align-middle" rowspan="2">카카오</td>
+                                            <td class="text-right">113</td>
+                                            <td  class="text-center">384,000</td>
+                                            <td class="text-right">3</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">0.01%</td>
+                                            <td  class="text-center">385,000</td>
+                                            <td class="text-right">3</td>
+                                        </tr>
+                                        <tr>
+                                            <td   class="align-middle" rowspan="2">Kuame</td>
+                                            <td>Quisque.purus@mauris.org</td>
+                                            <td>(0151) 561 8896</td>
+                                            <td>Tresigallo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Deacon</td>
+                                            <td>Duis.a.mi@sociisnatoquepenatibus.com</td>
+                                            <td>07740 599321</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">Channing</td>
+                                            <td>tempor.bibendum.Donec@ornarelectusante.ca</td>
+                                            <td>0845 46 49</td>
+                                            <td>Warrnambool</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aladdin</td>
+                                            <td>sem.ut@pellentesqueafacilisis.ca</td>
+                                            <td>0800 1111</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">Cruz</td>
+                                            <td>non@quisturpisvitae.ca</td>
+                                            <td>07624 944915</td>
+                                            <td>Shikarpur</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Keegan</td>
+                                            <td>molestie.dapibus@condimentumDonecat.edu</td>
+                                            <td>0800 200103</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">Ray</td>
+                                            <td>placerat.eget@sagittislobortis.edu</td>
+                                            <td>(0112) 896 6829</td>
+                                            <td>Hofors</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Maxwell</td>
+                                            <td>diam@dapibus.org</td>
+                                            <td>0334 836 4028</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">Carter</td>
+                                            <td>urna.justo.faucibus@orci.com</td>
+                                            <td>07079 826350</td>
+                                            <td>Biez</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Stone</td>
+                                            <td>velit.Aliquam.nisl@sitametrisus.com</td>
+                                            <td>0800 1111</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">Berk</td>
+                                            <td>fringilla.porttitor.vulputate@taciti.edu</td>
+                                            <td>(0101) 043 2822</td>
+                                            <td>Sanquhar</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Philip</td>
+                                            <td>turpis@euenimEtiam.org</td>
+                                            <td>0500 571108</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">Kibo</td>
+                                            <td>feugiat@urnajustofaucibus.co.uk</td>
+                                            <td>07624 682306</td>
+                                            <td>La Cisterna</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bruno</td>
+                                            <td>elit.Etiam.laoreet@luctuslobortisClass.edu</td>
+                                            <td>07624 869434</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">Leonard</td>
+                                            <td>blandit.enim.consequat@mollislectuspede.net</td>
+                                            <td>0800 1111</td>
+                                            <td>Lobbes</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hamilton</td>
+                                            <td>mauris@diam.org</td>
+                                            <td>0800 256 8788</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">Harding</td>
+                                            <td>Lorem.ipsum.dolor@etnetuset.com</td>
+                                            <td>0800 1111</td>
+                                            <td>Obaix</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Emmanuel</td>
+                                            <td>eget.lacus.Mauris@feugiatSednec.org</td>
+                                            <td>(016977) 8208</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-
-                </section>
-
-                
-
-                
-
-                
-               
-            </div>
-
-            <!-- <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">A. Saugi</a></p>
-                    </div>
+                    </section>
                 </div>
-            </footer> -->
+            </div>
         </div>
-    </div>
-    <!-- <script src="/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="/javascripts/bootstrap.bundle.min.js"></script> -->
-
-    <script src="/javascripts/main.js"></script>
-</body>
-
-
+        <script src="/javascripts/main.js"></script>
+    </body>
 </html>
