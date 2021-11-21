@@ -2,14 +2,11 @@
 var express = require('express');
 var session = require('express-session');
 var router = express.Router();
-// var userController = require('../controllers/RegisterControllers');
+var mainControllers = require('../controllers/MainControllers');
 
-// router.get('/',userController.doDashbord);
-
-router.get('/',function(req, res, next){
-  res.render('dashboard/index', { nickname: req.session.userNickname });
-})
-router.post('/', function(req, res, next){
+router.get('/',mainControllers.doMainView)
+router.post('/',mainControllers.doMainView)
+// router.post('/', function(req, res, next){
 //   um = req.body.username;
 //   pwd = req.body.password;
 //   var sql = 'select * from users where username=?';
@@ -33,11 +30,11 @@ router.post('/', function(req, res, next){
   // console.log('hi');
   // if( um ===  user.user_name && pwd === user.user_password){
   //   req.session.displayname = req.body.displayname;  //이거 좌,우 순서만 바껴도 틀린다........
-    res.render('dashboard/index', { nickname: req.session.userNickname });
+    // res.render('dashboard/index', { nickname: req.session.userNickname });
   // }else{
   //   res.send(um+','+pwd+'은 잘못된 아이디와 로그인입니다. <a href="/">login</a>');
   // }
-});
+// });
 module.exports = router;
 
 /* session을 받을 수 있는 코딩 */

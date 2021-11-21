@@ -87,6 +87,22 @@ module.exports = {
             // dbconn.end();
         })
     },
+    //main
+    getRankPeople : function () {
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `select user_nickname from ${table} order by assets limit 3`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res);
+                    }
+            });
+            // dbconn.end();
+        })
+    },
     // myinfo
     getMyInfo : function(idx) {
         return new Promise ((resolve, reject) => {
