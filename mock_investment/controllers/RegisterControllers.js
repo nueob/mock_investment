@@ -5,10 +5,6 @@ const router = require('../routes');
 module.exports = {
     // views
     doLoginUser : function(req,res,next) {
-        // 데이터 가져오기
-        // User.getUser().then((result) => {
-        //     res.render('user-auth/auth-login.ejs',{user:result});
-        // })
         if(typeof req.session.userIdx != 'undefined') {
             res.render('dashboard/index',{ nickname : req.session.userNickname });
         } else {

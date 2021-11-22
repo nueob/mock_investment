@@ -91,13 +91,19 @@ module.exports = {
     getRankPeople : function (idx) {
         return new Promise ((resolve, reject) => {
             var query = `select ROW_NUMBER() OVER (ORDER BY assets desc) as rank, user_nickname  from ${table} order by assets limit 3;` +
-                        `select ROW_NUMBER() OVER (ORDER BY assets desc) as my_rank from ${table} where user_idx = ${idx};`; 
+                        `select ROW_NUMBER() OVER (ORDER BY assets desc) as my_rank from ${table} where user_idx = ${idx};` +
+                        `select * from company_info;` +
+                        `select get_buy_stock , ROW_NUMBER() OVER (ORDER BY b.create_dt) as rank , company_stock , get_buy_price , (get_buy_price - company_stock) as different
+                        from stock_buy_item b
+                        inner join company_info c on b.company_idx = c.company_idx
+                        where DATE_FORMAT(b.create_dt,'%Y-%m-%d') = date_format(NOW(),'%Y-%m-%d') group by b.company_idx`; 
             dbconn.query(query, (err,result,fields) =>
                 {
                     if(err){
                         reject(err);
                     } else {
                         let res = JSON.parse(JSON.stringify(result));
+                        console.log(result);
                         resolve(res);
                     }
             });
