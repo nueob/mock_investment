@@ -45,63 +45,69 @@ body {
         </div>
     </div>
 </div>
-<!-- <div id="auth">
-    <div class="row h-100">
-        <div class="col-lg-5 col-12">
-            <div id="auth-left">
-                <div class="auth-logo">
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="text" id="user_id" name="user_id" class="form-control form-control-xl" placeholder="공모가" value="12,000" disabled>
-                    </div>
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="text" id="user_name" name="user_name" class="form-control form-control-xl" placeholder="청약 수량">
-                        <div class="form-control-icon">
-                            <i class="bi bi-person"></i>
+<div class="row">
+    <h5 class="cen">청약하기</h5>
+    <div class="card" style="border:0">
+        <div class="card-body">
+            <section class="section">
+                <div class="row" id="table-bordered">
+                    <div class="col-12">
+                        <div class="card border-0">
+                            <div class="card-content">
+                                <!-- table bordered -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered mb-0" style="border:0">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-bold-500" style="width:30%">공모가</th>
+                                                <td style="width:70%">12,000</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-bold-500" style="width:30%">청약 수량</th>
+                                                <td style="width:70%"><input type="text" name="cnt" class="form-control form-control-xl" style="height: 20px;" onkeyup="keyup()"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-bold-500" style="width:30%">청약 금액</th>
+                                                <td id="total_price" style="width:70%"></td>
+                                            </tr>                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <button type="button" id="modal_btn" class="btn btn-primary" style="width:15%;position:relative;left:910px;top: 10px;">청약 신청하기</button>
                         </div>
                     </div>
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="text" id="user_nickname" name="user_nickname" class="form-control form-control-xl" placeholder="청약 금액">
-                    </div>
-                    <button name="register" id="register-button" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">청약 신청</button>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
-</div> -->
-<section class="section">
-    <div class="row" id="table-bordered">
-        <div class="col-12">
-            <div class="card border-0">
-                <div class="card-content">
-                    <!-- table bordered -->
-                    <div class="table-responsive">
-                        <table class="table table-bordered mb-0">
-                            <tbody>
-                                <tr>
-                                    <th class="text-bold-500" style="width:30%">공모가</th>
-                                    <td style="width:70%">12,000</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-bold-500" style="width:30%">청약 수량</th>
-                                    <td style="width:70%"><input type="text" name="cnt" class="form-control form-control-xl" style="height: 20px;" onkeyup="keyup()"></td>
-                                </tr>
-                                <tr>
-                                    <th class="text-bold-500" style="width:30%">청약 금액</th>
-                                    <td id="total_price" style="width:70%"></td>
-                                </tr>                                            
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+</div>
 <script>
     function keyup () {
         var cnt = $('input[name=cnt]').val();
         var price = 12000*cnt;
         document.getElementById('total_price').innerHTML = price;
-    } 
+    }
+    $(document).ready(function() {
+        $('#modal_btn').on('click',function(){
+            console.log('modal_btn click');
+            var cnt = $('input[name=cnt]').val();
+
+            if(cnt > 5) {
+                alert('최대 5주까지 가능합니다.');
+            } else {
+                $.ajax({
+                    url:'/search/public_offering',
+                    type:'POST',
+                    data: {'stock':cnt},
+                    success : function(result) {
+                        console.log(result);
+                        alert('청약이 완료되었습니다.');
+                        location.href = '/main'
+                    }
+                })
+            }
+        })
+    })
 </script>
 <script src="/javascripts/main.js"></script>

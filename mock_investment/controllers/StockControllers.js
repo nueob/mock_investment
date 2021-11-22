@@ -34,8 +34,14 @@ module.exports = {
                 res.json(result);
         })        
     },
-    dopublicOffering : function(req,res,next) {
+    viewPublicOffering : function(req,res,next) {
         res.render('stock-search/stock-public-offering', { title: 'Express'});
+    },
+    dopublicOffering : function(req,res,next) {
+        StockMoney.publicOffering(req.session.userIdx,req.body.stock).then((result) => {
+            console.log(result);
+            res.json(result);
+        })
     },
     sellStock : function(req,res,next){
         Buy.sellStock(req.body.stock,req.session.userIdx, req.body.company_Idx).then((result)=>{

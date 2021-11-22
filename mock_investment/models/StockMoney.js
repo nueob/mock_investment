@@ -19,5 +19,19 @@ module.exports={
             });
             // dbconn.end();
         })
+    },
+    publicOffering : function(idx,stock) {
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `insert into public_offering (user_idx,stock) values (${idx},${stock})`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+            });
+            // dbconn.end();
+        })
     }
 }

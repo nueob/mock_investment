@@ -8,7 +8,8 @@ router.get('/',stockControllers.getStockMoney);
 router.post('/',stockControllers.getStockMoney);
 router.post('/buy',stockControllers.getBuyStock);
 router.post('/sell',stockControllers.sellStock);
-router.get('/public_offering',stockControllers.dopublicOffering);
+router.get('/public_offering',stockControllers.viewPublicOffering);
+router.post('/public_offering',stockControllers.dopublicOffering);
 
 router.get('/yesunine', function(req, res, next) {
   res.render('stock-search/stock-yesunine', { title: 'Express'});
