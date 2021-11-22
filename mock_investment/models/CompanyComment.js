@@ -5,13 +5,13 @@ const dbconn = db.init();
 const table = 'company_comment c';
 
 module.exports = {
-    commnetList : function(companyIdx) {
+    searchList : function(companyName) {
         return new Promise ((resolve,reject) => {
             dbconn.query(
-                `select c.*,u.user_nickname from ${table} inner join user_info u on c.user_idx = u.user_idx
-                where c.company_idx = ${companyIdx}` , (err,result,fields) =>
+                `select c.*,i.*,date_format(c.create_dt,'%Y-%m-%d %H:%i:%s') as create_dt from company_info i inner join ${table} on c.company_idx = i.company_idx
+                where i.company_name like '%${companyName}%'` , (err,result,fields) =>
                 {
-                    console.log(result);
+                    // console.log(result);
                     if(err) {
                         reject(err);
                     } else {
@@ -21,22 +21,6 @@ module.exports = {
             });
         })
     },
-    // searchList : function(companyName) {
-    //     return new Promise ((resolve,reject) => {
-    //         dbconn.query(
-    //             `select c.*,company_name from company_info i inner join ${table} on c.company_idx = i.company_idx
-    //             where i.company_name like '%${companyName}%'` , (err,result,fields) =>
-    //             {
-    //                 console.log(result);
-    //                 if(err) {
-    //                     reject(err);
-    //                 } else {
-    //                     let res = JSON.parse(JSON.stringify(result));
-    //                     resolve(res);
-    //                 }
-    //         });
-    //     })
-    // },
     doComment : function(userIdx , companyIdx , comment) {
         return new Promise ((resolve,reject) => {
             dbconn.query(

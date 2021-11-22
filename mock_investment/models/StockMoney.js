@@ -59,5 +59,20 @@ module.exports={
             });
             // dbconn.end();
         })
+    },
+    companyInfo : function() {
+        return new Promise ((resolve, reject) => {
+            dbconn.query(
+                `select * from company_info where company_idx = 1`, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res[0]);
+                    }
+            });
+            // dbconn.end();
+        })
     }
 }

@@ -8,14 +8,27 @@ module.exports = {
     // views
     doDiscussionView : function(req,res,next) {
         // Comment.getDiscussion(req.body.companyIdx)
-        Comment.commnetList(1).then((result) =>{
-            for (com of result ) {
-                console.log(com.user_nickname);
-            }
+        var keyword = '';
+        if(typeof req.body.length == 'undefined') {
+            keyword = '룩';
+        }  else {
+            keyword = req.body.companyInfo;
+        }
+        Comment.searchList(keyword).then((result) => { 
             console.log(result);
-            res.render('stock-search/stock-discussion', { title: 'Express' , comment : result});
+            res.render('stock-search/stock-discussion', { title: 'Express' , comment : result });
         })
     },
+    viewPublicOffering : function(req,res,next) {
+        res.render('stock-search/stock-public-offering', { title: 'Express'});
+    },
+    viewCompanyInfo : function(req,res,next) {
+        StockMoney.companyInfo().then((result)=>{
+            console.log(result);
+            res.render('stock-search/stock-companyInfo', { title: 'Express' , info:result});
+        })
+    },
+    //data-controllers
     doDiscussionSearch : function(req,res,next) {
         Comment.searchList(req.body.companyName).then((result) => {
             console.log(result);
@@ -33,9 +46,6 @@ module.exports = {
                 console.log(result);
                 res.json(result);
         })        
-    },
-    viewPublicOffering : function(req,res,next) {
-        res.render('stock-search/stock-public-offering', { title: 'Express'});
     },
     dopublicOffering : function(req,res,next) {
         StockMoney.publicOffering(req.session.userIdx,req.body.stock).then((result) => {

@@ -6,8 +6,10 @@ var stockControllers = require('../controllers/StockControllers');
 /* 종목 검색 page */
 router.get('/',stockControllers.getStockMoney);
 router.post('/',stockControllers.getStockMoney);
+
 router.post('/buy',stockControllers.getBuyStock);
 router.post('/sell',stockControllers.sellStock);
+
 router.get('/public_offering',stockControllers.viewPublicOffering);
 router.post('/public_offering',stockControllers.dopublicOffering);
 router.post('/able_offering',stockControllers.doAbleOffering);
@@ -16,9 +18,7 @@ router.get('/yesunine', function(req, res, next) {
   res.render('stock-search/stock-yesunine', { title: 'Express'});
 });
 
-router.get('/companyInfo', function(req, res, next) {
-  res.render('stock-search/stock-companyInfo', { title: 'Express' });
-});
+router.get('/companyInfo', stockControllers.viewCompanyInfo);
 
 router.get('/discussion', stockControllers.doDiscussionView);
 router.post('/discussion_comment', stockControllers.doDiscussionComment);
