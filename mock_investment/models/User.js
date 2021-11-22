@@ -88,10 +88,11 @@ module.exports = {
         })
     },
     //main
-    getRankPeople : function () {
+    getRankPeople : function (idx) {
         return new Promise ((resolve, reject) => {
-            dbconn.query(
-                `select user_nickname from ${table} order by assets limit 3`, (err,result,fields) =>
+            var query = `select ROW_NUMBER() OVER (ORDER BY assets desc) as rank, user_nickname  from ${table} order by assets limit 3;` +
+                        `select ROW_NUMBER() OVER (ORDER BY assets desc) as my_rank from ${table} where user_idx = ${idx};`; 
+            dbconn.query(query, (err,result,fields) =>
                 {
                     if(err){
                         reject(err);

@@ -63,32 +63,41 @@
                                     <div class="card-body px-3 py-4-5">
                                         <h5 class="cen">이달의 주식왕</h5>
                                         <div class="row">
-                                            <div class="col-md-2">
+                                            <div class="col-md-2" style="width:12.5%">
                                                 <div class="stats-icon blue">
                                                     <i class="iconly-boldProfile"></i>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-2" style="width:12.5%">
                                                 <h6 class="text-muted font-semibold">1등</h6>
-                                                <h6 class="font-extrabold mb-0"><%=rank[0].user_nickname%></h6>
+                                                <h6 class="font-extrabold mb-0"><%=rank[0][0].user_nickname%></h6>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-2" style="width:12.5%">
                                                 <div class="stats-icon blue">
                                                     <i class="iconly-boldProfile"></i>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-2" style="width:12.5%">
                                                 <h6 class="text-muted font-semibold">2등</h6>
-                                                <h6 class="font-extrabold mb-0"><%=rank[1].user_nickname%></h6>
+                                                <h6 class="font-extrabold mb-0"><%=rank[0][1].user_nickname%></h6>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-2" style="width:12.5%">
                                                 <div class="stats-icon blue">
                                                     <i class="iconly-boldProfile"></i>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-2" style="width:12.5%">
                                                 <h6 class="text-muted font-semibold">3등</h6>
-                                                <h6 class="font-extrabold mb-0"><%=rank[2].user_nickname%></h6>
+                                                <h6 class="font-extrabold mb-0"><%=rank[0][2].user_nickname%></h6>
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <div class="avatar avatar-xl">
+                                                    <img src="/images/faces/1.jpg" alt="Face 1">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <h6 class="text-muted font-semibold"><%=rank[1][0].my_rank%>등</h6>
+                                                <h6 class="font-extrabold mb-0"><%= nickname %></h6>
                                             </div>
                                         </div>
                                     </div>
