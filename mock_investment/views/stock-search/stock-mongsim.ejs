@@ -105,52 +105,7 @@ body {
                 </div>
                     <div class="card-body">
                         <div class="table-responsive"  style="background-color: #fff;border:0">
-                            <table class="table table-lg">
-                                <tbody>
-                                    <div class="cheart">
-                                        <tr>
-                                            <td style="font-size: xx-large;">11000</td>
-                                            <td class="text-bold-500"><div class="charts__chart chart--red" data-percent="80%" style="width: 80%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-danger">매수</a></div></td> -->
-                                            <td class="text-bold-500"><div class="charts__chart chart--blue" data-percent="90%" style="width: 90%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-primary">매도</a></div></td> -->
-
-                                        </tr>
-                                        <tr>
-                                            <td style="font-size: xx-large;">10500</td>
-                                            <td class="text-bold-500"><div class="charts__chart chart--red" data-percent="100%" style="width: 100%" ></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-danger">매수</a></div></td> -->
-                                            <td class="text-bold-500"><div class="charts__chart chart--blue" data-percent="50%" style="width: 50%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-primary">매도</a></div></td> -->
-
-                                        </tr>
-                                        <tr>
-                                            <td style="font-size: xx-large;">10000</td>
-                                            <td class="text-bold-500"><div class="charts__chart chart--red" data-percent="40%" style="width: 40%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-danger">매수</a></div></td> -->
-                                            <td class="text-bold-500"><div class="charts__chart chart--blue" data-percent="70%" style="width: 70%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-primary">매도</a></div></td> -->
-
-                                        </tr>
-                                        <tr>
-                                            <td style="font-size: xx-large;">9500</td>
-                                            <td class="text-bold-500"><div class="charts__chart chart--red" data-percent="100%" style="width: 100%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-danger">매수</a></div></td> -->
-                                            <td class="text-bold-500"><div class="charts__chart chart--blue" data-percent="100%" style="width: 100%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-primary">매도</a></div></td> -->
-
-                                        </tr>
-                                        <tr>
-                                            <td style="font-size: xx-large;">9000</td>
-                                            <td class="text-bold-500"><div class="charts__chart chart--red" data-percent="30%" style="width: 30%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-danger">매수</a></div></td> -->
-                                            <td class="text-bold-500"><div class="charts__chart chart--blue" data-percent="50%" style="width: 50%"></div></td>
-                                            <!-- <td class="text-bold-500"><div class="buttons"><a href="#" class="btn btn-primary">매도</a></div></td> -->
-
-                                        </tr>
-                                    </div>
-                                </tbody>
-                            </table>
+                            <div id="container" style="height: 400px; min-width: 310px" ></div>
                         </div>
                     </div>
                     <div class="card-body" style="padding-top:35px">
@@ -481,7 +436,98 @@ function fnCalCount2(type, ths){
     
     }
 }
+// Highcharts.stockChart('container', {
 
 
+// title: {
+//   text: 'AAPL stock price by minute'
+// },
+
+// rangeSelector: {
+//   buttons: [{
+//     type: 'hour',
+//     count: 1,
+//     text: '1h'
+//   }, {
+//     type: 'day',
+//     count: 1,
+//     text: '1D'
+//   }, {
+//     type: 'all',
+//     count: 1,
+//     text: 'All'
+//   }],
+//   selected: 1,
+//   inputEnabled: false
+// },
+
+// series: [{
+//   name: 'AAPL',
+//   type: 'candlestick',
+//   data: data,
+//   tooltip: {
+//     valueDecimals: 2
+//   }
+// }]
+// });
+
+Highcharts.chart('container',{
+    chart:{
+        type: 'line'
+    },
+    series:[{
+        name: '테스트입니다',
+        data: [2,4,7,3,1]
+    }],
+});
+
+// Highcharts.chart('container', {
+
+//     title: {
+//         text: '몽심'
+//     },
+
+//     subtitle: {
+//         text: '차트 서브타이틀'
+//     },
+
+//     yAxis: {
+//         title: {
+//             text: 'y축 타이틀'
+//         }
+//     },
+
+//     xAxis: {
+//         title: {
+//             text: 'x축 타이틀'
+//         }
+//     },
+        
+//     /* 범례를 우측 세로로 정렬 */
+//     legend: {
+//         layout: 'vertical',
+//         align: 'right',
+//         verticalAlign: 'middle'
+//     },
+
+
+//     series: [{
+//         name: '범례 1',
+//         data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+//     }, {
+//         name: '범례 2',
+//         data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+//     }, {
+//         name: '범례 3',
+//         data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+//     }, {
+//         name: '범례 4',
+//         /* series.data가 null일 경우 라인이 도식되지 않음 */
+//         data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+//     }, {
+//         name: '범례 5',
+//         data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+//     }],
+//     });
 
 </script>
