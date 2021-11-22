@@ -9,10 +9,7 @@ const table3 = 'company_info';
 module.exports = {
     buyStock : function(stock, user_idx, company_Idx, stock_count) {
         return new Promise ((resolve,reject)=> {
-            var query = `insert into ${table} (get_buy_stock, user_idx, company_Idx) values ('${stock}','${user_idx}','${company_Idx}');` + //산 주식 채우기
-                        `update ${table3} set company_stock_count = company_stock_count - ${Number(stock_count)} where company_idx = '1';`;
-            dbconn.query(
-                query, (err,result,fields) =>
+            dbconn.query( `insert into ${table} (get_buy_stock, user_idx, company_Idx) values ('${stock}','${user_idx}','${company_Idx}');`, (err,result,fields) =>
                 {
                     if(err){
                         console.log(err);
