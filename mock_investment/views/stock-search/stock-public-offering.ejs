@@ -81,7 +81,13 @@ body {
                                                         </tr>
                                                         <tr>
                                                             <th class="text-bold-500" style="width:30%">청약 수량</th>
-                                                            <td style="width:70%"><input type="text" name="cnt" class="form-control form-control-xl" style="height: 20px;" onkeyup="keyup()"></td>
+                                                            <td style="width:70%">
+                                                                <input type="text" name="cnt" class="form-control form-control-xl" style="height: 20px;width: 75%;float: left;margin-right: 5px;" onkeyup="keyup()">
+                                                                <button type="button" id="stock_btn" class="btn btn-primary" style="width:23%;float: left">신청 가능한 주 확인</button>
+                                                            </td>
+                                                            <!-- <td>
+                                                                <button type="button" id="stock_btn" class="btn btn-primary">신청 가능한 주 확인</button>
+                                                            </td> -->
                                                         </tr>
                                                         <tr>
                                                             <th class="text-bold-500" style="width:30%">청약 금액</th>
@@ -91,7 +97,7 @@ body {
                                                 </table>
                                             </div>
                                         </div>
-                                        <button type="button" id="modal_btn" class="btn btn-primary" style="width:15%;position:relative;left:910px;top: 10px;">청약 신청하기</button>
+                                        <button type="button" id="modal_btn" class="btn btn-primary" style="width:15%;position:relative;left:1050px;top: 10px;">청약 신청하기</button>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +116,20 @@ body {
         document.getElementById('total_price').innerHTML = price;
     }
     $(document).ready(function() {
-        $('#modal_btn').on('click',function(){
+        $('#stock_btn').on('click',function() {
+
+            console.log('stock_btn click');
+            $.ajax({
+                url:'/search/able_offering',
+                type:'POST',
+                success : function(result) {
+                    var result = 5 - result;
+                    alert('신청 가능한 주 : ' + result)
+                }
+            })
+
+        })
+        $('#modal_btn').on('click',function() {
             console.log('modal_btn click');
             var cnt = $('input[name=cnt]').val();
 
@@ -122,9 +141,14 @@ body {
                     type:'POST',
                     data: {'stock':cnt},
                     success : function(result) {
-                        console.log(result);
-                        alert('청약이 완료되었습니다.');
-                        location.href = '/main'
+                        if( result == 100) {
+                            alert('청약을 최대 5주 까지 가능합니다.');
+                            location.reload();
+                        } else {   
+                            console.log(result);
+                            alert('청약이 완료되었습니다.');
+                            location.href = '/main'
+                        }
                     }
                 })
             }

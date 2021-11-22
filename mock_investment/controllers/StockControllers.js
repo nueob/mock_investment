@@ -43,6 +43,12 @@ module.exports = {
             res.json(result);
         })
     },
+    doAbleOffering : function(req,res,next) {
+        StockMoney.doAbleOffering(req.session.userIdx).then((result) => {
+            console.log(result);
+            res.json(result);
+        })
+    },
     sellStock : function(req,res,next){
         Buy.sellStock(req.body.stock,req.session.userIdx, req.body.company_Idx).then((result)=>{
             console.log(result);

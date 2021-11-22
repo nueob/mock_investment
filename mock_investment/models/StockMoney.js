@@ -22,13 +22,39 @@ module.exports={
     },
     publicOffering : function(idx,stock) {
         return new Promise ((resolve, reject) => {
+            var query = `select sum(stock) as count from public_offering where user_idx = ${idx}`;
+            dbconn.query(query,(err,result,fields) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    let res = JSON.parse(JSON.stringify(result));
+                    if(parseInt(res[0].count) + parseInt(stock) > 5) {
+                        resolve(100);
+                    } else {
+                        dbconn.query(
+                            `insert into public_offering (user_idx,stock) values (${idx},${stock})`, (err,result,fields) =>
+                            {
+                                if(err){
+                                    reject(err);
+                                } else {
+                                    resolve(result);
+                                }
+                        });
+                    }
+                }
+            })
+        })
+    },
+    doAbleOffering : function(idx) {
+        return new Promise ((resolve, reject) => {
             dbconn.query(
-                `insert into public_offering (user_idx,stock) values (${idx},${stock})`, (err,result,fields) =>
+                `select sum(stock) as count from public_offering where user_idx = ${idx}`, (err,result,fields) =>
                 {
                     if(err){
                         reject(err);
                     } else {
-                        resolve(result);
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res[0].count);
                     }
             });
             // dbconn.end();
