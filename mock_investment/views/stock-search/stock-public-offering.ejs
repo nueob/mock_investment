@@ -1,3 +1,19 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
+
+    <link rel="stylesheet" href="/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+    <!-- <link rel="shortcut icon" href="/images/favicon.svg" type="image/x-icon"> -->
+</head>
 <style>
 body {
     background-color: #ebf3ff;
@@ -13,75 +29,80 @@ body {
     box-shadow: none;
 }
 </style>
-    
-<div class="page-heading"></div>
-<div class="page-content">
-<div class="row">
-    <h5 class="cen">기본 정보</h5>
-    <div class="card" style="border:0">
-        <div class="card-body">
+
+<div id="app">
+    <div id="main">   
+        <div class="page-content">
             <div class="row">
-                <div class="col-md">
-                    <h6 class="text-muted font-semibold">대표자</h6>
-                    <h6 class="font-extrabold mb-0">이용하</h6>
-                </div>
-                <div class="col-md">
-                    <h6 class="text-muted font-semibold">업종</h6>
-                    <h6 class="font-extrabold mb-0">인형 및 장난감 제조업</h6>
-                </div>
-            </div>
-            <div class="row" style="padding-top:10px">
-                <div class="col-md">
-                    <h6 class="font-extrabold mb-0"></h6>
-                    <h6 class="text-muted font-semibold">기업 주소</h6>
-                    <h6 class="font-extrabold mb-0">대전 유성구 유성대로 1646,101호</h6>
-                    <h6 class="font-extrabold mb-0"></h6>
-                </div>
-                <div class="col-md">
-                    <h6 class="text-muted font-semibold">사업 내용</h6>
-                    <h6 class="font-extrabold mb-0">조립식 목재 로봇, 스마트 토이</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <h5 class="cen">청약하기</h5>
-    <div class="card" style="border:0">
-        <div class="card-body">
-            <section class="section">
-                <div class="row" id="table-bordered">
-                    <div class="col-12">
-                        <div class="card border-0">
-                            <div class="card-content">
-                                <!-- table bordered -->
-                                <div class="table-responsive">
-                                    <table class="table table-bordered mb-0" style="border:0">
-                                        <tbody>
-                                            <tr>
-                                                <th class="text-bold-500" style="width:30%">공모가</th>
-                                                <td style="width:70%">12,000</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-bold-500" style="width:30%">청약 수량</th>
-                                                <td style="width:70%"><input type="text" name="cnt" class="form-control form-control-xl" style="height: 20px;" onkeyup="keyup()"></td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-bold-500" style="width:30%">청약 금액</th>
-                                                <td id="total_price" style="width:70%"></td>
-                                            </tr>                                            
-                                        </tbody>
-                                    </table>
-                                </div>
+                <h5 class="cen">(주)피니랩</h5>
+                <div class="card" style="border:0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md">
+                                <h6 class="text-muted font-semibold">대표자</h6>
+                                <h6 class="font-extrabold mb-0">이용하</h6>
                             </div>
-                            <button type="button" id="modal_btn" class="btn btn-primary" style="width:15%;position:relative;left:910px;top: 10px;">청약 신청하기</button>
+                            <div class="col-md">
+                                <h6 class="text-muted font-semibold">업종</h6>
+                                <h6 class="font-extrabold mb-0">인형 및 장난감 제조업</h6>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:10px">
+                            <div class="col-md">
+                                <h6 class="font-extrabold mb-0"></h6>
+                                <h6 class="text-muted font-semibold">기업 주소</h6>
+                                <h6 class="font-extrabold mb-0">대전 유성구 유성대로 1646,101호</h6>
+                                <h6 class="font-extrabold mb-0"></h6>
+                            </div>
+                            <div class="col-md">
+                                <h6 class="text-muted font-semibold">사업 내용</h6>
+                                <h6 class="font-extrabold mb-0">조립식 목재 로봇, 스마트 토이</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+            <div class="row">
+                <h5 class="cen">청약하기</h5>
+                <div class="card" style="border:0">
+                    <div class="card-body">
+                        <section class="section">
+                            <div class="row" id="table-bordered">
+                                <div class="col-12">
+                                    <div class="card border-0">
+                                        <div class="card-content">
+                                            <!-- table bordered -->
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered mb-0" style="border:0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="text-bold-500" style="width:30%">공모가</th>
+                                                            <td style="width:70%">12,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-bold-500" style="width:30%">청약 수량</th>
+                                                            <td style="width:70%"><input type="text" name="cnt" class="form-control form-control-xl" style="height: 20px;" onkeyup="keyup()"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-bold-500" style="width:30%">청약 금액</th>
+                                                            <td id="total_price" style="width:70%"></td>
+                                                        </tr>                                            
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="modal_btn" class="btn btn-primary" style="width:15%;position:relative;left:910px;top: 10px;">청약 신청하기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<script src="/javascripts/main.js"></script>        
 <script>
     function keyup () {
         var cnt = $('input[name=cnt]').val();
@@ -110,4 +131,3 @@ body {
         })
     })
 </script>
-<script src="/javascripts/main.js"></script>
