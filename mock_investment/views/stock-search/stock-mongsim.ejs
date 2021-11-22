@@ -323,9 +323,9 @@ body {
                                             </tr>
                                             <tr>
                                                 <tr style="text-align:center;">
-                                                    <th>주문금액</th>
+                                                    <th><%= money %></th>
                                                     <td>
-                                                        <input type="number" id="total" value="0" readonly="readonly"/>
+                                                        <input type="number" id="total" value='<%= money %>' readonly="readonly"/>
                                                     </td>
         
                                             </tr>
@@ -350,7 +350,7 @@ body {
                                             </tr>
                                             <tr>
                                                 <th class="text-bold-500">주문금액</th>
-                                                <td><input type="number" id="total2" value="0" readonly="readonly"/></td>
+                                                <td><input type="number" id="total2" value='<%= money %>' readonly="readonly"/></td>
                                             </tr>
                                             
                                         </tbody>
@@ -365,6 +365,21 @@ body {
 </body>
 <script src="javascripts/main.js"></script>
 <script>
+// function stock_money(){
+//     var s_money = $("input[id= 'total']").val()
+
+//     $.ajax({
+//         url: '/search/stock',
+//         type:'POST',
+//         data:{
+
+//         },
+//         success : function(result) {
+//             s_money = result;
+//             location.reload();
+//         }
+//     })
+// }
 function buy(){
     var stock = $("input[id='get_count']").val();
     var company_Idx = 1;
@@ -426,10 +441,10 @@ function fnCalCount(type, ths){
     
     if(type=='p'){
         $input.val(Number(tCount)+1);
-        $input2.val(Number(tCount)+Number(tCount));
+        $input2.val(10000*Number(tCount));
     }else{
         if(tCount >0) $input.val(Number(tCount)-1);
-        $input2.val(Number(tCount)-Number(tCount));    
+        $input2.val(10000*Number(tCount));    
         }
 }
 function fnCalCount2(type, ths){
@@ -439,12 +454,12 @@ function fnCalCount2(type, ths){
     
     if(type=='z'){
         $input.val(Number(tCount)+1);
-        $input2.val(Number(tCount));
+        $input2.val(10000*Number(tCount));
         
     }else{
         if(tCount >0)
             $input.val(Number(tCount)-1);
-            $input2.val(Number(tCount)-1);    
+            $input2.val(10000*Number(tCount)-1);    
         }
 }
 

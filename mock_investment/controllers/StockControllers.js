@@ -2,6 +2,7 @@ const express = require('express');
 const Comment = require('../models/CompanyComment');
 const Buy = require('../models/Buy');
 const router = require('../routes');
+const StockMoney = require('../models/StockMoney');
 
 module.exports = {
     // views
@@ -38,9 +39,17 @@ module.exports = {
     },
 
     sellStock : function(req,res,next){
-        Buy.sellStock(req.body.stock,req.session.userIdx, req.body.company_Idx).then((result)=>{
+        Buy.sellStock(req.body.stock,req.session.userIdx, req.body.company_Idx,req.body.stock).then((result)=>{
             console.log(result);
             res.json(result);
+        })
+    },
+
+    getStockMoney : function(req,res,next){
+        StockMoney.stockMoney().then((result)=>{
+            console.log(result);
+            res.render('stock-search/stock-mongsim', {title: 'Express', money : result});
+
         })
     }
 }

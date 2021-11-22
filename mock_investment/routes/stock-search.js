@@ -4,9 +4,8 @@ var router = express.Router();
 var stockControllers = require('../controllers/StockControllers');
 
 /* 종목 검색 page */
-router.get('/', function(req, res, next) {
-  res.render('stock-search/stock-mongsim', { title: 'Express' });
-});
+router.get('/',stockControllers.getStockMoney);
+router.post('/',stockControllers.getStockMoney);
 router.post('/buy',stockControllers.getBuyStock);
 router.post('/sell',stockControllers.sellStock);
 
