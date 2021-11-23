@@ -226,13 +226,13 @@ body {
                                             <tr style="text-align:center;">
                                                 <th>1주 가격</th>
                                                 <td>
-                                                    <input type="number" id="price" value='<%= money[0].company_stock %>' readonly="readonly"/>
+                                                    <input type="number" id="price" value='<%= money[0][0].company_stock %>' readonly="readonly"/>
                                                 </td>
                                             </tr>
                                             <tr style="text-align:center;">
                                                 <th>주문금액</th>
                                                 <td>
-                                                    <input type="number" id="total" value='<%= money[0].company_stock %>' readonly="readonly"/>
+                                                    <input type="number" id="total" value='<%= money[0][0].company_stock %>' readonly="readonly"/>
                                                 </td>
     
                                             </tr>
@@ -259,12 +259,12 @@ body {
                                             <tr style="text-align:center;">
                                                 <th>1주 가격</th>
                                                 <td>
-                                                    <input type="number" id="price2" value='<%= money[0].company_stock %>'/>
+                                                    <input type="number" id="price2" value='<%= money[0][0].company_stock %>'/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th class="text-bold-500">주문금액</th>
-                                                <td><input type="number" id="total2" value='<%= money[0].company_stock %>' readonly="readonly"/></td>
+                                                <td><input type="number" id="total2" value='<%= money[0][0].company_stock %>' readonly="readonly"/></td>
                                             </tr>
                                             
                                         </tbody>

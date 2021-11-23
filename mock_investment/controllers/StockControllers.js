@@ -37,6 +37,7 @@ module.exports = {
         }
         console.log(keyword);
         StockMoney.stockMoney(keyword).then((result)=>{
+            console.log(result);
             res.render('stock-search/stock-search', {title: 'Express', money : result});
 
         })
