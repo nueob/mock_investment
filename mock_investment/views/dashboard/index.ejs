@@ -268,42 +268,21 @@
     $( document ).ready(function() {
         document.getElementById('modal_btn').click();
     });
-Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/new-intraday.json', function (data) {
-
-// create the chart
-Highcharts.stockChart('container', {
-
-
-    title: {
-        text: 'AAPL stock price by minute'
-    },
-
+    Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', function (data) {
+  Highcharts.stockChart('container', {
     rangeSelector: {
-        buttons: [{
-            type: 'hour',
-            count: 1,
-            text: '1h'
-        }, {
-            type: 'day',
-            count: 1,
-            text: '1D'
-        }, {
-            type: 'all',
-            count: 1,
-            text: 'All'
-        }],
-        selected: 1,
-        inputEnabled: false
+      selected: 1
     },
-
+    navigator: {
+      series: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
     series: [{
-        name: 'AAPL',
-        type: 'candlestick',
-        data: data,
-        tooltip: {
-            valueDecimals: 2
-        }
+      type: 'hollowcandlestick',
+      name: 'Hollow Candlestick',
+      data: data
     }]
-});
+  });
 });
 </script>
