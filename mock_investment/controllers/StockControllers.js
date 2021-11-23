@@ -7,16 +7,17 @@ const StockMoney = require('../models/StockMoney');
 module.exports = {
     // views
     doDiscussionView : function(req,res,next) {
-        // Comment.getDiscussion(req.body.companyIdx)
-        var keyword = '';
-        if(typeof req.body.length == 'undefined') {
-            keyword = '룩';
-        }  else {
-            keyword = req.body.companyInfo;
-        }
+        console.log('get');
+        var keyword = '룩';
         Comment.searchList(keyword).then((result) => { 
-            console.log(result);
-            res.render('stock-search/stock-discussion', { title: 'Express' , comment : result });
+            res.render('stock-search/stock-discussion', { title: 'Express' , comment : result });    
+        })
+    },
+    doDiscussionSearchView : function(req,res,next) {
+        Comment.searchList(req.body.company_name_input).then((result) => { 
+            console.log('search');
+            console.log(req.body.company_name_input);
+            res.render('stock-search/stock-discussion-search', { title: 'Express' , comment : result });
         })
     },
     viewPublicOffering : function(req,res,next) {

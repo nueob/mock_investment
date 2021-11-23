@@ -8,7 +8,8 @@ module.exports = {
     searchList : function(companyName) {
         return new Promise ((resolve,reject) => {
             dbconn.query(
-                `select c.*,i.*,date_format(c.create_dt,'%Y-%m-%d %H:%i:%s') as create_dt from company_info i inner join ${table} on c.company_idx = i.company_idx
+                `select c.*,i.*,date_format(c.create_dt,'%Y-%m-%d %H:%i:%s') as create_dt from company_info i 
+                left join ${table} on c.company_idx = i.company_idx
                 where i.company_name like '%${companyName}%'` , (err,result,fields) =>
                 {
                     // console.log(result);

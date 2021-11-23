@@ -21,8 +21,10 @@ router.get('/yesunine', function(req, res, next) {
 router.get('/companyInfo', stockControllers.viewCompanyInfo);
 
 router.get('/discussion', stockControllers.doDiscussionView);
+router.post('/discussion', stockControllers.doDiscussionSearchView);
+
 router.post('/discussion_comment', stockControllers.doDiscussionComment);
-router.post('/discussion_search', stockControllers.doDiscussionSearch);
+router.post('/discussion_search', stockControllers.doDiscussionSearchView);
 
 /* sample page */
 router.get('/gallery', function(req, res, next) {

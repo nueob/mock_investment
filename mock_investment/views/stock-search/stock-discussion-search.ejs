@@ -1,0 +1,157 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
+
+    <link rel="stylesheet" href="/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+    <!-- <link rel="shortcut icon" href="/images/favicon.svg" type="image/x-icon"> -->
+</head>
+<style>
+body {
+    background-color: #ebf3ff;
+}
+/*검색창 css*/
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+</style>
+
+<div type="hidden" id="companyIdx" style="display: none;"><%= comment[0].company_idx %></div>
+<div class="page-heading">
+    <div class="container">
+        <br/>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form class="card card-sm"  style="border:0">
+                    <div class="card-body row no-gutters align-items-center" style="padding:0.5rem;">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                        </div>
+                        <!--end of col-->
+                        <div class="col">
+                            <input name="company_name_input" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button id="search_btn" class="btn btn-lg btn-success" type="submit" style="background-color: #435ebe;border-color: #435ebe;">Search</button>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
+            </div>
+            <!--end of col-->
+        </div>
+    </div>    
+</div>
+<div id="page-content" class="page-content">
+    <div class="row">
+        <h5 class="cen">기본 정보</h5>
+        <div class="card" style="border:0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md">
+                        <h6 class="text-muted font-semibold">대표자</h6>
+                        <h6 class="font-extrabold mb-0"><%= comment[0].representative %></h6>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="text-muted font-semibold">회사이름</h6>
+                        <h6 class="font-extrabold mb-0"><%= comment[0].company_name %></h6>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:10px">
+                    <div class="col-md">
+                        <h6 class="font-extrabold mb-0"></h6>
+                        <h6 class="text-muted font-semibold">계열</h6>
+                        <h6 class="font-extrabold mb-0"><%= comment[0].industry_of_company %></h6>
+                        <h6 class="font-extrabold mb-0"></h6>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="text-muted font-semibold">현재가</h6>
+                        <h6 class="font-extrabold mb-0"><%= comment[0].company_stock %></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="cen">종목 토론</h5>
+        <div class="card" style="border:0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="basicInput"></label>
+                        <div id="input-button">
+                            <input type="text" class="form-control" id="comment" name="comment"
+                                placeholder="Enter email" style="float:left;width: 85%;">
+                            <div class="buttons" style="float:left;padding-left:20px">
+                                <a id="comment_btn" class="btn btn-primary rounded-pill">작성</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% for (com of comment ) { %>
+                <div class="row">
+                    <section class="section">
+                        <div class="row">
+                            <div class="card" style="margin-bottom:0rem;">
+                                <div class="card-body" style="padding:0rem">
+                                    <div class="divider-comment-time" style="float:right;padding-right:10px">
+                                        <div class="divider-text"><%= com.create_dt %></div>
+                                    </div>
+                                    <br>
+                                    <div class="divider-comment-nickname" style="float:left;padding-left:10px">
+                                        <h6 class="font-extrabold mb-0"><%= com.user_nickname %></h6>
+                                    </div>
+                                    <br>
+                                    <div class="divider-comment-content" style="float:left;padding-left:25px;padding-top:5px;padding-bottom: 10px;">
+                                        <div class="divider-text"><%= com.comment %></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-padding" style="padding-bottom: 10px;"></div>
+                        </div>
+                    </section>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div> 
+<script src="/javascripts/main.js"></script>
+<script>
+    $(document).ready(function(){ 
+        $('#comment_btn').on('click',function(){
+            console.log('comment_btn click');
+
+            var comment = $('input[name=comment]').val();
+            var companyIdx = $('#companyIdx').html();
+
+            console.log(companyIdx);
+            $.ajax({
+                url:'/search/discussion_comment',
+                type:'POST',
+                data: {
+                    'comment' : comment,
+                    'companyIdx' : companyIdx
+                },
+                success : function(result) {
+                    location.reload();
+                }
+            })
+        })
+    })
+</script>
