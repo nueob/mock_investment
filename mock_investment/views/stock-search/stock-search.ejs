@@ -67,7 +67,7 @@ body {
     <div class="page-content">
         <section class="row">
             <div class="col-12 col-lg-9">
-                <div id="company_idx" style="padding-bottom: 10px;display: none;"><%= money[0].company_idx %></div>
+                <input type="hidden" id="companyIdx" value="<%= money[0][0].company_idx %>">
                 <h3 class="card-body" style="padding-bottom: 10px;"><%= money[0][0].company_name %></h3>
                 <div class="card-body" style="border:0">
                     <div class="card-body px-3 py-4-5" style="background-color: #fff;border:0">
@@ -279,12 +279,10 @@ body {
 </body>
 <script src="javascripts/main.js"></script>
 <script>
-var company_Idx = $('#company_idx').html();
-    console.log(company_Idx);
 function buy(){
     var stock = $("input[id='get_count']").val();
     var price = $("input[id='price']").val();
-    var company_Idx = $('#company_idx').html();
+    var company_Idx = $('#companyIdx').val();
     console.log(company_Idx);
 
     if(stock != ""){

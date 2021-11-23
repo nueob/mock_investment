@@ -29,7 +29,7 @@ body {
     box-shadow: none;
 }
 </style>
-<div type="hidden" id="companyIdx"><%= comment[0].company_idx %></div>
+<input type="hidden" id="companyIdx" value='<%= comment[0].company_idx %>'>
 <div id="discussion">
     <div class="page-heading">
         <div class="container">
@@ -136,7 +136,7 @@ body {
             console.log('comment_btn click');
 
             var comment = $('input[name=comment]').val();
-            var companyIdx = $('#companyIdx').html();
+            var companyIdx = $('#companyIdx').val();
 
             console.log(companyIdx);
             $.ajax({
