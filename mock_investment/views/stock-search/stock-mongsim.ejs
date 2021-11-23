@@ -448,44 +448,134 @@ function fnCalCount2(type, ths){
     
     }
 }
-Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/new-intraday.json', function (data) {
 
-// create the chart
-Highcharts.stockChart('container', {
+// var chart = null;
+// var chart_load = false;
+// function stock(){
+    
+
+//     chart_load = true;
+
+//     Highcharts.setOptions({
+//         global : {
+//             timezoneOffset: -9 * 60
+//        }
+//     }); 
+//     Highcharts.stockChart('container', {
+
+//     title: {
+//         text: '몽심'
+//     },
+//     plotOptions: {
+//         candlestick: {
+//             downColor: 'blue',
+//             upColor: 'red'
+//         }
+//     },
+
+//     rangeSelector: {
+//         buttons: [{
+//             type: 'hour',
+//             count: 1,
+//             text: '1h'
+//         }, {
+//             type: 'day',
+//             count: 1,
+//             text: '1D'
+//         }, {
+//             type: 'all',
+//             count: 1,
+//             text: 'All'
+//         }],
+//         selected: 1,
+//         inputEnabled: false
+//     },
+//     series: [{
+//         name: 'AAPL',
+//         type: 'candlestick',
+//         data: getpo.chartdata,
+//         tooltip: {
+//             valueDecimals: 2
+//         }
+//     }]
+// }); 
+// }
+// function getpo()
+// {
+//     var chartdata = [];
+//     $.ajax({
+//             url:'/search/stock',
+//             type:'POST',
+//             data:{
+//             },
+//             success : function(result) {
+//                 var item = result[0].company_stock;
+//                 chartdata = [];
+//                 var last_data = null;
+//                 // for(i=0; i<2; i++)
+//                 // {
+//                     // var row = item[i];
+//                     timestamp = + new Date();
+//                     chartdata.push([timestamp, parseFloat(item), parseFloat(item), parseFloat(item), parseFloat(item)]);
+//                     alert(chartdata);
+//                 // }
+                
+//                 if(chart_load){
+//                     chart.series[0].setData(chartdata);
+//                 }
+//                 else{
+//                     stock();
+//                 }
+                
+                
+                
+//             },
+//         });   
+// }
+
+// $(document).ready(function(){
+//             getpo();
+//             setInterval(getpo, 1000 * 10);
+//         });
+
+// Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/new-intraday.json', function (data) {
+
+// // create the chart
+// Highcharts.stockChart('container', {
 
 
-    title: {
-        text: '몽심'
-    },
+//     title: {
+//         text: '몽심'
+//     },
 
-    rangeSelector: {
-        buttons: [{
-            type: 'hour',
-            count: 1,
-            text: '1h'
-        }, {
-            type: 'day',
-            count: 1,
-            text: '1D'
-        }, {
-            type: 'all',
-            count: 1,
-            text: 'All'
-        }],
-        selected: 1,
-        inputEnabled: false
-    },
+//     rangeSelector: {
+//         buttons: [{
+//             type: 'hour',
+//             count: 1,
+//             text: '1h'
+//         }, {
+//             type: 'day',
+//             count: 1,
+//             text: '1D'
+//         }, {
+//             type: 'all',
+//             count: 1,
+//             text: 'All'
+//         }],
+//         selected: 1,
+//         inputEnabled: false
+//     },
 
-    series: [{
-        name: 'AAPL',
-        type: 'candlestick',
-        data: data,
-        tooltip: {
-            valueDecimals: 2
-        }
-    }]
-});
-});
+//     series: [{
+//         name: 'AAPL',
+//         type: 'candlestick',
+//         data: data,
+//         tooltip: {
+//             valueDecimals: 2
+//         }
+//     }]
+// });
+// });
 
 // Highcharts.chart('container', {
 

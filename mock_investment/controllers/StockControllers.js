@@ -85,5 +85,11 @@ module.exports = {
             res.render('stock-search/stock-mongsim', {title: 'Express', money : result});
 
         })
+    },
+    
+    getStock: function(req,res,next){
+        StockMoney.stockMoney().then((result)=>{
+            res.json(result);
+        })
     }
 }
