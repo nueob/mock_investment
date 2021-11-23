@@ -328,7 +328,7 @@ body {
                                             <tr style="text-align:center;">
                                                 <th>1주 가격</th>
                                                 <td>
-                                                    <input type="number" id="price2" value='<%= money[0].company_stock %>' readonly="readonly"/>
+                                                    <input type="number" id="price2" value='<%= money[0].company_stock %>'/>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -391,7 +391,11 @@ function sell(){
                 'price' :price
             },
             success : function(result) {
-                alert('매도 성공');
+                if(result == 20) {
+                    alert('매도 가능한 수를 넘었습니다.');
+                } else {
+                    alert('매도 계약이 체결 되었습니다.');
+                }
                 location.reload();
             }
         })

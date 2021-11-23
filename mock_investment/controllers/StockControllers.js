@@ -47,6 +47,7 @@ module.exports = {
                 console.log(result);
                 if(result == 10) {
                     Buy.buystockFuntion(req.body.stock, req.body.price,req.session.userIdx, req.body.company_Idx).then((action)=>{
+                        console.log(action);
                         res.json(action);
                     })
                 } else {
@@ -68,8 +69,13 @@ module.exports = {
     },
     sellStock : function(req,res,next){
         Buy.sellStock(req.body.stock,req.body.price,req.session.userIdx, req.body.company_Idx).then((result)=>{
-            console.log(result);
-            res.json(result);
+            if(result == 10) {
+                Buy.sellStockFunction(req.body.stock,req.body.price,req.session.userIdx, req.body.company_Idx).then((action) => {
+                    res.json(action)
+                })
+            } else {
+                res.json(result);    
+            }
         })
     },
 
