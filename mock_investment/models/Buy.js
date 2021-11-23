@@ -60,6 +60,8 @@ module.exports = {
                                     resolve(10);
                                 }
                             });
+                        } else {
+                            resolve(10);
                         }
                        
                     }
@@ -117,6 +119,8 @@ module.exports = {
                                     resolve(10);
                                 }
                             });
+                        } else {
+                            resolve(10);
                         }
                     }
                 }

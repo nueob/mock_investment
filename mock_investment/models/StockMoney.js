@@ -2,13 +2,15 @@ const mysql = require('mysql');
 const app = require('../app');
 const db = require('../config/db');
 const dbconn = db.init();
-const table = 'company_info';
+const table = 'company_info c';
 
 module.exports={
-    stockMoney : function () {
+    stockMoney : function (idx) {
         return new Promise ((resolve, reject) => {
             dbconn.query(
-                `select company_stock from ${table} where company_idx = '1'`, (err,result,fields) =>
+                `select * , sum(get_buy_stock) as cnt from ${table} 
+                left join stock_buy_item b on c.company_idx = b.company_idx
+                where c.company_idx = ${idx}`, (err,result,fields) =>
                 {
                     if(err){
                         reject(err);

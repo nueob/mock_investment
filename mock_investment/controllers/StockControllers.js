@@ -47,6 +47,7 @@ module.exports = {
                 console.log(result);
                 if(result == 10) {
                     Buy.buystockFuntion(req.body.stock, req.body.price,req.session.userIdx, req.body.company_Idx).then((action)=>{
+                        console.log('zz');
                         console.log(action);
                         res.json(action);
                     })
@@ -80,9 +81,9 @@ module.exports = {
     },
 
     getStockMoney : function(req,res,next){
-        StockMoney.stockMoney().then((result)=>{
+        StockMoney.stockMoney(1).then((result)=>{
             console.log(result);
-            res.render('stock-search/stock-mongsim', {title: 'Express', money : result});
+            res.render('stock-search/stock-search', {title: 'Express', money : result});
 
         })
     },
