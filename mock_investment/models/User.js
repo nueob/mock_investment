@@ -115,7 +115,7 @@ module.exports = {
         return new Promise ((resolve, reject) => {
             var query = `select assets from ${table} where user_idx = ${idx};` + //보유 자산 
 
-                        `select count(*) as share, sum(get_buy_stock) as allAssets , (assets - sum(get_buy_stock)) as realAssets
+                        `select sum(get_buy_price) as share, sum(get_buy_stock) as allAssets , (assets - sum(get_buy_price)) as realAssets
                         from stock_buy_item b
                         inner join user_info u on b.user_idx = u.user_idx 
                         where b.user_idx = ${idx};` + // 보유 주, 보유 주식 총액

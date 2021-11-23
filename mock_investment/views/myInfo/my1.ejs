@@ -180,11 +180,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-bold-500">보유 주식 총액</th>
-                                                                <td><%= result[1][0].allAssets %></td>
+                                                                <td><%= result[1][0].share %></td>
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-bold-500">보유 종목 수</th>
-                                                                <td><%= result[1][0].share %> 종목</td>
+                                                                <td><%= result[1][0].allAssets %> 종목</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -222,7 +222,7 @@
                                                             <% for(info of result[2]) { %>
                                                             <tr>
                                                                 <th class="text-bold-500" ><%= info.company_name %></th>
-                                                                <td><%= info.memo %> <%= info.stock %><br>1주</td>
+                                                                <td><%= info.memo %><%= info.stock %>주</td>
                                                             </tr>
                                                             <% } %>
                                                         </tbody>
