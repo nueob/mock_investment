@@ -29,6 +29,23 @@ module.exports = {
             res.render('stock-search/stock-companyInfo', { title: 'Express' , info:result});
         })
     },
+    getStockMoney : function(req,res,next) {
+        var keyword = '';
+        console.log(typeof req.body.searching);
+        console.log(typeof req.body.searching == 'undefined');
+        if(typeof req.body.searching == 'undefined') {
+            keyword = '룩';
+        } else {
+            keyword = req.body.searching;
+        }
+        console.log(keyword);
+        StockMoney.stockMoney(keyword).then((result)=>{
+            console.log(result);
+            res.render('stock-search/stock-search', {title: 'Express', money : result});
+
+        })
+    },
+
     //data-controllers
     doDiscussionSearch : function(req,res,next) {
         Comment.searchList(req.body.companyName).then((result) => {
@@ -78,16 +95,7 @@ module.exports = {
                 res.json(result);    
             }
         })
-    },
-
-    getStockMoney : function(req,res,next){
-        StockMoney.stockMoney(1).then((result)=>{
-            console.log(result);
-            res.render('stock-search/stock-search', {title: 'Express', money : result});
-
-        })
-    },
-    
+    },    
     getStock: function(req,res,next){
         StockMoney.stockMoney().then((result)=>{
             res.json(result);

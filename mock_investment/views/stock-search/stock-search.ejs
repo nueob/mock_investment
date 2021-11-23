@@ -43,18 +43,18 @@ body {
         <br/>
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <form class="card card-sm"  style="border:0">
+                <form action="/search" class="card card-sm" method="post" style="border:0">
                     <div class="card-body row no-gutters align-items-center" style="padding:0.5rem;">
                         <div class="col-auto">
                             <i class="fas fa-search h4 text-body"></i>
                         </div>
                         <!--end of col-->
                         <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" id="searching" type="search" placeholder="Search topics or keywords" >
+                            <input class="form-control form-control-lg form-control-borderless" id="searching" name="searching" type="search" placeholder="Search topics or keywords" >
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit" id= "searching_button" onclick="select(); return false;" style="background-color: #435ebe;border-color: #435ebe; ">Search</button>
+                            <button class="btn btn-lg btn-success" type="submit" id= "searching_button" style="background-color: #435ebe;border-color: #435ebe; ">Search</button>
                         </div>
                         <!--end of col-->
                     </div>

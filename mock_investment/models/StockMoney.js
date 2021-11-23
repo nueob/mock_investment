@@ -5,12 +5,12 @@ const dbconn = db.init();
 const table = 'company_info c';
 
 module.exports={
-    stockMoney : function (idx) {
+    stockMoney : function (companyName) {
         return new Promise ((resolve, reject) => {
             dbconn.query(
-                `select * , sum(get_buy_stock) as cnt from ${table} 
+                `select  c.* , sum(get_buy_stock) as cnt from ${table} 
                 left join stock_buy_item b on c.company_idx = b.company_idx
-                where c.company_idx = ${idx}`, (err,result,fields) =>
+                where c.company_name like '%${companyName}%'`, (err,result,fields) =>
                 {
                     if(err){
                         reject(err);
