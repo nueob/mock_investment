@@ -350,6 +350,7 @@ body {
 <script>
 function buy(){
     var stock = $("input[id='get_count']").val();
+    var price = $("input[id='price']").val();
     var company_Idx = 1;
     if(stock != ""){
         alert(stock);
@@ -358,7 +359,8 @@ function buy(){
                 type:'POST',
                 data:{
                     'stock': stock,
-                    'company_Idx' : company_Idx
+                    'company_Idx' : company_Idx,
+                    'price' : price
                 },
                 success : function(result) {
                     alert('매수 성공');
@@ -370,7 +372,8 @@ function buy(){
     }
 }
 function sell(){
-    var stock = $("input[id='sell_count']").val()
+    var stock = $("input[id='sell_count']").val();
+    var price = $("input[id='price']").val();
     var company_Idx = 1;
     if(stock != ""){
         alert(stock);
@@ -379,8 +382,8 @@ function sell(){
             type:'POST',
             data:{
                 'stock':stock,
-                'company_Idx' : company_Idx
-
+                'company_Idx' : company_Idx,
+                'price' :price
             },
             success : function(result) {
                 alert('매도 성공');

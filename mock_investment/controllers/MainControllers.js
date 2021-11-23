@@ -9,17 +9,19 @@ module.exports = {
             var first = 0;
             var second = 0;
             var third = 0;
-
-            for(var i=0;i<result[3].length;i++) {
-                if(third < result[3][i].different) {
-                    if(second < result[3][i].different) {
-                        if(first < result[3][i].different) {
-                            first = result[3][i].different;
+            console.log(result);
+            console.log(result[2]);
+            console.log(result[2].length);
+            for(var i=0;i<result[2].length;i++) {
+                if(third < result[2][i].different) {
+                    if(second < result[2][i].different) {
+                        if(first < result[2][i].different) {
+                            first = result[2][i].different;
                         } else {
-                            second = result[3][i].different;
+                            second = result[2][i].different;
                         }
                     } else {
-                        third = result[3][i].different;
+                        third = result[2][i].different;
                     }
                 } 
             }
@@ -28,7 +30,7 @@ module.exports = {
             var secondArray = 0;
             var thirdArray = 0;
 
-            for (info of result[3]) {
+            for (info of result[2]) {
                 if(info.different == first) {
                     firstArray = info;
                 } 

@@ -43,7 +43,7 @@ module.exports = {
         }) 
     },
     getBuyStock : function(req,res,next){
-            Buy.buyStock(req.body.stock, req.session.userIdx, req.body.company_Idx).then((result)=>{
+            Buy.buyStock(req.body.stock, req.body.price,req.session.userIdx, req.body.company_Idx).then((result)=>{
                 console.log(result);
                 res.json(result);
         })        
@@ -61,7 +61,7 @@ module.exports = {
         })
     },
     sellStock : function(req,res,next){
-        Buy.sellStock(req.body.stock,req.session.userIdx, req.body.company_Idx).then((result)=>{
+        Buy.sellStock(req.body.stock,req.body.price,req.session.userIdx, req.body.company_Idx).then((result)=>{
             console.log(result);
             res.json(result);
         })

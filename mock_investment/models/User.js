@@ -95,8 +95,8 @@ module.exports = {
                         `select * from company_info;` +
                         `select get_buy_stock , ROW_NUMBER() OVER (ORDER BY b.create_dt) as rank , company_stock , get_buy_price , (get_buy_price - company_stock) as different
                         from stock_buy_item b
-                        inner join company_info c on b.company_idx = c.company_idx
-                        where DATE_FORMAT(b.create_dt,'%Y-%m-%d') = date_format(NOW(),'%Y-%m-%d') group by b.company_idx`; 
+                        left join company_info c on b.company_idx = c.company_idx
+                        where DATE_FORMAT(b.create_dt,'%Y-%m-%d') = date_format(NOW(),'%Y-%m-%d') group by c.company_idx`; 
             dbconn.query(query, (err,result,fields) =>
                 {
                     if(err){
