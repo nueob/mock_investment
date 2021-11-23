@@ -118,27 +118,27 @@ module.exports = {
                         `select count(*) as share, sum(get_buy_stock) as allAssets , (assets - sum(get_buy_stock)) as realAssets
                         from stock_buy_item b
                         inner join user_info u on b.user_idx = u.user_idx 
-                        where b.user_idx = ${idx} and allow_buy = 'y';` + // 보유 주, 보유 주식 총액
+                        where b.user_idx = ${idx};` + // 보유 주, 보유 주식 총액
                         
-                        `select company_name, get_buy_stock as stock , '매수 준비 중' as memo ,
-                        (select count(*) from stock_buy_item b2 where b2.company_idx = b.company_idx and b2.get_buy_stock = b.get_buy_stock group by get_buy_stock) as cnt
-                        from stock_buy_item b
-                        inner join company_info c on b.company_idx = c.company_idx  
-                        where b.user_idx = ${idx} and allow_buy = 'n'
+                        // `select company_name, get_buy_stock as stock , '매수 준비 중' as memo ,
+                        // (select count(*) from stock_buy_item b2 where b2.company_idx = b.company_idx and b2.get_buy_stock = b.get_buy_stock group by get_buy_stock) as cnt
+                        // from stock_buy_item b
+                        // inner join company_info c on b.company_idx = c.company_idx  
+                        // where b.user_idx = ${idx} and allow_buy = 'n'
                         
-                        union
+                        // union
 
-                        select company_name, get_sell_stock as stock , '매도 준비 중' as memo , 
-                        (select count(*) from stock_sell_item s2 where s2.company_idx = s.company_idx and s2.get_sell_stock = s.get_sell_stock group by get_sell_stock) as cnt
-                        from stock_sell_item s
-                        inner join company_info c on s.company_idx = c.company_idx  
-                        where s.user_idx = ${idx} and allow_sell = 'n';` + //진행중인 거래
+                        // select company_name, get_sell_stock as stock , '매도 준비 중' as memo , 
+                        // (select count(*) from stock_sell_item s2 where s2.company_idx = s.company_idx and s2.get_sell_stock = s.get_sell_stock group by get_sell_stock) as cnt
+                        // from stock_sell_item s
+                        // inner join company_info c on s.company_idx = c.company_idx  
+                        // where s.user_idx = ${idx} and allow_sell = 'n';` + //진행중인 거래
 
                         `select company_name, get_buy_stock as stock , '매수' as memo , 
                         (select count(*) from stock_buy_item b2 where b2.company_idx = b.company_idx and b2.get_buy_stock = b.get_buy_stock group by get_buy_stock) as cnt
                         from stock_buy_item b
                         inner join company_info c on b.company_idx = c.company_idx  
-                        where b.user_idx = ${idx} and allow_buy = 'y' 
+                        where b.user_idx = ${idx}
                         
                         union
 
@@ -146,7 +146,7 @@ module.exports = {
                         (select count(*) from stock_sell_item s2 where s2.company_idx = s.company_idx and s2.get_sell_stock = s.get_sell_stock group by get_sell_stock) as cnt
                         from stock_sell_item s
                         inner join company_info c on s.company_idx = c.company_idx  
-                        where s.user_idx = ${idx} and allow_sell = 'y';` + //거래 내역
+                        where s.user_idx = ${idx};` + //거래 내역
 
                         `select company_name from interest_item i
                         inner join company_info c on i.company_idx = c.company_idx

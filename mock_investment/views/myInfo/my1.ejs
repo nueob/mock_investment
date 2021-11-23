@@ -142,9 +142,9 @@
                                                 <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
                                                     href="#v-pills-home" role="tab" aria-controls="v-pills-home"
                                                     aria-selected="true">자산정보</a>
-                                                <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                                <!-- <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                                     href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-                                                    aria-selected="false">진행중인 거래</a>
+                                                    aria-selected="false">진행중인 거래</a> -->
                                                 <a class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
                                                     href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
                                                     aria-selected="false">거래내역</a>
@@ -190,7 +190,7 @@
                                                     </table>
                                                 </div> 
                                             </div>
-                                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                            <!-- <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                                 aria-labelledby="v-pills-profile-tab">
                                                 <h1>진행중인 거래</h1>
                                                 <table class="table" cellspacing="0">
@@ -212,14 +212,14 @@
                                                     </tbody>
                                                 </table>
                                           
-                                            </div>
+                                            </div> -->
                                             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                                                 aria-labelledby="v-pills-messages-tab">
                                                 <h1>거래내역</h1>
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered mb-0">
                                                         <tbody>
-                                                            <% for(info of result[3]) { %>
+                                                            <% for(info of result[2]) { %>
                                                             <tr>
                                                                 <th class="text-bold-500" ><%= info.company_name %></th>
                                                                 <td><%= info.memo %> <%= info.stock %><br>1주</td>
@@ -234,7 +234,7 @@
                                                 <h1>관심 종목</h1>
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="list-group">
-                                                        <% for(info of result[4]) { %>
+                                                        <% for(info of result[3]) { %>
                                                         <span class="list-group-item">
                                                             <%= info.company_name %>
                                                         </span>
