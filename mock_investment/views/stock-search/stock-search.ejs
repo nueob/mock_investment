@@ -312,7 +312,7 @@ function buy(){
 function sell(){
     var stock = $("input[id='sell_count']").val();
     var price = $("input[id='price']").val();
-    var company_Idx = 1;
+    var company_Idx = $('#companyIdx').val();
     if(stock != ""){
         alert(stock);
         $.ajax({
