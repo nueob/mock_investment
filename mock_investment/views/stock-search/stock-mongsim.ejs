@@ -471,14 +471,22 @@ function fnCalCount2(type, ths){
 // }]
 // });
 
-Highcharts.chart('container',{
-    chart:{
-        type: 'line'
+Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', function (data) {
+  Highcharts.stockChart('container', {
+    rangeSelector: {
+      selected: 1
     },
-    series:[{
-        name: '테스트입니다',
-        data: [2,4,7,3,1]
-    }],
+    navigator: {
+      series: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    series: [{
+      type: 'hollowcandlestick',
+      name: 'Hollow Candlestick',
+      data: data
+    }]
+  });
 });
 
 // Highcharts.chart('container', {
