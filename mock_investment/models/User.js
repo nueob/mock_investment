@@ -92,7 +92,6 @@ module.exports = {
         return new Promise ((resolve, reject) => {
             var query = `select ROW_NUMBER() OVER (ORDER BY assets desc) as rank, user_nickname  from ${table} order by assets limit 3;` +
                         `select ROW_NUMBER() OVER (ORDER BY assets desc) as my_rank from ${table} where user_idx = ${idx};` +
-                        `select * from company_info;` +
                         `select (company_stock - company_before_stock) as different , ROW_NUMBER() OVER (ORDER BY different desc) as rank , company_stock , company_name
                         from company_info
                         limit 3;`; 

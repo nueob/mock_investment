@@ -40,12 +40,10 @@ module.exports = {
         }
         console.log(keyword);
         StockMoney.stockMoney(keyword).then((result)=>{
-            console.log(result);
             res.render('stock-search/stock-search', {title: 'Express', money : result});
 
         })
     },
-
     //data-controllers
     doDiscussionSearch : function(req,res,next) {
         Comment.searchList(req.body.companyName).then((result) => {

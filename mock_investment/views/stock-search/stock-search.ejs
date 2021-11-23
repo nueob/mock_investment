@@ -68,23 +68,23 @@ body {
         <section class="row">
             <div class="col-12 col-lg-9">
                 <div id="company_idx" style="padding-bottom: 10px;display: none;"><%= money[0].company_idx %></div>
-                <h3 class="card-body" style="padding-bottom: 10px;"><%= money[0].company_name %></h3>
+                <h3 class="card-body" style="padding-bottom: 10px;"><%= money[0][0].company_name %></h3>
                 <div class="card-body" style="border:0">
                     <div class="card-body px-3 py-4-5" style="background-color: #fff;border:0">
                         <div class="row">
                             <div class="col-md-2">
                                 <h6 class="font-extrabold mb-0"></h6>
                                 <h6 class="text-muted font-semibold">계열</h6>
-                                <h6 class="font-extrabold mb-0"><%= money[0].industry_of_company %></h6>
+                                <h6 class="font-extrabold mb-0"><%= money[0][0].industry_of_company %></h6>
                                 <h6 class="font-extrabold mb-0"></h6>
                             </div>
                             <div class="col-md-2">
                                 <h6 class="text-muted font-semibold">대표</h6>
-                                <h6 class="font-extrabold mb-0"><%= money[0].representative %></h6>
+                                <h6 class="font-extrabold mb-0"><%= money[0][0].representative %></h6>
                             </div>
                             <div class="col-md-2">
                                 <h6 class="text-muted font-semibold">거래량</h6>
-                                <h6 class="font-extrabold mb-0"><%= money[0].cnt %></h6>
+                                <h6 class="font-extrabold mb-0"><%= money[0][0].cnt %></h6>
                             </div>
                             <div class="col-md-2">
                                 <div class="buttons">
@@ -181,90 +181,20 @@ body {
                             <h4>종목 실시간 Best</h4>
                         </div>
                         <div class="card-content pb-4">
+                            <% for (info of money[1]) { %>
                             <div class="recent-message d-flex px-4 py-3">
                                 <div class="avatar avatar-lg">
-                                    <h6>삼성전자</h6>
+                                    <h6><%= info.company_name %></h6>
                                 </div>
                                 <div class="name ms-4">
-                                    <h5 class="mb-1">70,100</h5>
-                                    <h6 class="text-muted mb-0">▲991</h6>
+                                    <h5 class="mb-1"><%= info.company_stock %></h5>
+                                    <h6 class="text-muted mb-0">▲ <%= info.different %></h6>
                                 </div>
                                 <div class="name ms-3">
-                                    <h6 class="text-muted mb-0">1.3%</h6>
+                                    <h6 class="text-muted mb-0"><%= Math.abs(info.different / 100)%> %</h6>
                                 </div>
                             </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <h6>SK하이닉스</h6>
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">90,100</h5>
-                                    <h6 class="text-muted mb-0">▲1100</h6>
-                                </div>
-                                <div class="name ms-3">
-                                    <h6 class="text-muted mb-0">0.9%</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <h6>카카오</h6>
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">150,100</h5>
-                                    <h6 class="text-muted mb-0">▲2,500</h6>
-                                </div>
-                                <div class="name ms-3">
-                                    <h6 class="text-muted mb-0">2.0%</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <h6>SK하이닉스</h6>
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">90,100</h5>
-                                    <h6 class="text-muted mb-0">▲1100</h6>
-                                </div>
-                                <div class="name ms-3">
-                                    <h6 class="text-muted mb-0">0.9%</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <h6>SK하이닉스</h6>
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">90,100</h5>
-                                    <h6 class="text-muted mb-0">▲1100</h6>
-                                </div>
-                                <div class="name ms-3">
-                                    <h6 class="text-muted mb-0">0.9%</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <h6>SK하이닉스</h6>
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">90,100</h5>
-                                    <h6 class="text-muted mb-0">▲1100</h6>
-                                </div>
-                                <div class="name ms-3">
-                                    <h6 class="text-muted mb-0">0.9%</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <h6>SK하이닉스</h6>
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">90,100</h5>
-                                    <h6 class="text-muted mb-0">▲1100</h6>
-                                </div>
-                                <div class="name ms-3">
-                                    <h6 class="text-muted mb-0">0.9%</h6>
-                                </div>
-                            </div>
+                            <% } %>
                         </div>
                     </div>
                     <div class="card" style="width:300px; height:500px;">
