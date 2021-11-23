@@ -114,9 +114,10 @@ module.exports = {
         return new Promise ((resolve, reject) => {
             var query = `select assets from ${table} where user_idx = ${idx};` + //보유 자산 
 
-                        `select sum(get_buy_price) as share, sum(get_buy_stock) as allAssets , (assets - sum(get_buy_price)) as realAssets
+                        `select sum(get_buy_price) as share, (sum(get_buy_stock) - sum(get_sell_stock)) as allAssets , (assets - sum(get_buy_price)) as realAssets
                         from stock_buy_item b
-                        inner join user_info u on b.user_idx = u.user_idx 
+                        inner join user_info u on b.user_idx = u.user_idx
+                        left join stock_sell_item s on b.company_idx = s.company_idx
                         where b.user_idx = ${idx};` + // 보유 주, 보유 주식 총액
                         
                         // `select company_name, get_buy_stock as stock , '매수 준비 중' as memo ,
@@ -214,18 +215,26 @@ module.exports = {
     getAssetsInfo : function(idx) {
         //(uint_price - current_price) as profit , (profit*100) as profit_percentage 
         console.log(idx);
+        //total_buy_price : 총 매입액
+        //total_evaluation : 총 평가액
+        //realProfit : 실현 수익
+        //evaluation_profit : 평가 손익
         return new Promise ((resolve, reject) => {
-            var query = `select company_name , sum(get_buy_stock) as total_evaluation , (select count(*) from stock_buy_item b where user_idx = 1 group by b.company_idx ) as cnt , company_stock 
+            var query = `select company_name , 
+                        sum(sum(get_buy_price) * sum(get_buy_stock)) as total_buy_price , 
+                        sum(sum(get_buy_price) * sum(get_buy_stock) - (company_stock) * sum(get_buy_stock)) as total_evaluation, 
+                        sum(sum(get_buy_price) * sum(get_buy_stock) - (sum(get_sell_price) * sum(get_sell_stock)) as realProfit 
+                        sum((company_stock) * sum(get_buy_stock)) as evaluation_profit, 
                         from company_info c
-                        inner join stock_buy_item b2 on c.company_idx = b2.company_idx 
-                        where b2.user_idx = ${idx};`+ //총 매입액 , 총 평가액
-
-                        `select sum(get_sell_stock) as stock from stock_sell_item where user_idx = ${idx} and allow_sell = 'y';` + //실현 수익
+                        left join stock_buy_item b on c.company_idx = b.company_idx 
+                        left join stock_sell_item s on c.company_idx = s.company_idx
+                        where b.user_idx = ${idx}
+                        group by user_idx;`+ 
 
                         `select count(*) as cnt , sum(get_buy_stock) as unit_price , sum(company_stock) as current_price , company_name
                         from stock_buy_item b 
                         inner join company_info c on b.company_idx = c.company_idx
-                        where b.user_idx = ${idx} and allow_buy = 'y';`; //종목 별 수익률 등등
+                        where b.user_idx = ${idx};`; //종목 별 수익률 등등
             
             dbconn.query(query, (err,result,fields) =>
                 {
