@@ -363,7 +363,12 @@ function buy(){
                     'price' : price
                 },
                 success : function(result) {
-                    alert('매수 성공');
+                    console.log(result);
+                    if(result == 20) {
+                        alert('매수 가능한 수를 넘었습니다.');    
+                    } else {
+                        alert('매수가 체결 되었습니다.');    
+                    }
                     location.reload();
                 }
             })
