@@ -93,10 +93,9 @@ module.exports = {
             var query = `select ROW_NUMBER() OVER (ORDER BY assets desc) as rank, user_nickname  from ${table} order by assets limit 3;` +
                         `select ROW_NUMBER() OVER (ORDER BY assets desc) as my_rank from ${table} where user_idx = ${idx};` +
                         `select * from company_info;` +
-                        `select get_buy_stock , ROW_NUMBER() OVER (ORDER BY b.create_dt) as rank , company_stock , get_buy_price , (get_buy_price - company_stock) as different , company_name
-                        from stock_buy_item b
-                        left join company_info c on b.company_idx = c.company_idx
-                        where DATE_FORMAT(b.create_dt,'%Y-%m-%d') = date_format(NOW(),'%Y-%m-%d') group by c.company_idx`; 
+                        `select (company_stock - company_before_stock) as different , ROW_NUMBER() OVER (ORDER BY different desc) as rank , company_stock , company_name
+                        from company_info
+                        limit 3;`; 
             dbconn.query(query, (err,result,fields) =>
                 {
                     if(err){
