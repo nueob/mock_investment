@@ -30,7 +30,6 @@ body {
 }
 </style>
 
-<div type="hidden" id="companyIdx" style="display: none;"><%= comment[0].company_idx %></div>
 <div class="page-heading">
     <div class="container">
         <br/>
@@ -59,6 +58,7 @@ body {
 </div>
 <div id="page-content" class="page-content">
     <div class="row">
+        <div type="hidden" id="companyIdx" style="display: none!important;"><%= comment[0].company_idx %></div>
         <h5 class="cen">기본 정보</h5>
         <div class="card" style="border:0">
             <div class="card-body">
