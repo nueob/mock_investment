@@ -20,6 +20,7 @@
 - AJAX
 - Bootstrap 4
 - ERD
+https://www.erdcloud.com/d/eC6a2CRLc3nCuBBhX
 
  ![image](https://user-images.githubusercontent.com/79954748/143676557-767f1c01-dcce-475c-8131-3f32e32f814c.png)
 
