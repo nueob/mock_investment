@@ -336,17 +336,17 @@ function sell(){
         alert('매도 실패');
     }
 }
-function select(){
-    var search_value = $('#searching').val();
-    if(search_value == '예순이네'){
-        location.href = '/search/yesunine';
-    }
-    else if(search_value == '몽심'){
-        location.href = '/search';
-    }else{
-        alert('다른 기업을 검색해주세요');
-    }
-}
+// function select(){
+//     var search_value = $('#searching').val();
+//     if(search_value == '예순이네'){
+//         location.href = '/search/yesunine';
+//     }
+//     else if(search_value == '몽심'){
+//         location.href = '/search';
+//     }else{
+//         alert('다른 기업을 검색해주세요');
+//     }
+// }
 function fnCalCount(type, ths){
     var $input = $(ths).parents("td").find("input[id='get_count']");
     var $input2 = $("#total");
@@ -398,19 +398,41 @@ Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', func
     }]
   });
 });
-// var chartdata = new Array();
-// var chart = null;
-// var chart_load = false;
+// var time=0;
+// var graphValue = [];
+// var strockPrice;
+
+// setInterval(function() {
+//     $.ajax({
+//             url:'/search/stock',
+//             type:'POST',
+//             data:{
+//             },
+//             success : function(result) {
+//                 var item = result[0].company_stock;
+//                 chartdata = [];
+//                 var last_data = null;
+//                 // for(i=0; i<2; i++)
+//                 // {
+//                     // var row = item[i];
+//                     timestamp = + new Date();
+//                     chartdata.push([timestamp, parseFloat(item), parseFloat(item), parseFloat(item), parseFloat(item)]);
+//                     alert(chartdata);
+//                 // }
+                
+//                 if(chart_load){
+//                     chart.series[0].setData(chartdata);
+//                 }
+//                 else{
+//                     stock();
+//                 }
+                
+                
+                
+//             },
+//         });   
+// },1000);
 // function stock(){
-    
-
-//     chart_load = true;
-
-//     Highcharts.setOptions({
-//         global : {
-//             timezoneOffset: -9 * 60
-//        }
-//     }); 
 //     Highcharts.stockChart('container', {
 
 //     title: {
@@ -450,43 +472,7 @@ Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', func
 //     }]
 // }); 
 // }
-// function getpo()
-// {
-//     
-//     $.ajax({
-//             url:'/search/stock',
-//             type:'POST',
-//             data:{
-//             },
-//             success : function(result) {
-//                 var item = result[0].company_stock;
-//                 chartdata = [];
-//                 var last_data = null;
-//                 // for(i=0; i<2; i++)
-//                 // {
-//                     // var row = item[i];
-//                     timestamp = + new Date();
-//                     chartdata.push([timestamp, parseFloat(item), parseFloat(item), parseFloat(item), parseFloat(item)]);
-//                     alert(chartdata);
-//                 // }
-                
-//                 if(chart_load){
-//                     chart.series[0].setData(chartdata);
-//                 }
-//                 else{
-//                     stock();
-//                 }
-                
-                
-                
-//             },
-//         });   
-// }
 
-// $(document).ready(function(){
-//             getpo();
-//             setInterval(getpo, 1000 * 10);
-//         });
 
 // Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/new-intraday.json', function (data) {
 
