@@ -78,5 +78,26 @@ module.exports={
             });
             // dbconn.end();
         })
+    },
+    chartMoney : function(company_idx) {
+        return new Promise ((resolve, reject) => {
+            var timestamp = + new Date();
+
+            dbconn.query(
+                `insert into chart (date, start_price, hight_price, low_price, end_price, company_idx) values (${timestamp},
+            (select c.company_stock from company_info as c left join chart as cs on c.company_idx = cs.company_idx),
+            (select c.company_stock from company_info as c left join chart as cs on c.company_idx = cs.company_idx),
+            (select c.company_stock from company_info as c left join chart as cs on c.company_idx = cs.company_idx),
+            (select c.company_stock from company_info as c left join chart as cs on c.company_idx = cs.company_idx),
+            ${company_idx})`, (err, result, fields) =>
+            {
+                if(err){
+                    reject(err);
+                } else {
+                    let res = JSON.parse(JSON.stringify(result));
+                    resolve(res);
+                }
+            })
+        })
     }
 }

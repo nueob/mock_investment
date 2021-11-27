@@ -400,35 +400,24 @@ Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', func
 });
 // var time=0;
 // var graphValue = [];
-// var strockPrice;
+// var stockPrice;
 
 // setInterval(function() {
+// var company_Idx = $('#companyIdx').val();
 //     $.ajax({
 //             url:'/search/stock',
 //             type:'POST',
 //             data:{
+//                  'company_Idx' : company_Idx, 
 //             },
 //             success : function(result) {
-//                 var item = result[0].company_stock;
-//                 chartdata = [];
-//                 var last_data = null;
-//                 // for(i=0; i<2; i++)
-//                 // {
-//                     // var row = item[i];
-//                     timestamp = + new Date();
-//                     chartdata.push([timestamp, parseFloat(item), parseFloat(item), parseFloat(item), parseFloat(item)]);
-//                     alert(chartdata);
-//                 // }
-                
-//                 if(chart_load){
-//                     chart.series[0].setData(chartdata);
+//                 stockPrice = result;
+//                 for(var key in stockPrice)
+//                 {
+//                     var row = stockPrice[key];
+//                     graphValue.push(parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price));
+//                     stock(graphValue);
 //                 }
-//                 else{
-//                     stock();
-//                 }
-                
-                
-                
 //             },
 //         });   
 // },1000);

@@ -92,8 +92,8 @@ module.exports = {
             }
         })
     },    
-    getStock: function(req,res,next){
-        StockMoney.stockMoney().then((result)=>{
+    getChartStock: function(req,res,next){
+        StockMoney.chartMoney(req.body.company_Idx).then((result)=>{
             res.json(result);
         })
     }
