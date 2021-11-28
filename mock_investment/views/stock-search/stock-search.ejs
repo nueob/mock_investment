@@ -398,69 +398,82 @@ Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', func
     }]
   });
 });
-// var time=0;
-// var graphValue = [];
-// var stockPrice;
-
-// setInterval(function() {
-// var company_Idx = $('#companyIdx').val();
+// function test(){
+//     var company_Idx = $('#companyIdx').val();
 //     $.ajax({
-//             url:'/search/stock',
-//             type:'POST',
-//             data:{
-//                  'company_Idx' : company_Idx, 
-//             },
-//             success : function(result) {
-//                 stockPrice = result;
-//                 for(var key in stockPrice)
-//                 {
-//                     var row = stockPrice[key];
-//                     graphValue.push(parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price));
-//                     stock(graphValue);
-//                 }
-//             },
-//         });   
-// },1000);
-// function stock(){
-//     Highcharts.stockChart('container', {
-
-//     title: {
-//         text: '몽심'
-//     },
-//     plotOptions: {
-//         candlestick: {
-//             downColor: 'blue',
-//             upColor: 'red'
+//         url:'/search/test',
+//         type:'POST',
+//         data:{
+//             'company_Idx' : company_Idx,
+//         },
+//         success: function(result){
+//             // console.log(result);
 //         }
-//     },
+//     })
+// }test();
 
-//     rangeSelector: {
-//         buttons: [{
-//             type: 'hour',
-//             count: 1,
-//             text: '1h'
-//         }, {
-//             type: 'day',
-//             count: 1,
-//             text: '1D'
-//         }, {
-//             type: 'all',
-//             count: 1,
-//             text: 'All'
-//         }],
-//         selected: 1,
-//         inputEnabled: false
-//     },
-//     series: [{
-//         name: 'AAPL',
-//         type: 'candlestick',
-//         data: getpo.chartdata,
-//         tooltip: {
-//             valueDecimals: 2
-//         }
-//     }]
-// }); 
-// }
+var graphValue = [];
+var stockPrice;
+
+setInterval(function() {
+var company_Idx = $('#companyIdx').val();
+    $.ajax({
+            url:'/search/test',
+            type:'POST',
+            data:{
+                 'company_Idx' : company_Idx, 
+            },
+            success : function(result) {
+                stockPrice = result;
+                for(var key in stockPrice)
+                {
+                    var row = stockPrice[key];
+                    graphValue.push([parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price)]);
+                    stock(graphValue);
+                }
+            },
+        });   
+},1000);
+function stock(){
+    Highcharts.stockChart('container', {
+
+    title: {
+        text: '룩'
+    },
+    plotOptions: {
+        candlestick: {
+            downColor: 'blue',
+            upColor: 'red'
+        }
+    },
+
+    // rangeSelector: {
+    //     buttons: [{
+    //         type: 'hour',
+    //         count: 1,
+    //         text: '1h'
+    //     }, {
+    //         type: 'day',
+    //         count: 1,
+    //         text: '1D'
+    //     }, {
+    //         type: 'all',
+    //         count: 1,
+    //         text: 'All'
+    //     }],
+    //     selected: 1,
+    //     inputEnabled: false
+    // },
+    series: [{
+        name: 'AAPL',
+        type: 'candlestick',
+        data: graphValue,
+        tooltip: {
+            valueDecimals: 2
+        }
+    }]
+}); 
+}
 
 
 // Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/new-intraday.json', function (data) {

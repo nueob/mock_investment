@@ -79,25 +79,51 @@ module.exports={
             // dbconn.end();
         })
     },
-    chartMoney : function(company_idx) {
+    chartMoney : function(company_Idx) {
         return new Promise ((resolve, reject) => {
             var timestamp = + new Date();
 
             dbconn.query(
-                `insert into chart (date, start_price, hight_price, low_price, end_price, company_idx) values (${timestamp},
-            (select c.company_stock from company_info as c left join chart as cs on c.company_idx = cs.company_idx),
-            (select c.company_stock from company_info as c left join chart as cs on c.company_idx = cs.company_idx),
-            (select c.company_stock from company_info as c left join chart as cs on c.company_idx = cs.company_idx),
-            (select c.company_stock from company_info as c left join chart as cs on c.company_idx = cs.company_idx),
-            ${company_idx})`, (err, result, fields) =>
+                `insert into chart (date, start_price, high_price, low_price, end_price, company_idx) values (${timestamp},
+            (select company_stock from company_info where company_idx = ${company_Idx}),
+            (select company_stock from company_info where company_idx = ${company_Idx}),
+            (select company_stock from company_info where company_idx = ${company_Idx}),
+            (select company_stock from company_info where company_idx = ${company_Idx}),
+            ${company_Idx})`, (err, result, fields) =>
             {
                 if(err){
+                    console.log(err);
                     reject(err);
                 } else {
-                    let res = JSON.parse(JSON.stringify(result));
-                    resolve(res);
+                    dbconn.query(`select * from chart where company_idx = ${company_Idx}`, (err,result,fields) =>
+                    {
+                        if(err){
+                            console.log(err);
+                            reject(err);
+                        } else{
+                            let res = JSON.parse(JSON.stringify(result));
+                            // console.log(res);
+                            resolve(res);
+                        }
+                    })
+                    
                 }
             })
+        })
+    },
+    test : function(){
+        return new Promise ((resolve, reject) =>{
+            dbconn.query(
+                `select * from stock_buy_item where company_idx=1`, (err, result, fields)=>
+                {
+                    if(err){
+                        reject(err);
+                    }else{
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res);
+                    }
+                }
+            )
         })
     }
 }
