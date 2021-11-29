@@ -302,7 +302,7 @@ function buy(){
                     } else {
                         alert('매수가 체결 되었습니다.');    
                     }
-                    location.reload();
+                    // location.reload();
                 }
             })
     }else{
@@ -414,48 +414,6 @@ function fnCalCount2(type, ths){
 
 var graphValue = [];
 var stockPrice;
-
-setInterval(function() {
-var company_Idx = $('#companyIdx').val();
-    $.ajax({
-            url:'/search/stock',
-            type:'POST',
-            data:{
-                 'company_Idx' : company_Idx, 
-            },
-            success : function(result) {
-                stockPrice = result;
-                for(var key in stockPrice)
-                {
-                    var row = stockPrice[key];
-                    graphValue.push([parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price)]);
-                    
-                }
-                stock(graphValue);
-                alert(graphValue);
-            },
-        });
-        setInterval(function(){
-            $.ajax({
-                url:'/search/stockupdate',
-                type:'POST',
-                data:{
-
-                },
-                success : function(result) {
-                    stockPrice2 = result;
-                    if(stockPrice2[0].company_stock >= row.start_price){
-                        graphValue[key][2] = stockPrice2.company_stock;
-                        alert(graphValue);
-                    }
-                    else if(stockPrice2[0].company_stock <= row.start_price){
-                        graphValue[key][3] = stockPrice2.company_stock;
-                    }
-                }
-                
-            })
-        },1000*5)   
-},1000*10);
 function stock(){
     Highcharts.stockChart('container', {
 
@@ -496,6 +454,57 @@ function stock(){
     }]
 }); 
 }
+function getpo()
+{
+var company_Idx = $('#companyIdx').val();
+    $.ajax({
+            url:'/search/stock',
+            type:'POST',
+            data:{
+                 'company_Idx' : company_Idx, 
+            },
+            success : function(result) {
+                stockPrice = result;
+                for(var key in stockPrice)
+                {
+                    var row = stockPrice[key];
+                    graphValue.push([parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price)]);
+                    
+                }
+                stock(graphValue);
+                // alert(graphValue[graphValue.length-1][0]);
+            },
+        });
+        setInterval(function(){
+            var company_Idx2 = $('#companyIdx').val();
+            $.ajax({
+                url:'/search/stockupdate',
+                type:'POST',
+                data:{
+                },
+                success : function(result) {
+                    stockPrice2 = result;
+                    if(parseFloat(stockPrice2[0].company_stock) >= parseFloat(graphValue[graphValue.length-1][1])){
+                        graphValue[graphValue.length-1][2] = stockPrice2[0].company_stock;
+                        graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
+                    }
+                    else if(parseFloat(stockPrice2[0].company_stock) <= parseFloat(graphValue[graphValue.length-1][1])){
+                        graphValue[graphValue.length-1][3] = stockPrice2[0].company_stock;
+                        graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
+                    }
+                    else if(parseFloat(stockPrice2[0].company_stock) == parseFloat(graphValue[graphValue.length-1][1])){
+                        graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
+                    }
+                    stock(graphValue);
+                }
+                
+            })
+        },1000*3);   
+};
+$(document).ready(function(){
+    stock();
+    setInterval(getpo, 1000*5);
+});
 
 
 // Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/new-intraday.json', function (data) {
