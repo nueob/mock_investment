@@ -10,7 +10,8 @@ router.post('/',stockControllers.getStockMoney);
 router.post('/buy',stockControllers.getBuyStock);
 router.post('/sell',stockControllers.sellStock);
 router.post('/stock',stockControllers.getChartStock);
-router.post('/test',stockControllers.test);
+router.post('/stockupdate',stockControllers.test);
+
 
 router.get('/public_offering',stockControllers.viewPublicOffering);
 router.post('/public_offering',stockControllers.dopublicOffering);

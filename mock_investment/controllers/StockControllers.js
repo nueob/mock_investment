@@ -94,11 +94,12 @@ module.exports = {
     },    
     getChartStock: function(req,res,next){
         StockMoney.chartMoney(req.body.company_Idx).then((result)=>{
+            console.log(result);
             res.json(result);
         })
     },
     test: function(req,res,next){
-        StockMoney.chartMoney(req.body.company_Idx).then((result)=>{
+        StockMoney.test().then((result)=>{
             console.log(result);
             res.json(result);
         })

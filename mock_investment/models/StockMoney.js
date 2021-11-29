@@ -114,7 +114,7 @@ module.exports={
     test : function(){
         return new Promise ((resolve, reject) =>{
             dbconn.query(
-                `select * from stock_buy_item where company_idx=1`, (err, result, fields)=>
+                `select company_stock from company_info where company_idx=1`, (err, result, fields)=>
                 {
                     if(err){
                         reject(err);

@@ -381,23 +381,23 @@ function fnCalCount2(type, ths){
     
     }
 }
-Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', function (data) {
-  Highcharts.stockChart('container', {
-    rangeSelector: {
-      selected: 1
-    },
-    navigator: {
-      series: {
-        color: Highcharts.getOptions().colors[0]
-      }
-    },
-    series: [{
-      type: 'hollowcandlestick',
-      name: 'Hollow Candlestick',
-      data: data
-    }]
-  });
-});
+// Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', function (data) {
+//   Highcharts.stockChart('container', {
+//     rangeSelector: {
+//       selected: 1
+//     },
+//     navigator: {
+//       series: {
+//         color: Highcharts.getOptions().colors[0]
+//       }
+//     },
+//     series: [{
+//       type: 'hollowcandlestick',
+//       name: 'Hollow Candlestick',
+//       data: data
+//     }]
+//   });
+// });
 // function test(){
 //     var company_Idx = $('#companyIdx').val();
 //     $.ajax({
@@ -418,7 +418,7 @@ var stockPrice;
 setInterval(function() {
 var company_Idx = $('#companyIdx').val();
     $.ajax({
-            url:'/search/test',
+            url:'/search/stock',
             type:'POST',
             data:{
                  'company_Idx' : company_Idx, 
@@ -429,11 +429,33 @@ var company_Idx = $('#companyIdx').val();
                 {
                     var row = stockPrice[key];
                     graphValue.push([parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price)]);
-                    stock(graphValue);
+                    
                 }
+                stock(graphValue);
+                alert(graphValue);
             },
-        });   
-},1000);
+        });
+        setInterval(function(){
+            $.ajax({
+                url:'/search/stockupdate',
+                type:'POST',
+                data:{
+
+                },
+                success : function(result) {
+                    stockPrice2 = result;
+                    if(stockPrice2[0].company_stock >= row.start_price){
+                        graphValue[key][2] = stockPrice2.company_stock;
+                        alert(graphValue);
+                    }
+                    else if(stockPrice2[0].company_stock <= row.start_price){
+                        graphValue[key][3] = stockPrice2.company_stock;
+                    }
+                }
+                
+            })
+        },1000*5)   
+},1000*10);
 function stock(){
     Highcharts.stockChart('container', {
 
