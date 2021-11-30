@@ -23,9 +23,9 @@ const getData = async(keyword) => {
 
     $bodyList.each((idx, elem)=> {
        
-      titles['현재가']=String($(elem).find('span:nth-of-type(1)').text().trim());
-     
-      console.log(titles['현재가']);
+      titles=String($(elem).find('span:nth-of-type(1)').text().trim());
+      titles=parseInt(titles.replace(',',''));
+      console.log(titles);
      
       
       
