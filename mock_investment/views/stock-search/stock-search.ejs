@@ -381,6 +381,29 @@ function fnCalCount2(type, ths){
     
     }
 }
+// 연구할 차트
+// Highcharts.stockChart('container', {
+
+
+// rangeSelector: {
+//   selected: 1
+// },
+
+// title: {
+//   text: 'AAPL Stock Price'
+// },
+
+// series: [{
+//   name: 'AAPL',
+//   data: data,
+//   tooltip: {
+//     valueDecimals: 2
+//   }
+// }]
+// });
+
+
+
 // Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', function (data) {
 //   Highcharts.stockChart('container', {
 //     rangeSelector: {
@@ -412,109 +435,19 @@ function fnCalCount2(type, ths){
 //     })
 // }test();
 
-var graphValue = [];
-var stockPrice;
-function stock(){
-    Highcharts.stockChart('container', {
-
-    title: {
-        text: '룩'
-    },
-    plotOptions: {
-        candlestick: {
-            downColor: 'blue',
-            upColor: 'red'
-        }
-    },
-
-    // rangeSelector: {
-    //     buttons: [{
-    //         type: 'hour',
-    //         count: 1,
-    //         text: '1h'
-    //     }, {
-    //         type: 'day',
-    //         count: 1,
-    //         text: '1D'
-    //     }, {
-    //         type: 'all',
-    //         count: 1,
-    //         text: 'All'
-    //     }],
-    //     selected: 1,
-    //     inputEnabled: false
-    // },
-    series: [{
-        name: 'AAPL',
-        type: 'candlestick',
-        data: graphValue,
-        tooltip: {
-            valueDecimals: 2
-        }
-    }]
-}); 
-}
-function getpo()
-{
-var company_Idx = $('#companyIdx').val();
-    $.ajax({
-            url:'/search/stock',
-            type:'POST',
-            data:{
-                 'company_Idx' : company_Idx, 
-            },
-            success : function(result) {
-                stockPrice = result;
-                for(var key in stockPrice)
-                {
-                    var row = stockPrice[key];
-                    graphValue.push([parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price)]);
-                    
-                }
-                stock(graphValue);
-                // alert(graphValue[graphValue.length-1][0]);
-            },
-        });
-        setInterval(function(){
-            var company_Idx2 = $('#companyIdx').val();
-            $.ajax({
-                url:'/search/stockupdate',
-                type:'POST',
-                data:{
-                },
-                success : function(result) {
-                    stockPrice2 = result;
-                    if(parseFloat(stockPrice2[0].company_stock) >= parseFloat(graphValue[graphValue.length-1][1])){
-                        graphValue[graphValue.length-1][2] = stockPrice2[0].company_stock;
-                        graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
-                    }
-                    else if(parseFloat(stockPrice2[0].company_stock) <= parseFloat(graphValue[graphValue.length-1][1])){
-                        graphValue[graphValue.length-1][3] = stockPrice2[0].company_stock;
-                        graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
-                    }
-                    else if(parseFloat(stockPrice2[0].company_stock) == parseFloat(graphValue[graphValue.length-1][1])){
-                        graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
-                    }
-                    stock(graphValue);
-                }
-                
-            })
-        },1000*3);   
-};
-$(document).ready(function(){
-    stock();
-    setInterval(getpo, 1000*5);
-});
-
-
-// Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/new-intraday.json', function (data) {
-
-// // create the chart
-// Highcharts.stockChart('container', {
-
+// var graphValue = [];
+// var stockPrice;
+// function stock(){
+//     Highcharts.stockChart('container', {
 
 //     title: {
-//         text: '몽심'
+//         text: '룩'
+//     },
+//     plotOptions: {
+//         candlestick: {
+//             downColor: 'blue',
+//             upColor: 'red'
+//         }
 //     },
 
 //     rangeSelector: {
@@ -534,38 +467,68 @@ $(document).ready(function(){
 //         selected: 1,
 //         inputEnabled: false
 //     },
-
 //     series: [{
 //         name: 'AAPL',
 //         type: 'candlestick',
-//         data: data,
+//         data: graphValue,
 //         tooltip: {
 //             valueDecimals: 2
 //         }
 //     }]
+// }); 
+// }
+// function getpo()
+// {
+// var company_Idx = $('#companyIdx').val();
+//     $.ajax({
+//             url:'/search/stock',
+//             type:'POST',
+//             data:{
+//                  'company_Idx' : company_Idx, 
+//             },
+//             success : function(result) {
+//                 stockPrice = result;
+//                 for(var key in stockPrice)
+//                 {
+//                     var row = stockPrice[key];
+//                     graphValue.push([parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price)]);
+                    
+//                 }
+//                 stock(graphValue);
+//                 // alert(graphValue[graphValue.length-1][0]);
+//             },
+//         });
+//         setInterval(function(){
+//             var company_Idx2 = $('#companyIdx').val();
+//             $.ajax({
+//                 url:'/search/stockupdate',
+//                 type:'POST',
+//                 data:{
+//                 },
+//                 success : function(result) {
+//                     stockPrice2 = result;
+//                     if(parseFloat(stockPrice2[0].company_stock) >= parseFloat(graphValue[graphValue.length-1][1])){
+//                         graphValue[graphValue.length-1][2] = stockPrice2[0].company_stock;
+//                         graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
+//                     }
+//                     else if(parseFloat(stockPrice2[0].company_stock) <= parseFloat(graphValue[graphValue.length-1][1])){
+//                         graphValue[graphValue.length-1][3] = stockPrice2[0].company_stock;
+//                         graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
+//                     }
+//                     else if(parseFloat(stockPrice2[0].company_stock) == parseFloat(graphValue[graphValue.length-1][1])){
+//                         graphValue[graphValue.length-1][4] = stockPrice2[0].company_stock;
+//                     }
+//                     stock(graphValue);
+//                 }
+                
+//             })
+//         },1000*3);   
+// };
+// $(document).ready(function(){
+//     stock();
+//     setInterval(getpo, 1000*5);
 // });
-// });
 
-// Highcharts.chart('container', {
 
-//     title: {
-//         text: '몽심'
-//     },
 
-//     subtitle: {
-//         text: '차트 서브타이틀'
-//     },
-
-//     yAxis: {
-//         title: {
-//             text: 'y축 타이틀'
-//         }
-//     },
-
-//     xAxis: {
-//         title: {
-//             text: 'x축 타이틀'
-//         }
-//     },
-        
 </script>

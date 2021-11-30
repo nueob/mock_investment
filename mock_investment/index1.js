@@ -17,15 +17,15 @@ const getData = async(keyword) => {
 
     const $ = cheerio.load(content);
     
-    const $bodyList = $("div.today");
+    const $bodyList = $("p.no_today");
     let titles = [];
     
 
     $bodyList.each((idx, elem)=> {
        
-      titles['현재가']=String($(elem).find('p:nth-child(1)').text().trim());
+      titles['현재가']=String($(elem).find('span:nth-of-type(1)').text().trim());
      
-      console.log(titles);
+      console.log(titles['현재가']);
      
       
       
