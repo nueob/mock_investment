@@ -125,5 +125,19 @@ module.exports={
                 }
             )
         })
+    },
+    realMoney : function(titles){
+        return new Promise ((resolve, reject)=>{
+            dbconn.query(
+                `insert into chart (start_price) values ${titles}`, (err, result, fields)=>
+                {
+                    if(err){
+                        reject(err);
+                    }else{
+                        resolve(10);
+                    }
+                }
+            )
+        })
     }
 }

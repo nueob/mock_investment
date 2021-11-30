@@ -11,6 +11,7 @@ router.post('/buy',stockControllers.getBuyStock);
 router.post('/sell',stockControllers.sellStock);
 router.post('/stock',stockControllers.getChartStock);
 router.post('/stockupdate',stockControllers.test);
+router.post('/money',stockControllers);
 
 
 router.get('/public_offering',stockControllers.viewPublicOffering);

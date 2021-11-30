@@ -103,5 +103,11 @@ module.exports = {
             console.log(result);
             res.json(result);
         })
+    },
+    insertMoney: function(req,res,next){
+        StockMoney.realMoney(req.body.titles).then((result)=>{
+            console.log(result);
+            res.json(result);
+        })
     }
 }
