@@ -55,36 +55,35 @@ app.use('/search', searchRouter);
 app.use('/users', usersRouter);
 
 // 크롤링해서 들고온 현재가
-  const getHtml = async (keyword) => {
-    try {
-      return await axios.get("https://finance.naver.com/item/sise.naver?code="+keyword,{responseEncoding : 'binary', responseType : 'arraybuffer'});
-    } catch (error) {
-      console.error(error);
+setInterval(() => {
+    const getHtml = async (keyword) => {
+      try {
+        return await axios.get("https://finance.naver.com/item/sise.naver?code="+keyword,{responseEncoding : 'binary', responseType : 'arraybuffer'});
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
-  const getData = async(keyword) => {
-    const html = await getHtml(keyword);
-    
-    const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
-
-    const $ = cheerio.load(content);
-    
-    const $bodyList = $("p.no_today");
-    let titles = [];
-    
-
-    $bodyList.each((idx, elem)=> {
+    const getData = async(keyword) => {
+      const html = await getHtml(keyword);
       
-      titles=String($(elem).find('span:nth-of-type(1)').text().trim());
-      titles=parseInt(titles.replace(',',''));
-      console.log(titles);  
-    });
-  }
-  getData(381970);//종목코드
-  // app.post('/search/money',(req,res)=>{
-  //   res.send(titles);
-  // })
+      const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
 
+      const $ = cheerio.load(content);
+      
+      const $bodyList = $("p.no_today");
+      let titles = [];
+      $bodyList.each((idx, elem)=> {
+        
+        titles=String($(elem).find('span:nth-of-type(1)').text().trim());
+        titles=parseInt(titles.replace(',',''));
+        console.log(titles);  
+      });
+    }
+    getData(381970);//종목코드
+    // app.post('/search/money',(req,res)=>{
+    //   res.send(titles);
+    // })
+  }, 1000);
 
 /* listen */
 app.listen('3000', function(){
