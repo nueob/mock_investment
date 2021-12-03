@@ -2,6 +2,8 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const Iconv=require('iconv-lite');
 const fs = require('fs');
+const Path = require('path');
+const { rejects } = require("assert");
 
 fs.readdir('poster', (err) => {
   if(err){
@@ -34,7 +36,7 @@ const getData = async(keyword) => {
         responseType: 'arraybuffer',
       });
       console.log(imgResult);
-      fs.writeFileSync(`poster/aa`, imgResult.data);
+      fs.writeFileSync(`poster/test1.jpg`, imgResult.data);
     }
     console.log(img);
 
@@ -43,12 +45,7 @@ const getData = async(keyword) => {
       titles=String($(elem).find('span:nth-of-type(1)').text().trim());
       titles=parseInt(titles.replace(',',''));
       // console.log(titles);
-     
-      
-     
     });
- 
-    
  
   }
 getData(381970);//종목코드
