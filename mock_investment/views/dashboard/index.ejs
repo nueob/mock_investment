@@ -108,7 +108,8 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <div id="container" style="height: 400px; min-width: 310px" ></div>
+                                        <!-- <div id="container" style="height: 400px; min-width: 310px" ></div> -->
+                                        <img src="/images/faces/test1.jpg" style="height:400px; min-width: 310px ">
                                     </div>
                                     <div class="card-body">
                                         <div id="chart-profile-visit"></div>
@@ -331,21 +332,5 @@
             })
         }, 1000);
     });
-    Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlcv.json', function (data) {
-        Highcharts.stockChart('container', {
-            rangeSelector: {
-            selected: 1
-            },
-            navigator: {
-            series: {
-                color: Highcharts.getOptions().colors[0]
-            }
-            },
-            series: [{
-            type: 'hollowcandlestick',
-            name: 'Hollow Candlestick',
-            data: data
-            }]
-        });
-    });
+
 </script>

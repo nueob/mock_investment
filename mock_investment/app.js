@@ -8,6 +8,7 @@ var app = express();
 const axios = require("axios");
 const cheerio = require("cheerio");
 const Iconv=require('iconv-lite');
+const fs=require("fs");
 
 /* session */
 
@@ -55,35 +56,42 @@ app.use('/search', searchRouter);
 app.use('/users', usersRouter);
 
 // 크롤링해서 들고온 현재가
-setInterval(() => {
-    const getHtml = async (keyword) => {
-      try {
-        return await axios.get("https://finance.naver.com/item/sise.naver?code="+keyword,{responseEncoding : 'binary', responseType : 'arraybuffer'});
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    const getData = async(keyword) => {
-      const html = await getHtml(keyword);
-      
-      const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
 
-      const $ = cheerio.load(content);
-      
-      const $bodyList = $("p.no_today");
-      let titles = [];
-      $bodyList.each((idx, elem)=> {
-        
-        titles=String($(elem).find('span:nth-of-type(1)').text().trim());
-        titles=parseInt(titles.replace(',',''));
-        console.log(titles);  
-      });
-    }
-    getData(381970);//종목코드
-    // app.post('/search/money',(req,res)=>{
-    //   res.send(titles);
-    // })
-  }, 1000);
+const getHtml = async (keyword) => {
+  try {
+    return await axios.get("https://finance.naver.com/item/sise.naver?code="+keyword,{responseEncoding : 'binary', responseType : 'arraybuffer'});
+  } catch (error) {
+    console.error(error);
+  }
+}
+const getData = async(keyword) => {
+  const html = await getHtml(keyword);
+  
+  const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
+
+  const $ = cheerio.load(content);
+
+  var img = $('#img_chart_area').attr('src');
+  if (img){
+    const imgResult = await axios.get(img, {
+      responseType: 'arraybuffer',
+    });
+    console.log(imgResult);
+    fs.writeFileSync(`public/images/faces/test1.jpg`, imgResult.data);
+  }
+  console.log(img);
+  
+  const $bodyList = $("p.no_today");
+  let titles = [];
+  $bodyList.each((idx, elem)=> {
+    
+    titles=String($(elem).find('span:nth-of-type(1)').text().trim());
+    titles=parseInt(titles.replace(',',''));
+    console.log(titles);  
+  });
+}
+getData(381970);//종목코드
+
 
 /* listen */
 app.listen('3000', function(){
