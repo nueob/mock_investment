@@ -6,6 +6,9 @@ var mainControllers = require('../controllers/MainControllers');
 
 router.get('/',mainControllers.doMainView)
 router.post('/',mainControllers.doMainView)
+
+router.post('/popular',mainControllers.doPopularView)
+
 // router.post('/', function(req, res, next){
 //   um = req.body.username;
 //   pwd = req.body.password;
