@@ -176,20 +176,71 @@ body {
                 </div> -->
                 <div class="card" style="overflow:scroll; width:300px; height:500px;">
                     <div class="card-header">
-                        <h4>종목 실시간 Best</h4>
+                        <h4>검색 인기 종목</h4>
                     </div>
                     <div class="card-content pb-4">
                         <div class="recent-message d-flex px-4 py-3">
                             <div class="avatar avatar-lg">
-                                <h6><%= company.titles %></h6>
+                                <h6 id="first_company_name"></h6>
                             </div>
                             <div class="name ms-4">
-                                <h5 class="mb-1"><%= company.titles%></h5>
-                                <h6 class="text-muted mb-0">▲ <%= company.titles %></h6>
+                                <h5 class="mb-1" id="first_company_stock"></h5>
+                                <h6 class="text-muted mb-0" id="first_company_state"></h6>
                             </div>
                             <div class="name ms-3">
-                                <h6 class="text-muted mb-0"><%= company.titles %> %</h6>
+                                <h6 class="text-muted mb-0" id="first_company_percentage"></h6>
                             </div>
+                        </div>
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg">
+                                <h6 id="second_company_name"></h6>
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1" id="second_company_stock"></h5>
+                                <h6 class="text-muted mb-0" id="second_company_state"></h6>
+                            </div>
+                            <div class="name ms-3">
+                                <h6 class="text-muted mb-0" id="second_company_percentage"></h6>
+                            </div>
+                        </div>
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg">
+                                <h6 id="third_company_name"></h6>
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1" id="third_company_stock"></h5>
+                                <h6 class="text-muted mb-0" id="third_company_state"></h6>
+                            </div>
+                            <div class="name ms-3">
+                                <h6 class="text-muted mb-0" id="third_company_percentage"></h6>
+                            </div>
+                        </div>
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg">
+                                <h6 id="fourth_company_name"></h6>
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1" id="fourth_company_stock"></h5>
+                                <h6 class="text-muted mb-0" id="fourth_company_state"></h6>
+                            </div>
+                            <div class="name ms-3">
+                                <h6 class="text-muted mb-0" id="fourth_company_percentage"></h6>
+                            </div>
+                        </div>
+                        <!-- <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg">
+                                <h6 id="fifth_company_name"></h6>
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1" id="fifth_company_stock"></h5>
+                                <h6 class="text-muted mb-0" id="fifth_company_state"></h6>
+                            </div>
+                            <div class="name ms-3">
+                                <h6 class="text-muted mb-0" id="fifth_company_percentage"></h6>
+                            </div>
+                        </div> -->
+                        <div class="px-4">
+                            <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'><a href='/search'>더보기</a></button>
                         </div>
                     </div>
                 </div>
@@ -275,6 +326,70 @@ body {
 </body>
 <script src="javascripts/main.js"></script>
 <script>
+    $( document ).ready(function() {
+        setInterval(() => {
+            $.ajax({
+                url:'/main/popular',
+                type:'POST',
+                success : function(result) {
+                    document.getElementById("first_company_name").innerHTML = result[0].titles;
+                    document.getElementById("first_company_stock").innerHTML = result[0].price;
+                    document.getElementById("first_company_state").innerHTML = result[0].state;
+                    if(result[0].src == '하락') {
+                        document.getElementById("first_company_percentage").innerHTML = (parseInt(result[0].state)/100) + '%';
+                        document.getElementById("first_company_state").innerHTML = '▼ ' +  result[0].state;
+                    } else {
+                        document.getElementById("first_company_percentage").innerHTML = (parseInt(result[0].state)/100) + '%';
+                        document.getElementById("first_company_state").innerHTML = '▲ ' +  result[0].state;
+                    }
+
+                    document.getElementById("second_company_name").innerHTML = result[1].titles;
+                    document.getElementById("second_company_stock").innerHTML = result[1].price;
+                    document.getElementById("second_company_state").innerHTML = result[1].state;
+                    if(result[1].src == '하락') {
+                        document.getElementById("second_company_percentage").innerHTML = (parseInt(result[1].state)/100) + '%';
+                        document.getElementById("second_company_state").innerHTML = '▼ ' +  result[1].state;
+                    } else {
+                        document.getElementById("second_company_percentage").innerHTML = (parseInt(result[1].state)/100) + '%';
+                        document.getElementById("second_company_state").innerHTML = '▲ ' +  result[1].state;
+                    }
+
+                    document.getElementById("third_company_name").innerHTML = result[2].titles;
+                    document.getElementById("third_company_stock").innerHTML = result[2].price;
+                    document.getElementById("third_company_state").innerHTML = result[2].state;
+                    if(result[2].src == '하락') {
+                        document.getElementById("third_company_percentage").innerHTML =  (parseInt(result[2].state)/100) + '%';
+                        document.getElementById("third_company_state").innerHTML = '▼ ' +  result[2].state;
+                    } else {
+                        document.getElementById("first_company_percentage").innerHTML = (parseInt(result[2].state)/100) + '%';
+                        document.getElementById("first_company_state").innerHTML = '▲ ' +  result[2].state;
+                    }
+
+                    document.getElementById("fourth_company_name").innerHTML = result[3].titles;
+                    document.getElementById("fourth_company_stock").innerHTML = result[3].price;
+                    document.getElementById("fourth_company_state").innerHTML = result[3].state;
+                    if(result[3].src == '하락') {
+                        document.getElementById("fourth_company_percentage").innerHTML = (parseInt(result[3].state)/100) + '%';
+                        document.getElementById("fourth_company_state").innerHTML = '▼ ' +  result[3].state;
+                    } else {
+                        document.getElementById("fourth_company_percentage").innerHTML = (parseInt(result[3].state)/100) + '%';
+                        document.getElementById("fourth_company_state").innerHTML = '▲ ' +  result[3].state;
+                    }
+
+                    // document.getElementById("fifth_company_name").innerHTML = result[4].titles;
+                    // document.getElementById("fifth_company_stock").innerHTML = result[4].price;
+                    // document.getElementById("fifth_company_state").innerHTML = result[4].state;
+                    // if(result[4].src == '하락') {
+                    //     document.getElementById("fifth_company_percentage").innerHTML = (parseInt(result[4].state)/100) + '%';
+                    //     document.getElementById("fifth_company_state").innerHTML = '▼ ' +  result[4].state;
+                    // } else {
+                    //     document.getElementById("fifth_company_percentage").innerHTML = (parseInt(result[4].state)/100) + '%';
+                    //     document.getElementById("fifth_company_state").innerHTML = '▲ ' +  result[4].state;
+                    // }
+                }
+            })
+        }, 1000);
+    });
 function buy(){
     var stock = $("input[id='get_count']").val();
     var price = $("input[id='price']").val();
