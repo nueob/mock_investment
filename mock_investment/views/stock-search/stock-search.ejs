@@ -36,7 +36,7 @@ body {
 }
 </style>
 <style>.cen{text-align: center;}</style>
-<!-- <style>.cen{justify-content: center;align-items: center;}</style> -->
+<style>.cen{justify-content: center;align-items: center;}</style>
 <body>
 <div class="page-heading">
     <div class="container">
@@ -64,218 +64,214 @@ body {
         </div>
     </div>    
 </div>
-    <div class="page-content">
-        <section class="row">
-            <div class="col-12 col-lg-9">
-                <input type="hidden" id="companyIdx" value="<%= money[0][0].company_idx %>">
-                <h3 class="card-body" style="padding-bottom: 10px;"><%= money[0][0].company_name %></h3>
-                <div class="card-body" style="border:0">
-                    <div class="card-body px-3 py-4-5" style="background-color: #fff;border:0">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <h6 class="font-extrabold mb-0"></h6>
-                                <h6 class="text-muted font-semibold">계열</h6>
-                                <h6 class="font-extrabold mb-0"><%= money[0][0].industry_of_company %></h6>
-                                <h6 class="font-extrabold mb-0"></h6>
-                            </div>
-                            <div class="col-md-2">
-                                <h6 class="text-muted font-semibold">대표</h6>
-                                <h6 class="font-extrabold mb-0"><%= money[0][0].representative %></h6>
-                            </div>
-                            <div class="col-md-2">
-                                <h6 class="text-muted font-semibold">거래량</h6>
-                                <h6 class="font-extrabold mb-0"><%= money[0][0].cnt %></h6>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="buttons">
-                                    <a href="#" class="btn btn-light">실시간 차트</a>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="buttons">
-                                    <a href="/search/companyInfo" class="btn btn-light">기업 정보</a>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="buttons">
-                                    <a href="search/discussion" class="btn btn-light">종목 토론</a>
-                                </div>
+<div class="page-content">
+    <section class="row">
+        <div class="col-12 col-lg-9">
+            <input type="hidden" id="companyIdx" value="<%= company.code %>">
+            <h3 class="card-body" style="padding-bottom: 10px;"><%= company.titles %></h3>
+            <div class="card-body" style="border:0">
+                <div class="card-body px-3 py-4-5" style="background-color: #fff;border:0">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h6 class="font-extrabold mb-0"></h6>
+                            <h6 class="text-muted font-semibold">현재가</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.price %></h6>
+                            <h6 class="font-extrabold mb-0"></h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6 class="text-muted font-semibold">전가</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.previous_day_price %></h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6 class="text-muted font-semibold">고가</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.high_price %></h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6 class="text-muted font-semibold">저가</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.low_price %></h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6 class="text-muted font-semibold">거래량</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.transaction_amount %></h6>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="buttons">
+                                <a href="search/discussion" class="btn btn-light">종목 토론</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                    <div class="card-body">
-                        <div class="table-responsive"  style="background-color: #fff;border:0">
-                            <div id="container" style="height: 400px; min-width: 310px" ></div>
-                        </div>
+            </div>
+                <div class="card-body">
+                    <div class="table-responsive"  style="background-color: #fff;border:0">
+                        <div id="container" style="height: 400px; min-width: 310px" ></div>
                     </div>
-                    <div class="card-body" style="padding-top:35px">
-                        <div class="card" style="border:0;">
-                            <div class="card-body">
-                                <div class="row">
-                                    <h6 class="text-muted font-semibold">최신 기업 뉴스</h6>
-                                    <h6 class="font-extrabold mb-0">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
-                                        similique iusto
-                                        temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
-                                        delectus
-                                        quibusdam ratione ullam!
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
-                                        similique iusto
-                                        temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
-                                        delectus
-                                        quibusdam ratione ullam!
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
-                                        similique iusto
-                                        temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
-                                        delectus
-                                        quibusdam ratione ullam!
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
-                                        similique iusto
-                                        temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
-                                        delectus
-                                        quibusdam ratione ullam!
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
-                                        similique iusto
-                                        temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
-                                        delectus
-                                        quibusdam ratione ullam!
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
-                                        similique iusto
-                                        temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
-                                        delectus
-                                        quibusdam ratione ullam!
-                                    </h6>
-                                </div>
+                </div>
+                <div class="card-body" style="padding-top:35px">
+                    <div class="card" style="border:0;">
+                        <div class="card-body">
+                            <div class="row">
+                                <h6 class="text-muted font-semibold">최신 기업 뉴스</h6>
+                                <h6 class="font-extrabold mb-0">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
+                                    similique iusto
+                                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
+                                    delectus
+                                    quibusdam ratione ullam!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
+                                    similique iusto
+                                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
+                                    delectus
+                                    quibusdam ratione ullam!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
+                                    similique iusto
+                                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
+                                    delectus
+                                    quibusdam ratione ullam!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
+                                    similique iusto
+                                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
+                                    delectus
+                                    quibusdam ratione ullam!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
+                                    similique iusto
+                                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
+                                    delectus
+                                    quibusdam ratione ullam!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat
+                                    similique iusto
+                                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat
+                                    delectus
+                                    quibusdam ratione ullam!
+                                </h6>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3">
-                    <!-- <div class="card-body px-3 py-4-5">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <h6 class="font-extrabold mb-0"></h6>
-                                <h6 class="text-muted font-semibold"></h6>
-                                <h6 class="font-extrabold mb-0"></h6>
-                                <h6 class="font-extrabold mb-0"></h6>
-                            </div>
-                            <div class="col-md-2">
-                                <h6 class="text-muted font-semibold"></h6>
-                                <h6 class="font-extrabold mb-0"></h6>
-                            </div>
-                            <div class="col-md-2">
-                                <h6 class="text-muted font-semibold"></h6>
-                                <h6 class="font-extrabold mb-0"></h6>
-                            </div>
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-2">
-                            </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <!-- <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h6 class="font-extrabold mb-0"></h6>
+                            <h6 class="text-muted font-semibold"></h6>
+                            <h6 class="font-extrabold mb-0"></h6>
+                            <h6 class="font-extrabold mb-0"></h6>
                         </div>
-                    </div> -->
-                    <div class="card" style="overflow:scroll; width:300px; height:500px;">
-                        <div class="card-header">
-                            <h4>종목 실시간 Best</h4>
+                        <div class="col-md-2">
+                            <h6 class="text-muted font-semibold"></h6>
+                            <h6 class="font-extrabold mb-0"></h6>
                         </div>
-                        <div class="card-content pb-4">
-                            <% for (info of money[1]) { %>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <h6><%= info.company_name %></h6>
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1"><%= info.company_stock %></h5>
-                                    <h6 class="text-muted mb-0">▲ <%= info.different %></h6>
-                                </div>
-                                <div class="name ms-3">
-                                    <h6 class="text-muted mb-0"><%= Math.abs(info.different / 100)%> %</h6>
-                                </div>
-                            </div>
-                            <% } %>
+                        <div class="col-md-2">
+                            <h6 class="text-muted font-semibold"></h6>
+                            <h6 class="font-extrabold mb-0"></h6>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
                         </div>
                     </div>
-                    <div class="card" style="width:300px; height:500px;">
-                        <div class="card-header" >
-                            <div class="nav nav-pills" id="v-pills-tab" role="tablist">
-                                <a class="nav-link active" style="width:80px; float:left;" id="v-pills-home-tab" data-bs-toggle="pill"
-                                    href="#v-pills-home" role="tab" aria-controls="v-pills-home"
-                                    aria-selected="true">매수</a>
-                                <a class="nav-link" style="float:left; width:80px;" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                    href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-                                    aria-selected="false">매도</a>
+                </div> -->
+                <div class="card" style="overflow:scroll; width:300px; height:500px;">
+                    <div class="card-header">
+                        <h4>종목 실시간 Best</h4>
+                    </div>
+                    <div class="card-content pb-4">
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg">
+                                <h6><%= company.titles %></h6>
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1"><%= company.titles%></h5>
+                                <h6 class="text-muted mb-0">▲ <%= company.titles %></h6>
+                            </div>
+                            <div class="name ms-3">
+                                <h6 class="text-muted mb-0"><%= company.titles %> %</h6>
                             </div>
                         </div>
-                        <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                aria-labelledby="v-pills-home-tab">
-                                <button class='cen' id="order_buy" onclick="buy();">매수주문</button>
-                                <div class="table-responsive">
-                                    <table class="table ">
-                                        <tbody>
-                                            <tr style="text-align:center;">
-                                                <th>수량</th>
-                                                <td>
-                                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%; "type ="button" onclick="fnCalCount('p',this);">+</button>
-                                                    <input type="number" id="get_count" value="0" readonly="readonly" style="text-align:center;"/>
-                                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%;"type="button" onclick="fnCalCount('m', this);">-</button>
-                                                </td>
-                                            </tr>
-                                            <tr style="text-align:center;">
-                                                <th>1주 가격</th>
-                                                <td>
-                                                    <input type="number" id="price" value='<%= money[0][0].company_stock %>' readonly="readonly"/>
-                                                </td>
-                                            </tr>
-                                            <tr style="text-align:center;">
-                                                <th>주문금액</th>
-                                                <td>
-                                                    <input type="number" id="total" value='<%= money[0][0].company_stock %>' readonly="readonly"/>
-                                                </td>
-    
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                aria-labelledby="v-pills-profile-tab">
-                                <button class='cen' onclick="sell();">매도주문</button>
-                                <div class="table-responsive">
-                                    <table class="table ">
+                    </div>
+                </div>
+                <div class="card" style="width:300px; height:500px;">
+                    <div class="card-header" >
+                        <div class="nav nav-pills" id="v-pills-tab" role="tablist">
+                            <a class="nav-link active" style="width:80px; float:left;" id="v-pills-home-tab" data-bs-toggle="pill"
+                                href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                                aria-selected="true">매수</a>
+                            <a class="nav-link" style="float:left; width:80px;" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                                aria-selected="false">매도</a>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                            <button class='cen' id="order_buy" onclick="buy();">매수주문</button>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    <tbody>
+                                        <tr style="text-align:center;">
+                                            <th>수량</th>
+                                            <td>
+                                                <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%; "type ="button" onclick="fnCalCount('p',this);">+</button>
+                                                <input type="number" id="get_count" value="0" readonly="readonly" style="text-align:center;"/>
+                                                <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%;"type="button" onclick="fnCalCount('m', this);">-</button>
+                                            </td>
+                                        </tr>
+                                        <tr style="text-align:center;">
+                                            <th>1주 가격</th>
+                                            <td>
+                                                <input type="number" id="price" value='<%= company.price %>' readonly="readonly"/>
+                                            </td>
+                                        </tr>
+                                        <tr style="text-align:center;">
+                                            <th>주문금액</th>
+                                            <td>
+                                                <input type="number" id="total" value='<%= company.price %>' readonly="readonly"/>
+                                            </td>
+
+                                        </tr>
                                         
-                                        <tbody>
-                                            <tr style="text-align:center;">
-                                                <th>수량</th>
-                                                <td>
-                                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%; "type ="button" onclick="fnCalCount2('z',this);">+</button>
-                                                    <input type="text" id="sell_count" value="0" readonly="readonly" style="text-align:center;"/>
-                                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%;"type="button" onclick="fnCalCount2('k', this);">-</button>
-                                                </td>
-                                            </tr>
-                                            <tr style="text-align:center;">
-                                                <th>1주 가격</th>
-                                                <td>
-                                                    <input type="number" id="price2" value='<%= money[0][0].company_stock %>'/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-bold-500">주문금액</th>
-                                                <td><input type="number" id="total2" value='<%= money[0][0].company_stock %>' readonly="readonly"/></td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            
+                                    </tbody>
+                                </table>
                             </div>
-                    </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                            aria-labelledby="v-pills-profile-tab">
+                            <button class='cen' onclick="sell();">매도주문</button>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    
+                                    <tbody>
+                                        <tr style="text-align:center;">
+                                            <th>수량</th>
+                                            <td>
+                                                <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%; "type ="button" onclick="fnCalCount2('z',this);">+</button>
+                                                <input type="text" id="sell_count" value="0" readonly="readonly" style="text-align:center;"/>
+                                                <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3" style="width:50%;"type="button" onclick="fnCalCount2('k', this);">-</button>
+                                            </td>
+                                        </tr>
+                                        <tr style="text-align:center;">
+                                            <th>1주 가격</th>
+                                            <td>
+                                                <input type="number" id="price2" value='<%= company.price %>'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-bold-500">주문금액</th>
+                                            <td><input type="number" id="total2" value='<%= company.price %>' readonly="readonly"/></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        
+                        </div>
                 </div>
-        </section>
-    </div>
+            </div>
+    </section>
+</div>
 </body>
 <script src="javascripts/main.js"></script>
 <script>

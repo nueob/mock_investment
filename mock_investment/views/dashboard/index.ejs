@@ -222,7 +222,7 @@
                                         <h6 class="text-muted mb-0" id="fourth_company_percentage"></h6>
                                     </div>
                                 </div>
-                                <div class="recent-message d-flex px-4 py-3">
+                                <!-- <div class="recent-message d-flex px-4 py-3">
                                     <div class="avatar avatar-lg">
                                         <h6 id="fifth_company_name"></h6>
                                     </div>
@@ -233,7 +233,7 @@
                                     <div class="name ms-3">
                                         <h6 class="text-muted mb-0" id="fifth_company_percentage"></h6>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="px-4">
                                     <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'><a href='/search'>더보기</a></button>
                                 </div>
@@ -317,16 +317,16 @@
                         document.getElementById("fourth_company_state").innerHTML = '▲ ' +  result[3].state;
                     }
 
-                    document.getElementById("fifth_company_name").innerHTML = result[4].titles;
-                    document.getElementById("fifth_company_stock").innerHTML = result[4].price;
-                    document.getElementById("fifth_company_state").innerHTML = result[4].state;
-                    if(result[4].src == '하락') {
-                        document.getElementById("fifth_company_percentage").innerHTML = (parseInt(result[4].state)/100) + '%';
-                        document.getElementById("fifth_company_state").innerHTML = '▼ ' +  result[4].state;
-                    } else {
-                        document.getElementById("fifth_company_percentage").innerHTML = (parseInt(result[4].state)/100) + '%';
-                        document.getElementById("fifth_company_state").innerHTML = '▲ ' +  result[4].state;
-                    }
+                    // document.getElementById("fifth_company_name").innerHTML = result[4].titles;
+                    // document.getElementById("fifth_company_stock").innerHTML = result[4].price;
+                    // document.getElementById("fifth_company_state").innerHTML = result[4].state;
+                    // if(result[4].src == '하락') {
+                    //     document.getElementById("fifth_company_percentage").innerHTML = (parseInt(result[4].state)/100) + '%';
+                    //     document.getElementById("fifth_company_state").innerHTML = '▼ ' +  result[4].state;
+                    // } else {
+                    //     document.getElementById("fifth_company_percentage").innerHTML = (parseInt(result[4].state)/100) + '%';
+                    //     document.getElementById("fifth_company_state").innerHTML = '▲ ' +  result[4].state;
+                    // }
                 }
             })
         }, 1000);
