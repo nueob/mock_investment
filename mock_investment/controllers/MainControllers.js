@@ -42,5 +42,26 @@ module.exports = {
           res.json(company);
         }
         getData(381970);//종목코드
+    },
+    doKospi: function(req,res,next){
+      const getHtml = async () => {
+        try {
+          return await axios.get("https://finance.naver.com/sise/",{responseEncoding : 'binary', responseType : 'arraybuffer'});
+        } catch (error) {
+          console.error(error);
+        }
+      }
+     
+    const getData = async(keyword) => {
+        const html = await getHtml(keyword);
+        const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
+    
+        const $ = cheerio.load(content);
+        var $spanList = $("#tab_sel1_deal_trend").text().trim();
+        console.log($spanList);
+        res.json($spanList);
+        
     }
+    getData();
+  }
 }

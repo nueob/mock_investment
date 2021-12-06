@@ -109,7 +109,8 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <!-- <div id="container" style="height: 400px; min-width: 310px" ></div> -->
-                                        <img src="/images/faces/test1.jpg" style="height:400px; min-width: 310px ">
+                                        <h6 id = "kospi"></h6>
+                                        <img id = "kospi_img" src="/images/faces/test1.jpg" style="height:300px; min-width: 310px ">
                                     </div>
                                     <div class="card-body">
                                         <div id="chart-profile-visit"></div>
@@ -332,5 +333,19 @@
             })
         }, 1000);
     });
+
+    function kospi(){
+        $.ajax({
+            url:'/main/kospi',
+            type:'POST',
+            success:function(result){
+                document.getElementById("kospi").innerHTML = result;
+            }
+        })
+    }kospi();
+    setInterval (function(){
+        kospi();
+        document.getElementById("kospi_img").src = "/images/faces/test.jpg";
+    }, 1000*10);
 
 </script>

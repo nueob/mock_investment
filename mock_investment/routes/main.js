@@ -8,6 +8,7 @@ router.get('/',mainControllers.doMainView)
 router.post('/',mainControllers.doMainView)
 
 router.post('/popular',mainControllers.doPopularView)
+router.post('/kospi',mainControllers.doKospi)
 
 // router.post('/', function(req, res, next){
 //   um = req.body.username;
