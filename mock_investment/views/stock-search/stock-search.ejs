@@ -104,7 +104,7 @@ body {
             </div>
                 <div class="card-body">
                     <div class="table-responsive"  style="background-color: #fff;border:0">
-                        <img src="/images/faces/test1.jpg" style="height:350px; min-width: 310px; width: 900px ">
+                        <img id="chart_img" src="/images/faces/test2.jpg" style="height:350px; min-width: 310px; width: 900px ">
                     </div>
                 </div>
                 <div class="card-body" style="padding-top:35px">
@@ -359,6 +359,18 @@ body {
             })
         }, 1000);
     });
+function chart_price(){
+    $.ajax({
+        url: "/search/price",
+        type:"POST",
+        success:function(result){
+            alert(result);
+        }
+    })
+}chart_price();
+setInterval(function(){
+    document.getElementById("chart_img").src = "/images/faces/test2.jpg";
+},1000*10);
 function buy(){
     var stock = $("input[id='get_count']").val();
     var price = $("input[id='price']").val();
@@ -416,17 +428,6 @@ function sell(){
         alert('매도 실패');
     }
 }
-// function select(){
-//     var search_value = $('#searching').val();
-//     if(search_value == '예순이네'){
-//         location.href = '/search/yesunine';
-//     }
-//     else if(search_value == '몽심'){
-//         location.href = '/search';
-//     }else{
-//         alert('다른 기업을 검색해주세요');
-//     }
-// }
 function fnCalCount(type, ths){
     var $input = $(ths).parents("td").find("input[id='get_count']");
     var $input2 = $("#total");

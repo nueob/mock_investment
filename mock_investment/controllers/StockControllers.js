@@ -6,6 +6,7 @@ const StockMoney = require('../models/StockMoney');
 const axios = require("axios");
 const cheerio = require("cheerio");
 const Iconv=require('iconv-lite');
+const fs=require("fs");
 
 module.exports = {
     // views
@@ -54,7 +55,14 @@ module.exports = {
                 const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
             
                 const $ = cheerio.load(content);
-                
+                var img = $('#img_chart_area').attr('src');
+                if (img){
+                    const imgResult = await axios.get(img, {
+                    responseType: 'arraybuffer',
+                    });
+                    console.log(imgResult);
+                    fs.writeFileSync(`public/images/faces/test2.jpg`, imgResult.data);
+                }
                 const $bodyList = $("div.rate_info");
                 let company = [];
                 $bodyList.each((idx, elem)=> {
@@ -148,5 +156,42 @@ module.exports = {
             console.log(result);
             res.json(result);
         })
+    },
+    chartPrice: function(req,res,next){
+        var keyword = '';
+        console.log(typeof req.body.searching);
+        console.log(typeof req.body.searching == 'undefined');
+        if(typeof req.body.searching == 'undefined') {
+            keyword = '카카오페이';
+        } else {
+            keyword = req.body.searching;
+        }
+        console.log(keyword);
+        StockMoney.stockMoney(keyword).then((result)=>{
+        const getHtml = async (keyword) => {
+            try {
+                return await axios.get("https://finance.naver.com/item/sise.naver?code="+keyword,{responseEncoding : 'binary', responseType : 'arraybuffer'});
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        const getData = async(code,id) => {
+            const html = await getHtml(code);
+            
+            const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
+        
+            const $ = cheerio.load(content);
+            const $bodyList = $("p.no_today");
+            let titles = [];
+            $bodyList.each((idx, elem)=> {
+                
+                titles=String($(elem).find('span:nth-of-type(1)').text().trim());
+                titles=parseInt(titles.replace(',',''));
+                console.log(titles); 
+            });
+            res.json(titles);
+        }
+        getData(result.company_number,result.company_idx);//종목코드
+        });
     }
 }
