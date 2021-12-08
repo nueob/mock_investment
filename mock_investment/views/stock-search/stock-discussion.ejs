@@ -36,19 +36,19 @@ body {
             <br/>
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
-                    <form action="/search/discussion" class="card card-sm" method="post" style="border:0">
+                    <!-- <form action="/search/discussion" class="card card-sm" method="post" style="border:0"> -->
                         <div class="card-body row no-gutters align-items-center" style="padding:0.5rem;">
                             <div class="col-auto">
                                 <i class="fas fa-search h4 text-body"></i>
                             </div>
                             <div class="col">
-                                <input name="company_name_input" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                                <input id="company_name_input" name="company_name_input" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
                             </div>
                             <div class="col-auto">
-                                <button id="search_btn" class="btn btn-lg btn-success" type="submit" style="background-color: #435ebe;border-color: #435ebe;">Search</button>
+                                <button id="search_btn" class="btn btn-lg btn-success" type="submit" style="background-color: #435ebe;border-color: #435ebe;" onclick="keywordConfirm()">Search</button>
                             </div>
                         </div>
-                    </form>
+                    <!-- </form> -->
                 </div>
                 <!--end of col-->
             </div>
@@ -152,4 +152,35 @@ body {
             })
         })
     })
+    // 검색 내용 검사
+    function keywordConfirm() {
+      var keyword = $('#company_name_input').val();
+      console.log(keyword);
+      $.ajax({
+          url: "/search/keyword",
+          type:"POST",
+          data: {
+            keyword : keyword
+          },
+          success:function(result){
+              if(result == 100) { // 검색 결과가 있을 경우
+                var form = document.createElement('form'); // 폼객체 생성
+                var objs;
+                objs = document.createElement('input');
+                objs.setAttribute('type', 'text'); // 값이 들어있는 녀석의 type
+                objs.setAttribute('name', 'company_name_input'); // 객체이름
+                objs.setAttribute('value', keyword); //객체값
+                form.appendChild(objs);
+                form.setAttribute('method', 'post'); //get,post 가능
+                form.setAttribute('action', "/search/discussion"); //보내는 url
+                document.body.appendChild(form);
+                form.submit();
+              } else if(result == 200) { // 검색 결과가 없을 경우
+                alert('검색 결과가 없습니다.');
+              } else { // 검색 결과가 여러개 일 경우
+                alert('검색 종목을 정확히 입력하여 주십시오');
+              }
+          }
+      })
+    }
 </script>
