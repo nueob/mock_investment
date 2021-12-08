@@ -17,8 +17,8 @@ module.exports = {
         } else {
             keyword = req.body.company_name_input;
         }
-        Comment.searchList(keyword).then((result) => { 
-            res.render('stock-search/stock-discussion', { title: 'Express' , comment : result });    
+        Comment.searchList(keyword).then((result) => {
+            res.render('stock-search/stock-discussion', { title: 'Express' , comment : result });
         })
     },
     viewPublicOffering : function(req,res,next) {
@@ -51,9 +51,9 @@ module.exports = {
             }
             const getData = async(code,id) => {
                 const html = await getHtml(code);
-                
+
                 const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
-            
+
                 const $ = cheerio.load(content);
                 var img = $('#img_chart_area').attr('src');
                 if (img){
@@ -68,11 +68,11 @@ module.exports = {
                 $bodyList.each((idx, elem)=> {
                     company[idx] = {
                         code : id,
-                        titles : String($(elem).find('dl.blind dt:nth-of-type(1)').text().trim()), 
+                        titles : String($(elem).find('dl.blind dt:nth-of-type(1)').text().trim()),
                         price : String($(elem).find('p.no_today span:nth-of-type(1)').text().trim()),
 
                         previous_day_price : String($(elem).find('tr:nth-of-type(1) td.first span.blind').text().trim()), //전일
-                        high_price : String($(elem).find('tr:nth-of-type(1) td:nth-of-type(2) em.no_down span:nth-of-type(1)').text().trim()), //고가
+                        high_price : String($(elem).find('tr:nth-of-type(1) td:nth-of-type(2) em:nth-of-type(1) span:nth-of-type(1)').text().trim()), //고가
                         trading_volume: String($(elem).find('tr:nth-of-type(1) td:nth-of-type(3) em span:nth-of-type(1)').text().trim()), //거래량
 
                         market_price : String($(elem).find('tr:nth-of-type(2) td.first span.blind').text().trim()), //시가
@@ -80,7 +80,7 @@ module.exports = {
                         transaction_amount : String($(elem).find('tr:nth-of-type(2) td:nth-of-type(3) em span:nth-of-type(1)').text().trim()), //저가
                     }
                 });
-                console.log(company[0]);  
+                console.log(company[0]);
                 res.render('stock-search/stock-search', {title: 'Express', company : company[0]});
             }
             getData(result.company_number,result.company_idx);//종목코드
@@ -100,7 +100,7 @@ module.exports = {
         Comment.doComment(req.session.userIdx,req.body.companyIdx,req.body.comment).then((result)=>{
             console.log(result);
             res.json(result);
-        }) 
+        })
     },
     getBuyStock : function(req,res,next){
             Buy.buyStock(req.body.stock, req.body.price,req.session.userIdx, req.body.company_Idx).then((result)=>{
@@ -114,7 +114,7 @@ module.exports = {
                 } else {
                     res.json(result);
                 }
-        })        
+        })
     },
     dopublicOffering : function(req,res,next) {
         StockMoney.publicOffering(req.session.userIdx,req.body.stock).then((result) => {
@@ -135,10 +135,10 @@ module.exports = {
                     res.json(action)
                 })
             } else {
-                res.json(result);    
+                res.json(result);
             }
         })
-    },    
+    },
     getChartStock: function(req,res,next){
         StockMoney.chartMoney(req.body.company_Idx).then((result)=>{
             console.log(result);
@@ -177,17 +177,17 @@ module.exports = {
         }
         const getData = async(code,id) => {
             const html = await getHtml(code);
-            
+
             const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
-        
+
             const $ = cheerio.load(content);
             const $bodyList = $("p.no_today");
             let titles = [];
             $bodyList.each((idx, elem)=> {
-                
+
                 titles=String($(elem).find('span:nth-of-type(1)').text().trim());
                 titles=parseInt(titles.replace(',',''));
-                console.log(titles); 
+                console.log(titles);
             });
             res.json(titles);
         }
