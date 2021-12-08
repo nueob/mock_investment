@@ -3,13 +3,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard - Mazer Admin Dashboard</title>
-    
+
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
-    
+
         <link rel="stylesheet" href="/vendors/iconly/bold.css">
-    
+
         <link rel="stylesheet" href="/vendors/perfect-scrollbar/perfect-scrollbar.css">
         <link rel="stylesheet" href="/vendors/bootstrap-icons/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
@@ -62,7 +62,7 @@ body {
             </div>
             <!--end of col-->
         </div>
-    </div>    
+    </div>
 </div>
 <div class="page-content">
     <section class="row">
@@ -241,17 +241,17 @@ body {
                                         <tr style="text-align:center;">
                                             <th>1주 가격</th>
                                             <td>
-                                                <input type="number" id="price" value='<%= company.price %>' readonly="readonly"/>
+                                                <input type="text" id="price" value='<%= company.price %>'/>
                                             </td>
                                         </tr>
                                         <tr style="text-align:center;">
                                             <th>주문금액</th>
                                             <td>
-                                                <input type="number" id="total" value='<%= company.price %>' readonly="readonly"/>
+                                                <input type="text" id="total" value='<%= company.price %>' readonly="readonly"/>
                                             </td>
 
                                         </tr>
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
@@ -261,7 +261,7 @@ body {
                             <button class='cen' onclick="sell();">매도주문</button>
                             <div class="table-responsive">
                                 <table class="table ">
-                                    
+
                                     <tbody>
                                         <tr style="text-align:center;">
                                             <th>수량</th>
@@ -281,11 +281,11 @@ body {
                                             <th class="text-bold-500">주문금액</th>
                                             <td><input type="number" id="total2" value='<%= company.price %>' readonly="readonly"/></td>
                                         </tr>
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
-                        
+
                         </div>
                 </div>
             </div>
@@ -373,7 +373,7 @@ setInterval(function(){
 },1000*10);
 function buy(){
     var stock = $("input[id='get_count']").val();
-    var price = $("input[id='price']").val();
+    var price = $("input[id='price']").val().replace(",", "");
     var company_Idx = $('#companyIdx').val();
     console.log(company_Idx);
 
@@ -390,9 +390,9 @@ function buy(){
                 success : function(result) {
                     console.log(result);
                     if(result == 20) {
-                        alert('매수 가능한 수를 넘었습니다.');    
+                        alert('매수 가능한 수를 넘었습니다.');
                     } else {
-                        alert('매수가 체결 되었습니다.');    
+                        alert('매수가 체결 되었습니다.');
                     }
                     // location.reload();
                 }
@@ -403,7 +403,7 @@ function buy(){
 }
 function sell(){
     var stock = $("input[id='sell_count']").val();
-    var price = $("input[id='price']").val();
+    var price = $("input[id='price']").val().replace(",", "");
     var company_Idx = $('#companyIdx').val();
     if(stock != ""){
         alert(stock);
@@ -429,37 +429,47 @@ function sell(){
     }
 }
 function fnCalCount(type, ths){
+    console.log('zz');
     var $input = $(ths).parents("td").find("input[id='get_count']");
     var $input2 = $("#total");
-    var $input3 = $("#price");   
+    var $input3 = $("#price");
     var tCount = Number($input.val());
-    
+console.log($("#price").val());
     if(type=='p'){
         $input.val(Number(tCount)+1);
-        $input2.val(Number($input3.val())*(Number(tCount)+1));
+        const number = $input3.val().replace(",", "");
+        const total_price = number*(Number(tCount)+1);
+        $input2.val(total_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
     }else{
         if(tCount >0) {
             $input.val(Number(tCount)-1);
-            $input2.val(Number($input3.val())*(Number(tCount)-1));
+            const number = $input3.val().replace(",", "");
+            const total_price = number*(Number(tCount)-1);
+            $input2.val(total_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
         }
     }
 }
 function fnCalCount2(type, ths){
     var $input = $(ths).parents("td").find("input[id='sell_count']");
+    console.log(document.getElementById(price));
     var $input2 = $('#total2');
     var $input3 = $('#price2');
     var tCount = Number($input.val());
-    
+
     if(type=='z'){
-        $input.val(Number(tCount)+1);
-        $input2.val(Number($input3.val())*(Number(tCount)+1));
-        
+      $input.val(Number(tCount)+1);
+      const number = $input3.val().replace(",", "");
+      const total_price = number*(Number(tCount)+1);
+      $input2.val(total_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
+
     }else{
         if(tCount >0){
-            $input.val(Number(tCount)-1);
-            $input2.val(Number($input3.val())*(Number(tCount)-1));
+          $input.val(Number(tCount)-1);
+          const number = $input3.val().replace(",", "");
+          const total_price = number*(Number(tCount)-1);
+          $input2.val(total_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
         }
-    
+
     }
 }
 function ch(){
@@ -621,7 +631,7 @@ function ch(){
 //             valueDecimals: 2
 //         }
 //     }]
-// }); 
+// });
 // }
 // function getpo()
 // {
@@ -630,7 +640,7 @@ function ch(){
 //             url:'/search/stock',
 //             type:'POST',
 //             data:{
-//                  'company_Idx' : company_Idx, 
+//                  'company_Idx' : company_Idx,
 //             },
 //             success : function(result) {
 //                 stockPrice = result;
@@ -638,7 +648,7 @@ function ch(){
 //                 {
 //                     var row = stockPrice[key];
 //                     graphValue.push([parseFloat(row.date), parseFloat(row.start_price), parseFloat(row.high_price), parseFloat(row.low_price), parseFloat(row.end_price)]);
-                    
+
 //                 }
 //                 stock(graphValue);
 //                 // alert(graphValue[graphValue.length-1][0]);
@@ -666,9 +676,9 @@ function ch(){
 //                     }
 //                     stock(graphValue);
 //                 }
-                
+
 //             })
-//         },1000*3);   
+//         },1000*3);
 // };
 // $(document).ready(function(){
 //     stock();
