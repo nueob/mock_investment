@@ -32,8 +32,8 @@ module.exports = {
                         if(typeof result == 'undefined' || result == "" || result.length == 0 || result == null) {
                             resolve(100);
                         } else {
-                            let res = JSON.parse(JSON.stringify(result));  
-                            resolve(res[0]);  
+                            let res = JSON.parse(JSON.stringify(result));
+                            resolve(res[0]);
                         }
                     }
             });
@@ -95,7 +95,7 @@ module.exports = {
                         `select (company_stock - company_before_stock) as different , ROW_NUMBER() OVER (ORDER BY different desc) as rank , company_stock , company_name
                         from company_info
                         limit 3;` +
-                        `select * from company_news`; 
+                        `select * from company_news`;
             dbconn.query(query, (err,result,fields) =>
                 {
                     if(err){
@@ -112,44 +112,45 @@ module.exports = {
     // myinfo
     getMyInfo : function(idx) {
         return new Promise ((resolve, reject) => {
-            var query = `select assets from ${table} where user_idx = ${idx};` + //보유 자산 
+            var query = `select assets from ${table} where user_idx = ${idx};` + //보유 자산
 
-                        `select sum(get_buy_price) as share, (sum(get_buy_stock) - sum(get_sell_stock)) as allAssets , (assets - sum(get_buy_price)) as realAssets
+                        `select (sum(get_buy_price) - sum(get_sell_price)) as share,
+                         (sum(get_buy_stock) - sum(get_sell_stock)) as allAssets , (assets - sum(get_buy_price) + sum(get_sell_price)) as realAssets
                         from stock_buy_item b
                         inner join user_info u on b.user_idx = u.user_idx
                         left join stock_sell_item s on b.company_idx = s.company_idx
                         where b.user_idx = ${idx};` + // 보유 주, 보유 주식 총액
-                        
+
                         // `select company_name, get_buy_stock as stock , '매수 준비 중' as memo ,
                         // (select count(*) from stock_buy_item b2 where b2.company_idx = b.company_idx and b2.get_buy_stock = b.get_buy_stock group by get_buy_stock) as cnt
                         // from stock_buy_item b
-                        // inner join company_info c on b.company_idx = c.company_idx  
+                        // inner join company_info c on b.company_idx = c.company_idx
                         // where b.user_idx = ${idx} and allow_buy = 'n'
-                        
+
                         // union
 
-                        // select company_name, get_sell_stock as stock , '매도 준비 중' as memo , 
+                        // select company_name, get_sell_stock as stock , '매도 준비 중' as memo ,
                         // (select count(*) from stock_sell_item s2 where s2.company_idx = s.company_idx and s2.get_sell_stock = s.get_sell_stock group by get_sell_stock) as cnt
                         // from stock_sell_item s
-                        // inner join company_info c on s.company_idx = c.company_idx  
+                        // inner join company_info c on s.company_idx = c.company_idx
                         // where s.user_idx = ${idx} and allow_sell = 'n';` + //진행중인 거래
 
-                        `select company_name, get_buy_stock as stock , '매수' as memo , 
+                        `select company_name, get_buy_stock as stock , '매수' as memo ,
                         (select count(*) from stock_buy_item b2 where b2.company_idx = b.company_idx and b2.get_buy_stock = b.get_buy_stock group by get_buy_stock) as cnt
                         from stock_buy_item b
-                        inner join company_info c on b.company_idx = c.company_idx  
+                        inner join company_info_kospi c on b.company_idx = c.company_idx
                         where b.user_idx = ${idx}
-                        
+
                         union
 
                         select company_name, get_sell_stock as stock , '매도' as memo ,
                         (select count(*) from stock_sell_item s2 where s2.company_idx = s.company_idx and s2.get_sell_stock = s.get_sell_stock group by get_sell_stock) as cnt
                         from stock_sell_item s
-                        inner join company_info c on s.company_idx = c.company_idx  
+                        inner join company_info_kospi c on s.company_idx = c.company_idx
                         where s.user_idx = ${idx};` + //거래 내역
 
                         `select company_name from interest_item i
-                        inner join company_info c on i.company_idx = c.company_idx
+                        inner join company_info_kospi c on i.company_idx = c.company_idx
                         where i.user_idx = ${idx}`; // 관심 종목
 
             dbconn.query(query, (err,result,fields) =>
@@ -186,7 +187,7 @@ module.exports = {
                         reject(err);
                     } else {
                         let res = JSON.parse(JSON.stringify(result));
-                        
+
                         if(res[0].count > 0) {
                             this.changePassword(idx,changePassword);
                         } else {
@@ -213,29 +214,29 @@ module.exports = {
     },
     //assets
     getAssetsInfo : function(idx) {
-        //(uint_price - current_price) as profit , (profit*100) as profit_percentage 
+        //(uint_price - current_price) as profit , (profit*100) as profit_percentage
         console.log(idx);
         //total_buy_price : 총 매입액
         //total_evaluation : 총 평가액
         //realProfit : 실현 수익
         //evaluation_profit : 평가 손익
         return new Promise ((resolve, reject) => {
-            var query = `select company_name , 
-                        sum(sum(get_buy_price) * sum(get_buy_stock)) as total_buy_price , 
-                        sum(sum(get_buy_price) * sum(get_buy_stock) - (company_stock) * sum(get_buy_stock)) as total_evaluation, 
-                        sum(sum(get_buy_price) * sum(get_buy_stock) - (sum(get_sell_price) * sum(get_sell_stock)) as realProfit 
-                        sum((company_stock) * sum(get_buy_stock)) as evaluation_profit, 
+            var query = `select company_name ,
+                        sum(sum(get_buy_price) * sum(get_buy_stock)) as total_buy_price ,
+                        sum(sum(get_buy_price) * sum(get_buy_stock) - (company_stock) * sum(get_buy_stock)) as total_evaluation,
+                        sum(sum(get_buy_price) * sum(get_buy_stock) - (sum(get_sell_price) * sum(get_sell_stock)) as realProfit
+                        sum((company_stock) * sum(get_buy_stock)) as evaluation_profit,
                         from company_info c
-                        left join stock_buy_item b on c.company_idx = b.company_idx 
+                        left join stock_buy_item b on c.company_idx = b.company_idx
                         left join stock_sell_item s on c.company_idx = s.company_idx
                         where b.user_idx = ${idx}
-                        group by user_idx;`+ 
+                        group by user_idx;`+
 
                         `select count(*) as cnt , sum(get_buy_stock) as unit_price , sum(company_stock) as current_price , company_name
-                        from stock_buy_item b 
+                        from stock_buy_item b
                         inner join company_info c on b.company_idx = c.company_idx
                         where b.user_idx = ${idx};`; //종목 별 수익률 등등
-            
+
             dbconn.query(query, (err,result,fields) =>
                 {
                     if(err){
