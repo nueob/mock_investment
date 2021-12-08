@@ -29,7 +29,7 @@ body {
     box-shadow: none;
 }
 </style>
-<input type="hidden" id="companyIdx" value='<%= comment[0].company_idx %>'>
+<input type="hidden" id="companyIdx" value='<%= company.code %>'>
 <div id="discussion">
     <div class="page-heading">
         <div class="container">
@@ -52,33 +52,33 @@ body {
                 </div>
                 <!--end of col-->
             </div>
-        </div>    
+        </div>
     </div>
     <div id="page-content" class="page-content">
         <div class="row">
-            <h5 class="cen">기본 정보</h5>
+            <h5 class="cen"><%= company.titles %></h5>
             <div class="card" style="border:0">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md">
-                            <h6 class="text-muted font-semibold">대표자</h6>
-                            <h6 class="font-extrabold mb-0"><%= comment[0].representative %></h6>
+                            <h6 class="text-muted font-semibold">현재가</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.price %></h6>
                         </div>
                         <div class="col-md">
-                            <h6 class="text-muted font-semibold">회사이름</h6>
-                            <h6 class="font-extrabold mb-0"><%= comment[0].company_name %></h6>
+                            <h6 class="text-muted font-semibold">전일가</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.previous_day_price %></h6>
                         </div>
                     </div>
                     <div class="row" style="padding-top:10px">
                         <div class="col-md">
                             <h6 class="font-extrabold mb-0"></h6>
-                            <h6 class="text-muted font-semibold">계열</h6>
-                            <h6 class="font-extrabold mb-0"><%= comment[0].industry_of_company %></h6>
+                            <h6 class="text-muted font-semibold">고가</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.high_price %></h6>
                             <h6 class="font-extrabold mb-0"></h6>
                         </div>
                         <div class="col-md">
-                            <h6 class="text-muted font-semibold">현재가</h6>
-                            <h6 class="font-extrabold mb-0"><%= comment[0].company_stock %></h6>
+                            <h6 class="text-muted font-semibold">거래</h6>
+                            <h6 class="font-extrabold mb-0"><%= company.transaction_amount %></h6>
                         </div>
                     </div>
                 </div>
@@ -127,11 +127,11 @@ body {
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 <script src="/javascripts/main.js"></script>
 <script>
-    $(document).ready(function(){ 
+    $(document).ready(function(){
         $('#comment_btn').on('click',function(){
             console.log('comment_btn click');
 
