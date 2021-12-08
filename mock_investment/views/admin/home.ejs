@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
+
+    <link rel="stylesheet" href="/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+    <!-- <link rel="shortcut icon" href="/images/favicon.svg" type="image/x-icon"> -->
+</head>
+<style>.cen{text-align: center;}</style>
+<style>.cen2{text-align: left;}</style>
+<body>
+    <div id="app">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            <button type="button" id="modal_btn" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="display: none;">Large modal</button>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <a href="/search/public_offering">
+                            <img src="/images/modal/public_offering.png" alt="offering">
+                        </a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                      </div>
+                </div>
+            </div>
+            <div class="page-heading">
+                <div class="card-body px-3 py-4-5">
+                    <div class = "row">
+                        
+                        <div class="col-md-9">
+                            <h1>대시보드</h1>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="page-content">
+                <!-- <section class="row"> -->
+                    <div class="col-12">
+
+                        <div class="row">
+                                <!-- <div class="col-4 col-lg-4 col-md-4"> -->
+                                <div class="col-4">
+                                    <div class="card" style="height: 250px;">
+                                        <div class="card-body ">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon purple" style="height: 100px; width: 100px;">
+                                                        <i class="iconly-boldShow"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h2 class="text-muted font-semibold">방문자 수</h2>
+                                                    <!-- <h6 class="font-extrabold mb-0">112.000</h6> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                <!-- <div class="col-6 col-lg-4 col-md-6"> -->
+                                    <div class="card" style="height: 250px;">
+                                        <div class="card-body" >
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon blue center" style="height: 100px; width: 100px;" > 
+                                                        <i class="iconly-boldProfile"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h2 class="text-muted font-semibold">참가자 수</h2>
+                                                    <!-- <h6 class="font-extrabold mb-0">112.000</h6> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                <!-- <div class="col-6 col-lg-4 col-md-6"> -->
+                                    <div class="card" style="height: 250px;">
+                                        <div class="card-body ">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon purple" style="height: 100px; width: 100px;">
+                                                        <i class="iconly-boldBookmark" ></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h2 class="text-muted font-semibold" >종목수</h2>
+                                                    <!-- <h6 class="font-extrabold mb-0">112.000</h6> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <h5 class="cen">이달의 주식왕</h5>
+                                        <div class="row">
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <div class="stats-icon blue">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <h6 class="text-muted font-semibold">1등</h6>
+                                                
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <div class="stats-icon blue">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <h6 class="text-muted font-semibold">2등</h6>
+                                                
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <div class="stats-icon blue">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <h6 class="text-muted font-semibold">3등</h6>
+                                                
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                                <div class="avatar avatar-xl">
+                                                    <img src="/images/faces/1.jpg" alt="Face 1">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2" style="width:12.5%">
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            <!-- </div> -->
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        < <div id="container" style="height: 400px; min-width: 310px" ></div> -->
+                                        <!-- <img src="/images/faces/test1.jpg" style="height:400px; min-width: 310px ">
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="chart-profile-visit"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --> 
+                        <div class="row" style="width: 1435px;">
+                            <div class="col-11">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>게시판</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-lg">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>대회명</th>
+                                                        <th>대회 안내</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                   
+                                                    <tr>
+                                                        <td class="col-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <!-- <div class="avatar avatar-md">
+                                                                    <img src="/images/faces/5.jpg">
+                                                                </div> -->
+                                                                <input type="checkbox" class="form-check-input" id="checkbox2">
+                                                                <td></td>
+                                                                <p class="font-bold ms-3 mb-0">
+                                                                    
+                                                                </p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-auto">
+                                                            <p class=" mb-0"></p>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-primary block" >
+                        삭제
+                    </button>
+                        <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                                        data-bs-target="#default">
+                                        글쓰기
+                                    </button>
+                                    <div class="modal fade text-left" id="default" tabindex="-1" role="dialog"
+                                    aria-labelledby="myModalLabel1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel1">대회 정보</h5>
+                                                <button type="button" class="close rounded-pill"
+                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+                                                            <form class="form" method="post">
+                                                                <div class="form-body">
+                                                                    <div class="form-group">
+                                                                        <label for="first-name-vertical">대회명</label>
+                                                                        <!-- <label for="feedback1" class="sr-only">Name</label> -->
+                                                                        <input type="text" id="feedback1" class="form-control" placeholder="대회명" name="name">
+                                                                    </div>
+                                                                    <!-- <div class="form-group">
+                                                                        <label for="feedback4" class="sr-only">Last Game</label>
+                                                                        <input type="text" id="feedback4" class="form-control" placeholder="Last Name" name="LastName">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="feedback2" class="sr-only">Email</label>
+                                                                        <input type="email" id="feedback2" class="form-control" placeholder="Email" name="email">
+                                                                    </div> -->
+                                                                    <!-- <div class="form-group">
+                                                                        <select name="reason" class="form-control">
+                                                                            <option value="Inquiry">Inquiry</option>
+                                                                            <option value="Complain">complaints</option>
+                                                                            <option value="Quotation">Quotation</option>
+                                                                        </select>
+                                                                    </div> -->
+                                                                    <div class="form-group form-label-group">
+                                                                        <label for="first-name-vertical">대회 정보</label>
+                                                                        <textarea class="form-control" id="label-textarea" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 103px;"></textarea>
+                                                                        <label for="label-textarea"></label>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <p>
+                                                   
+                                                </p> -->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn" data-bs-dismiss="modal">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">닫기</span>
+                                                </button>
+                                                <button type="button" class="btn btn-primary ml-1"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">등록</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                  
+                </section>
+            </div>
+
+            
+    </div>
+    <script src="/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/javascripts/bootstrap.bundle.min.js"></script>
+
+    <!-- <script src="/vendors/apexcharts/apexcharts.js"></script> -->
+    <script src="/javascripts/pages/dashboard.js"></script>
+
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>
