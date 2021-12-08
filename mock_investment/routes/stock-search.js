@@ -7,8 +7,7 @@ var stockControllers = require('../controllers/StockControllers');
 router.get('/',stockControllers.getStockMoney);
 router.post('/',stockControllers.getStockMoney);
 
-router.get('/test',stockControllers.getStockMoneyTest);
-
+router.post('/keyword',stockControllers.confirmKeyword);
 router.post('/buy',stockControllers.getBuyStock);
 router.post('/sell',stockControllers.sellStock);
 router.post('/stock',stockControllers.getChartStock);

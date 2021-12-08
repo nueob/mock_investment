@@ -43,7 +43,7 @@ body {
         <br/>
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <form action="/search" class="card card-sm" method="post" style="border:0">
+                <!-- <form action="/search" class="card card-sm" method="post" style="border:0"> -->
                     <div class="card-body row no-gutters align-items-center" style="padding:0.5rem;">
                         <div class="col-auto">
                             <i class="fas fa-search h4 text-body"></i>
@@ -54,11 +54,11 @@ body {
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit" id= "searching_button" style="background-color: #435ebe;border-color: #435ebe; ">Search</button>
+                            <button class="btn btn-lg btn-success" type="submit" id= "searching_button" style="background-color: #435ebe;border-color: #435ebe;" onclick="keywordConfirm()">Search</button>
                         </div>
                         <!--end of col-->
                     </div>
-                </form>
+                <!-- </form> -->
             </div>
             <!--end of col-->
         </div>
@@ -294,8 +294,10 @@ body {
 </body>
 <script src="javascripts/main.js"></script>
 <script>
-    var id = [];
-    $( document ).ready(function() {
+var id = [];
+
+// 인기 검색어 실시간으로 불러오기
+$( document ).ready(function() {
         setInterval(() => {
             $.ajax({
                 url:'/main/popular',
@@ -359,18 +361,8 @@ body {
             })
         }, 1000);
     });
-function chart_price(){
-    $.ajax({
-        url: "/search/price",
-        type:"POST",
-        success:function(result){
-            alert(result);
-        }
-    })
-}chart_price();
-setInterval(function(){
-    document.getElementById("chart_img").src = "/images/faces/test2.jpg";
-},1000*10);
+
+// 매수 , 매도 기능
 function buy(){
     var stock = $("input[id='get_count']").val();
     var price = $("input[id='price']").val().replace(",", "");
@@ -428,6 +420,8 @@ function sell(){
         alert('매도 실패');
     }
 }
+
+// 매수, 매도 값 조정
 function fnCalCount(type, ths){
     console.log('zz');
     var $input = $(ths).parents("td").find("input[id='get_count']");
@@ -472,6 +466,21 @@ function fnCalCount2(type, ths){
 
     }
 }
+
+// chart
+function chart_price(){
+    $.ajax({
+        url: "/search/price",
+        type:"POST",
+        success:function(result){
+            alert(result);
+        }
+    })
+}chart_price();
+setInterval(function(){
+    document.getElementById("chart_img").src = "/images/faces/test2.jpg";
+},1000*10);
+
 function ch(){
     Highcharts.stockChart('container', {
     chart: {
@@ -537,6 +546,40 @@ function ch(){
     }]
     });
 }ch();
+
+// 검색 내용 검사
+function keywordConfirm() {
+  console.log('zz');
+  var keyword = $('#searching').val();
+  console.log(keyword);
+
+  $.ajax({
+      url: "/search/keyword",
+      type:"POST",
+      data: {
+        keyword : keyword
+      },
+      success:function(result){
+          if(result == 100) {
+            var form = document.createElement('form'); // 폼객체 생성
+            var objs;
+            objs = document.createElement('input');
+            objs.setAttribute('type', 'text'); // 값이 들어있는 녀석의 type
+            objs.setAttribute('name', 'searching'); // 객체이름
+            objs.setAttribute('value', keyword); //객체값
+            form.appendChild(objs);
+            form.setAttribute('method', 'post'); //get,post 가능
+            form.setAttribute('action', "/search"); //보내는 url
+            document.body.appendChild(form);
+            form.submit();
+          } else if(result == 200) {
+            alert('검색 결과가 없습니다.');
+          } else {
+            alert('검색 종목을 정확히 입력하여 주십시오');
+          }
+      }
+  })
+}
 // 연구할 차트
 // Highcharts.stockChart('container', {
 

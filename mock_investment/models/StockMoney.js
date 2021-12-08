@@ -24,6 +24,21 @@ module.exports={
     //         // dbconn.end();
     //     })
     // },
+    confirmKeyword : function(idx) {
+      return new Promise ((resolve, reject) => {
+          dbconn.query(
+              `select count(*) as cnt from company_info_kospi where company_name like '%${idx}%'`, (err,result,fields) =>
+              {
+                  if(err){
+                      reject(err);
+                  } else {
+                      let res = JSON.parse(JSON.stringify(result));
+                      resolve(res[0].cnt);
+                  }
+          });
+          // dbconn.end();
+      })
+    },
     stockMoney : function(company) {
         return new Promise ((resolve, reject) => {
             dbconn.query(

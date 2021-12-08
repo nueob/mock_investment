@@ -50,6 +50,8 @@ module.exports = {
                 }
             }
             const getData = async(code,id) => {
+              console.log(code);
+              console.log(id);
                 const html = await getHtml(code);
 
                 const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
@@ -86,8 +88,17 @@ module.exports = {
             getData(result.company_number,result.company_idx);//종목코드
         })
     },
-    getStockMoneyTest : function(req,res,next) {
-        res.render('stock-search/stock-search', {title: 'Express'});
+    confirmKeyword : function(req,res,next) {
+        StockMoney.confirmKeyword(req.body.keyword).then((result) => {
+          console.log(result);
+          if(result == 1) {
+            res.json(100);
+          } else if(result == 0) {
+            res.json(200);
+          } else {
+            res.json(300);
+          }
+        })
     },
     //data-controllers
     doDiscussionSearch : function(req,res,next) {
