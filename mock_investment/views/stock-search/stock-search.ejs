@@ -560,7 +560,7 @@ function keywordConfirm() {
         keyword : keyword
       },
       success:function(result){
-          if(result == 100) {
+          if(result == 100) { // 검색 결과가 있을 경우
             var form = document.createElement('form'); // 폼객체 생성
             var objs;
             objs = document.createElement('input');
@@ -572,9 +572,9 @@ function keywordConfirm() {
             form.setAttribute('action', "/search"); //보내는 url
             document.body.appendChild(form);
             form.submit();
-          } else if(result == 200) {
+          } else if(result == 200) { // 검색 결과가 없을 경우
             alert('검색 결과가 없습니다.');
-          } else {
+          } else { // 검색 결과가 여러개 일 경우
             alert('검색 종목을 정확히 입력하여 주십시오');
           }
       }
