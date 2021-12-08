@@ -5,12 +5,12 @@ const dbconn = db.init();
 const table = 'company_comment c';
 
 module.exports = {
-    searchList : function(companyName) {
+    searchList : function(companyIdx) {
         return new Promise ((resolve,reject) => {
             dbconn.query(
-                `select c.*,i.*,date_format(c.create_dt,'%Y-%m-%d %H:%i:%s') as create_dt from company_info i 
-                left join ${table} on c.company_idx = i.company_idx
-                where i.company_name like '%${companyName}%'` , (err,result,fields) =>
+                `select c.*,date_format(c.create_dt,'%Y-%m-%d %H:%i:%s') as create_dt,u.user_nickname from user_info u
+                left join ${table} on c.user_idx = u.user_idx
+                where c.company_idx = '${companyIdx}'` , (err,result,fields) =>
                 {
                     // console.log(result);
                     if(err) {

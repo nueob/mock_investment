@@ -23,9 +23,11 @@ module.exports = {
         StockMoney.stockMoney(keyword).then((result)=>{
             console.log(result);
             var comment = [];
-            Comment.searchList(keyword).then((result) => {
-              comment = result;
+            Comment.searchList(result.company_idx).then((comment_result) => {
+              console.log(comment_result);
+              comment = comment_result;
             })
+            console.log(comment);
             const getHtml = async (keyword) => {
                 try {
                     return await axios.get("https://finance.naver.com/item/sise.naver?code="+keyword,{responseEncoding : 'binary', responseType : 'arraybuffer'});
@@ -34,8 +36,6 @@ module.exports = {
                 }
             }
             const getData = async(code,id) => {
-              console.log(code);
-              console.log(id);
                 const html = await getHtml(code);
 
                 const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
