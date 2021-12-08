@@ -114,7 +114,7 @@ module.exports = {
                     responseType: 'arraybuffer',
                     });
                     console.log(imgResult);
-                    fs.writeFileSync(`public/images/faces/test2.jpg`, imgResult.data);
+                    fs.writeFileSync(`public/images/faces/stock_img.jpg`, imgResult.data);
                 }
                 const $bodyList = $("div.rate_info");
                 let company = [];

@@ -4,6 +4,7 @@ const router = require('../routes');
 const axios = require("axios");
 const cheerio = require("cheerio");
 const Iconv=require('iconv-lite');
+const fs=require('fs');
 
 module.exports = {
     // views
@@ -55,8 +56,20 @@ module.exports = {
     const getData = async(keyword) => {
         const html = await getHtml(keyword);
         const content = Iconv.decode(html.data, "EUC-KR").toString(); //한글 깨짐 방지
-    
         const $ = cheerio.load(content);
+        const $bodyList = $("#tab_sel1_sise_main_chart");
+        $bodyList.each((idx, elem)=> {
+        var img = String($(elem).find('img:nth-of-type(1)').attr('src'));
+        console.log(img);
+        img2 = img;   
+        })
+        if (img2){
+        const imgResult = await axios.get(img2, {
+          responseType: 'arraybuffer',
+        });
+        fs.writeFileSync(`public/images/faces/kospi_img.jpg`, imgResult.data);
+        }
+
         var $spanList = $("#tab_sel1_deal_trend").text().trim();
         console.log($spanList);
         res.json($spanList);

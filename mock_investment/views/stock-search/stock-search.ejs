@@ -104,7 +104,7 @@ body {
             </div>
                 <div class="card-body">
                     <div class="table-responsive"  style="background-color: #fff;border:0">
-                        <img id="chart_img" src="/images/faces/test2.jpg" style="height:350px; min-width: 310px; width: 900px ">
+                        <img id="chart_img" src="/images/faces/stock_img.jpg" style="height:350px; min-width: 310px; width: 900px ">
                     </div>
                 </div>
                 <div class="card-body" style="padding-top:35px">
@@ -468,17 +468,8 @@ function fnCalCount2(type, ths){
 }
 
 // chart
-function chart_price(){
-    $.ajax({
-        url: "/search/price",
-        type:"POST",
-        success:function(result){
-            alert(result);
-        }
-    })
-}chart_price();
 setInterval(function(){
-    document.getElementById("chart_img").src = "/images/faces/test2.jpg";
+    document.getElementById("chart_img").src = "/images/faces/stock_img.jpg";
 },1000*10);
 
 function ch(){
@@ -486,13 +477,18 @@ function ch(){
     chart: {
         events: {
         load: function () {
-
             // set up the updating of the chart each second
             var series = this.series[0];
             setInterval(function () {
-            var x = (new Date()).getTime(), // current time
-                y = Math.round(Math.random() * 100);
-            series.addPoint([x, y], true, true);
+            $.ajax({
+                url: "/search/price",
+                type:"POST",
+                success:function(result){
+                var x = (new Date()).getTime(), // current time
+                y = result;
+                series.addPoint([x, y], true, true);
+                }
+            })    
             }, 1000);
         }
         }
@@ -520,7 +516,7 @@ function ch(){
     },
 
     title: {
-        text: 'Live random data'
+        text: '실시간 현재가'
     },
 
     exporting: {
