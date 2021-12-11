@@ -5,29 +5,8 @@
             background-color: #ebf3ff;
         }
     </style>
-<!-- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carousel - Mazer Admin Dashboard</title>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
-
-    <link rel="stylesheet" href="/vendors/iconly/bold.css">
-
-    <link rel="stylesheet" href="/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="/vendors/bootstrap-icons/bootstrap-icons.css">
-    
-    <link rel="shortcut icon" href="/images/favicon.svg" type="image/x-icon">
-</head> -->
-
-
-
 <body>
     <div id="app">
-        
-     
         <div id="main">
             <style>
                 body {
@@ -44,159 +23,85 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>대회결과</h3>
-                            <!-- <p class="text-subtitle text-muted"> A slideshow component for cycling through
-                                elements—images or slides of
-                                text—like a carousel. </p> -->
+                            <h3>대회 현황</h3>
                         </div>
                     </div>
                 </div>
-              
+                <div class="row" style="padding-top: 10px;">
+                    <h5 class="cen">대회 정보</h5>
+                    <div class="card" style="border:0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md">
+                                    <h6 class="text-muted font-semibold">대회 제목</h6>
+                                    <h6 class="font-extrabold mb-0"><%= competition[0][0].titles %></h6>
+                                </div>
+                                <div class="col-md">
+                                    <h6 class="text-muted font-semibold">대회 기간</h6>
+                                    <h6 class="font-extrabold mb-0"><%= competition[0][0].start %> ~ <%= competition[0][0].end %></h6>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:10px">
+                                <div class="col-md">
+                                    <h6 class="font-extrabold mb-0"></h6>
+                                    <h6 class="text-muted font-semibold">대회 내용</h6>
+                                    <h6 class="font-extrabold mb-0"><%= competition[0][0].content %></h6>
+                                    <h6 class="font-extrabold mb-0"></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h5>대회 결과</h5>
+                        </div>
+                    </div>
+                </div>
                 <section class="section">
                     <div class="card border-0">
-                        
                         <div class="table-responsive">
                             <table class="table table-bordered" id="table1">
                                 <thead>
                                     <tr class="table-secondary">
                                         <th cope="col" class="text-center">순위</th>
                                         <th cope="col" class="text-center">닉네임</th>
+                                        <th cope="col" class="text-center">이름</th>
                                         <th cope="col" class="text-center" >수익률</th>
-                                        <!-- <th cope="col" class="text-center" >기초자산</th>
-                                        <th cope="col" class="text-center" >진행상태</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    <% for(com of competition[1]) { %>
                                     <tr>
                                         <td class="text-center">1</td>
                                         <td class="text-center">제1회 모의투자 대회</td>
                                         <td class="text-center">2021-12-03~2021-12-09</td>
-                                        <!-- <td class="text-center">5000천만원</td> -->
-                                        <!-- <td class="text-center">진행중</td> -->
+                                        <th cope="col" class="text-center" >수익률</th>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
                                         <td class="text-center"></td>
                                         <td class="text-center"></td>
-                                        <!-- <td class="text-center"></td> -->
-                                        <!-- <td class="text-center"></td> -->
+                                        <th cope="col" class="text-center" >수익률</th>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
                                         <td class="text-center"></td>
                                         <td class="text-center"></td>
-                                        <!-- <td class="text-center"></td> -->
-                                        <!-- <td class="text-center"></td> -->
+                                        <th cope="col" class="text-center" >수익률</th>
                                     </tr>
-                                    
+                                    <% } %>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </section>
-                <!-- <div class="col-md-4 col-12">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#default">
-                                        대회등록
-                    </button>
-                        <!--Basic Modal -->
-                        <!-- <div class="modal fade text-left" id="default" tabindex="-1" role="dialog"
-                        aria-labelledby="myModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="myModalLabel1">대회등록</h5>
-                                    <button type="button" class="close rounded-pill"
-                                        data-bs-dismiss="modal" aria-label="Close">
-                                        <i data-feather="x"></i>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form form-vertical">
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="first-name-vertical">대회 제목</label>
-                                                        <input type="text" id="first-name-vertical"
-                                                            class="form-control" name="fname"
-                                                            placeholder="대회 제목">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="email-id-vertical">대회 시작</label>
-                                                        <input type="date" value="xxx" min="yyy" max="zzz"> -->
-                                                        <!-- <input type="email" id="email-id-vertical"
-                                                            class="form-control" name="email-id"
-                                                            placeholder="대회 기간"> -->
-                                                    <!-- </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="email-id-vertical">대회 종료</label>
-                                                        <input type="date" value="xxx" min="yyy" max="zzz"> -->
-                                                        <!-- <input type="email" id="email-id-vertical"
-                                                            class="form-control" name="email-id"
-                                                            placeholder="대회 기간"> -->
-                                                    <!-- </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="password-vertical">기초자산</label>
-                                                        <input type="password" id="password-vertical"
-                                                            class="form-control" name="contact"
-                                                            placeholder="기초자산">
-                                                    </div>
-                                                </div> -->
-                                                <!-- <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="password-vertical">Password</label>
-                                                        <input type="password" id="password-vertical"
-                                                            class="form-control" name="contact"
-                                                            placeholder="Password">
-                                                    </div>
-                                                </div> -->
-                                            <!-- </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn" data-bs-dismiss="modal">
-                                        <i class="bx bx-x d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">닫기</span>
-                                    </button>
-                                    <button type="button" class="btn btn-primary ml-1"
-                                        data-bs-dismiss="modal" id="registration_btn">
-                                        <i class="bx bx-check d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">등록</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-               
-                </div> -->
-                 
-
-                                
-            
-               
-                
-
             </div>
-
-        
         </div>
     </div>
     <script src="/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
-
     <script src="/javascripts/main.js"></script>
-
-
 </body>
-
 </html>

@@ -68,21 +68,14 @@
                                 </thead>
                                 <tbody>
                                     <% for(com of competition) {%>
-                                    <tr>
+                                    <tr onclick="goToDetail('<%= com.competition_idx%>','<%= com.start%>','<%= com.end%>')">
                                         <td class="text-center"><%=com.competition_idx%></td>
                                         <td class="text-center"><%=com.titles%></td>
                                         <td class="text-center"><%=com.start%> ~ <%=com.end%></td>
                                         <td class="text-center"><%=com.underlying_asset%></td>
                                         <td class="text-center"><%=com.state%></td>
                                     </tr>
-                                    <!-- <tr>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                    </tr> -->
-                                        <% } %>
+                                    <% } %>
                                 </tbody>
                             </table>
                         </div>
@@ -114,6 +107,14 @@
                                                             <input type="text" id="first-name-vertical"
                                                                 class="form-control" name="fname"
                                                                 placeholder="대회 제목">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="first-name-vertical">대회 내용</label>
+                                                            <input type="text" id="compet-content"
+                                                                class="form-control" name="fname"
+                                                                placeholder="대회 내용">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -325,6 +326,7 @@
 <script>
     function setCompetition() {
         var titles = $('#first-name-vertical').val();
+        var content = $('#compet-content').val();
         var start = $('#start').val();
         var end = $('#end').val();
         var asset = $('#password-vertical').val();
@@ -333,6 +335,7 @@
             type: 'POST',
             data : {
                 titles : titles,
+                content : content,
                 start : start,
                 end : end,
                 asset : asset
@@ -342,5 +345,9 @@
                 location.reload();
             }
         })
+    }
+    function goToDetail(idx,start,end) {
+        console.log(idx);
+        location.href='/users/result?idx=' + idx + '&&start=' + start + '&&end=' + end;
     }
 </script>
