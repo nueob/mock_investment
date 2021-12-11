@@ -19,6 +19,7 @@
 </head>
 <style>.cen{text-align: center;}</style>
 <style>.cen2{text-align: left;}</style>
+<style>ul li{list-style-type: none; float: left; margin-left: 20px;}</style>
 <body>
     <div id="app">
             <header class="mb-3">
@@ -114,9 +115,14 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <!-- <div id="container" style="height: 400px; min-width: 310px" ></div> -->
-                                        <h6 id = "kospi"></h6>
+                                        <ul>
+                                            <li><h6 id = "kospi"></h6></li>
+                                            <li><h7 style="color:mediumpurple;">개인</h7></li>
+                                            <li><h7 style="color:coral">외국인</h7></li>
+                                            <li><h7 style="color:deepskyblue">기관</h7></li>
+                                        </ul>
                                         <img id = "kospi_img" src="/images/faces/kospi_img.jpg" style="height:300px; min-width: 310px ">
+                                        
                                     </div>
                                     <div class="card-body">
                                         <div id="chart-profile-visit"></div>
