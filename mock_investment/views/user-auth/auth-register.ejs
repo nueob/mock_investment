@@ -83,7 +83,7 @@
             var id = $('input[name=user_id]').val();
             console.log(id);
             $.ajax({
-                url:'/idDupcheck',
+                url:'/login/idDupcheck',
                 type:'POST',
                 data:{'id':id},
                 success : function(result) {
@@ -103,7 +103,7 @@
             var nickname = $('input[name=user_nickname]').val();
             console.log(nickname);
             $.ajax({
-                url:'/nickDupcheck',
+                url:'/login/nickDupcheck',
                 type:'POST',
                 data:{'nickname':nickname},
                 success : function(result) {
@@ -142,7 +142,7 @@
                         var password = $('input[name=pass_word]').val();
 
                         $.ajax({
-                            url:'/register',
+                            url:'/login/register',
                             type:'POST',
                             data:{
                                 'id' : id,

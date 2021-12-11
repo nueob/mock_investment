@@ -49,7 +49,11 @@
                             <h1>한남대학교 창업모의투자</h1>
                         </div>
                         <div class="col-md-1">
-                            <a href="/logout"button class="btn btn-xl btn-light-primary font-bold mt-3">로그아웃</button></a>
+                            <% if(nickname != '로그인이 필요합니다.') { %>
+                            <a href="/login/logout" button class="btn btn-xl btn-light-primary font-bold mt-3">로그아웃</button></a>
+                            <% } else { %>
+                            <a href="/login" button class="btn btn-xl btn-light-primary font-bold mt-3">로그인</button></a>
+                            <% } %>   
                         </div>
                     </div>
                 </div>
@@ -90,15 +94,17 @@
                                                 <h6 class="text-muted font-semibold">3등</h6>
                                                 <h6 class="font-extrabold mb-0"><%=rank[0][2].user_nickname%></h6>
                                             </div>
+                                            <% if(nickname != '로그인이 필요합니다.') { %>
                                             <div class="col-md-2" style="width:12.5%">
                                                 <div class="avatar avatar-xl">
                                                     <img src="/images/faces/1.jpg" alt="Face 1">
                                                 </div>
                                             </div>
                                             <div class="col-md-2" style="width:12.5%">
-                                                <h6 class="text-muted font-semibold"><%=rank[1][0].my_rank%>등</h6>
+                                                <h6 class="text-muted font-semibold"><%=rank[2][0].my_rank%>등</h6>
                                                 <h6 class="font-extrabold mb-0"><%= nickname %></h6>
                                             </div>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +140,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <% for (news of rank[3]) {%>
+                                                    <% for (news of rank[1]) {%>
                                                     <tr>
                                                         <td class="col-3">
                                                             <div class="d-flex align-items-center">
@@ -166,7 +172,9 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold"><%= nickname %></h5>
+                                        <% if(nickname != '로그인이 필요합니다.') { %>
                                         <h6><a href="/users" class="text-muted mb-0">마이페이지</a>.</h6>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -272,7 +280,7 @@
         document.getElementById('modal_btn').click();
         setInterval(() => {
             $.ajax({
-                url:'/main/popular',
+                url:'/popular',
                 type:'POST',
                 success : function(result) {
                     document.getElementById("first_company_name").innerHTML = result[0].titles;
@@ -336,7 +344,7 @@
 
     function kospi(){
         $.ajax({
-            url:'/main/kospi',
+            url:'/kospi',
             type:'POST',
             success:function(result){
                 document.getElementById("kospi").innerHTML = result;

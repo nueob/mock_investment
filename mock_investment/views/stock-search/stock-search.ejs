@@ -300,7 +300,7 @@ var id = [];
 $( document ).ready(function() {
         setInterval(() => {
             $.ajax({
-                url:'/main/popular',
+                url:'/popular',
                 type:'POST',
                 success : function(result) {
                     document.getElementById("first_company_name").innerHTML = result[0].titles;

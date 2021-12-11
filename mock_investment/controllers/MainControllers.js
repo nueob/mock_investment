@@ -9,8 +9,15 @@ const fs=require('fs');
 module.exports = {
     // views
     doMainView : function(req,res,next) {
-        User.getRankPeople(req.session.userIdx).then((result) =>{
-            res.render('dashboard/index', { title: 'Express' , rank : result , nickname: req.session.userNickname});
+        var idx = -1;
+        var nickname = '로그인이 필요합니다.';
+        console.log(req.session.userIdx);
+        if(typeof req.session.userIdx != 'undefined') {
+          idx = req.session.userIdx;
+          nickname = req.session.userNickname;
+        }
+        User.getRankPeople(idx).then((result) =>{
+            res.render('dashboard/index', { title: 'Express' , rank : result , nickname: nickname});
         })
     },
     doPopularView : function(req,res,next) {
@@ -39,7 +46,6 @@ module.exports = {
               src : $(elem).find('td img:nth-of-type(1)').attr('alt')
             };  
           });
-          console.log(company);
           res.json(company);
         }
         getData(381970);//종목코드
