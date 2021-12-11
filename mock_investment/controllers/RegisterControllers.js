@@ -29,14 +29,21 @@ module.exports = {
 
     // data controllers
     loginProc : function(req,res,next) {
-        User.findUser(req.body.userId,req.body.password).then((result) =>{
-            console.log(result);
-            if(result != 100) {
-                req.session.userIdx = result.user_idx;
-                req.session.userNickname = result.user_nickname;
-                req.session.userName = result.user_name;
-            } 
-            res.json(result);
+        User.adminUser(req.body.userId,req.body.password).then((admin) =>{
+            if(admin == 100) {
+                User.findUser(req.body.userId,req.body.password).then((result) =>{
+                    console.log(result);
+                    if(result != 100) {
+                        req.session.userIdx = result.user_idx;
+                        req.session.userNickname = result.user_nickname;
+                        req.session.userName = result.user_name;
+                    } 
+                    res.json(result);
+                })
+            } else {
+                req.session.adminIdx = admin.admin_idx;
+                res.json(200);
+            }    
         })
     },
     doIdDupCheck : function(req,res,next) {

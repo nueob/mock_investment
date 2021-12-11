@@ -39,6 +39,24 @@ module.exports = {
             });
         })
     },
+    adminUser : function(id,password) {
+        return new Promise ((resolve,reject) => {
+            dbconn.query(
+                `select admin_idx from admin_info where admin_id = '${id}' and admin_password = '${password}'` , (err,result,fields) =>
+                {
+                    if(err) {
+                        reject(err);
+                    } else {
+                        if(typeof result == 'undefined' || result == "" || result.length == 0 || result == null) {
+                            resolve(100);
+                        } else {
+                            let res = JSON.parse(JSON.stringify(result));
+                            resolve(res[0]);
+                        }
+                    }
+            });
+        })
+    },
     // register
     save : function (id,name, nickname, password){
         return new Promise ((resolve, reject) => {

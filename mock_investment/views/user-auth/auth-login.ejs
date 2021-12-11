@@ -72,7 +72,9 @@
                 success : function(result) {
                     if(result == 100) {
                         alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-                    } else {
+                    } else if(result == 200){ //admin 계정
+                        location.href = '/users/list';
+                    } else { // user 계정
                         location.href = '/';
                     }
                 }
