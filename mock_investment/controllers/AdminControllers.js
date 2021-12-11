@@ -9,9 +9,6 @@ module.exports = {
     },
     adminView : function(req,res,next) {
         Admin.getCompetition().then((result) => {
-            if(result.length = 0) {
-                result = 'empty';
-            } 
             res.render('admin/compet-setting', { title: 'Express' ,layout:'layoutad' , competition : result});
         })
     },
@@ -23,5 +20,11 @@ module.exports = {
     },
     resultView : function(req,res,next) {
         res.render('admin/result', { title: 'Express' ,layout:'layoutad'});
+    },
+    // data function
+    setCompetition : function(req,res,next) {
+        Admin.setCompetition(req.body.titles,req.body.start,req.body.end,req.body.asset,req.session.adminIdx).then((result) =>{
+            res.json(100);
+        })
     }
 }

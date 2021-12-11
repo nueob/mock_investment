@@ -26,6 +26,7 @@ router.get('/home',adminControllers.homeView);
 router.get('/ranking',adminControllers.rankingView);
 router.get('/result',adminControllers.resultView);
 
+router.post('/setCompetition',adminControllers.setCompetition);
 // router.get('/admin1',UserControllers.guideView);
 
 

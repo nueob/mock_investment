@@ -6,7 +6,7 @@ const table = 'admin_info a';
 
 module.exports={
     getCompetition : function () {
-        var query = `select * from competition_info;` ;
+        var query = `select *,date_format(competition_start_date,'%Y-%m-%d') as start,date_format(competition_end_date,'%Y-%m-%d') as end from competition_info;` ;
         return new Promise ((resolve, reject) => {
             dbconn.query(query, (err,result,fields) =>
                 {
@@ -20,4 +20,19 @@ module.exports={
             // dbconn.end();
         })
     },
+    setCompetition : function(titles,start,end,asset,adminIdx) {
+        var query = `insert into competition_info (admin_idx,titles,competition_start_date,competition_end_date,underlying_asset) 
+        values ('${adminIdx}', '${titles}', '${start}','${end}','${asset}')` ;
+        return new Promise ((resolve, reject) => {
+            dbconn.query(query, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+            });
+            // dbconn.end();
+        })
+    }
 }

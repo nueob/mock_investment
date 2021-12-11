@@ -67,24 +67,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% if(competition != 'empty') { 
-                                        for(com of competition) {%>
+                                    <% for(com of competition) {%>
                                     <tr>
                                         <td class="text-center"><%=com.competition_idx%></td>
                                         <td class="text-center"><%=com.titles%></td>
-                                        <td class="text-center"><%=com.competition_start_date%> ~ <%=com.competition_end_date%></td>
-                                        <td class="text-center"><%=com.underly_asset%></td>
+                                        <td class="text-center"><%=com.start%> ~ <%=com.end%></td>
+                                        <td class="text-center"><%=com.underlying_asset%></td>
                                         <td class="text-center"><%=com.state%></td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="text-center"></td>
                                         <td class="text-center"></td>
                                         <td class="text-center"></td>
                                         <td class="text-center"></td>
                                         <td class="text-center"></td>
-                                    </tr>
-                                        <% }
-                                    } %>
+                                    </tr> -->
+                                        <% } %>
                                 </tbody>
                             </table>
                         </div>
@@ -96,81 +94,66 @@
                                         대회등록
                     </button>
                         <!--Basic Modal -->
-                        <div class="modal fade text-left" id="default" tabindex="-1" role="dialog"
-                        aria-labelledby="myModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="myModalLabel1">대회등록</h5>
-                                    <button type="button" class="close rounded-pill"
-                                        data-bs-dismiss="modal" aria-label="Close">
-                                        <i data-feather="x"></i>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form form-vertical">
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="first-name-vertical">대회 제목</label>
-                                                        <input type="text" id="first-name-vertical"
-                                                            class="form-control" name="fname"
-                                                            placeholder="대회 제목">
+                        <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel1">대회등록</h5>
+                                        <button type="button" class="close rounded-pill"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            <i data-feather="x"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form form-vertical">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="first-name-vertical">대회 제목</label>
+                                                            <input type="text" id="first-name-vertical"
+                                                                class="form-control" name="fname"
+                                                                placeholder="대회 제목">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-vertical">대회 시작</label>
+                                                            <input type="date" id="start" value="xxx" min="yyy" max="zzz">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="email-id-vertical">대회 종료</label>
+                                                            <input type="date" id="end" value="xxx" min="yyy" max="zzz">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="password-vertical">기초자산</label>
+                                                            <input type="password" id="password-vertical"
+                                                                class="form-control" name="contact"
+                                                                placeholder="기초자산">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="email-id-vertical">대회 시작</label>
-                                                        <input type="date" value="xxx" min="yyy" max="zzz">
-                                                        <!-- <input type="email" id="email-id-vertical"
-                                                            class="form-control" name="email-id"
-                                                            placeholder="대회 기간"> -->
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="email-id-vertical">대회 종료</label>
-                                                        <input type="date" value="xxx" min="yyy" max="zzz">
-                                                        <!-- <input type="email" id="email-id-vertical"
-                                                            class="form-control" name="email-id"
-                                                            placeholder="대회 기간"> -->
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="password-vertical">기초자산</label>
-                                                        <input type="password" id="password-vertical"
-                                                            class="form-control" name="contact"
-                                                            placeholder="기초자산">
-                                                    </div>
-                                                </div>
-                                                <!-- <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="password-vertical">Password</label>
-                                                        <input type="password" id="password-vertical"
-                                                            class="form-control" name="contact"
-                                                            placeholder="Password">
-                                                    </div>
-                                                </div> -->
                                             </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn" data-bs-dismiss="modal">
-                                        <i class="bx bx-x d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">닫기</span>
-                                    </button>
-                                    <button type="button" class="btn btn-primary ml-1"
-                                        data-bs-dismiss="modal" id="registration_btn">
-                                        <i class="bx bx-check d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">등록</span>
-                                    </button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" data-bs-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">닫기</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary ml-1"
+                                            data-bs-dismiss="modal" id="registration_btn" onclick="setCompetition()">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">등록</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <!-- <section class="section">
                     <div class="row">
@@ -339,3 +322,25 @@
 </body>
 
 </html>
+<script>
+    function setCompetition() {
+        var titles = $('#first-name-vertical').val();
+        var start = $('#start').val();
+        var end = $('#end').val();
+        var asset = $('#password-vertical').val();
+        $.ajax({
+            url: '/users/setCompetition',
+            type: 'POST',
+            data : {
+                titles : titles,
+                start : start,
+                end : end,
+                asset : asset
+            },
+            success : function(result) {
+                alert('대회 설정이 완료 되었습니다.');
+                location.reload();
+            }
+        })
+    }
+</script>
