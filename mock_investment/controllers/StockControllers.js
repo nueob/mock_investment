@@ -221,13 +221,9 @@ module.exports = {
     },
     chartPrice: function(req,res,next){
         var keyword = '';
-        console.log(typeof req.body.searching);
-        console.log(typeof req.body.searching == 'undefined');
-        if(typeof req.body.searching == 'undefined') {
-            keyword = '카카오페이';
-        } else {
-            keyword = req.body.searching;
-        }
+        console.log(typeof req.body.last);
+        console.log(typeof req.body.last == 'undefined');
+        keyword = req.body.last;
         console.log(keyword);
         StockMoney.stockMoney(keyword).then((result)=>{
         const getHtml = async (keyword) => {

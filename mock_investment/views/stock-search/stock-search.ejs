@@ -68,6 +68,7 @@ body {
     <section class="row">
         <div class="col-12 col-lg-9">
             <input type="hidden" id="companyIdx" value="<%= company.code %>">
+            <input type="hidden" id="last" value="<%= company.titles %>">
             <h3 class="card-body" style="padding-bottom: 10px;"><%= company.titles %></h3>
             <div class="card-body" style="border:0">
                 <div class="card-body px-3 py-4-5" style="background-color: #fff;border:0">
@@ -473,6 +474,7 @@ setInterval(function(){
 },1000*10);
 
 function ch(){
+    var last = $('#last').val();
     Highcharts.stockChart('container', {
     chart: {
         events: {
@@ -482,6 +484,9 @@ function ch(){
             setInterval(function () {
             $.ajax({
                 url: "/search/price",
+                data: {
+                    'last': last,
+                },
                 type:"POST",
                 success:function(result){
                 var x = (new Date()).getTime(), // current time
