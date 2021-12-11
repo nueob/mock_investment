@@ -113,7 +113,7 @@ module.exports = {
                         // `select (company_stock - company_before_stock) as different , ROW_NUMBER() OVER (ORDER BY different desc) as rank , company_stock , company_name
                         // from company_info
                         // limit 3;` +
-                        `select * from company_news;`;
+                        `select * from competition_info;`;
             if(idx != -1) {
                 query += `select ROW_NUMBER() OVER (ORDER BY assets desc) as my_rank from ${table} where user_idx = ${idx};`
             }
