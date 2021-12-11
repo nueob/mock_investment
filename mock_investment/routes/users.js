@@ -19,6 +19,7 @@ router.post('/change_nickname', userControllers.changeNickname);
 router.post('/change_password', userControllers.changePassword);
 
 router.get('/asset', userControllers.doAssetView);
+
 router.get('/list',adminControllers.adlistView);
 router.get('/setting',adminControllers.adminView);
 router.get('/home',adminControllers.homeView);

@@ -5,10 +5,15 @@ const router = require('../routes');
 module.exports = {
     // views
     adlistView : function(req,res,next) {
-        res.render('admin/adlist', { title: 'Express' ,layout:'layoutad'});
+        res.render('admin/adlist', { title: 'Express' , layout:'layoutad'});
     },
     adminView : function(req,res,next) {
-        res.render('admin/compet-setting', { title: 'Express' ,layout:'layoutad'});
+        Admin.getCompetition().then((result) => {
+            if(result.length = 0) {
+                result = 'empty';
+            } 
+            res.render('admin/compet-setting', { title: 'Express' ,layout:'layoutad' , competition : result});
+        })
     },
     homeView : function(req,res,next) {
         res.render('admin/home', { title: 'Express' ,layout:'layoutad'});
