@@ -275,12 +275,17 @@ body {
                                         <tr style="text-align:center;">
                                             <th>1주 가격</th>
                                             <td>
-                                                <input type="number" id="price2" value='<%= company.price %>'/>
+                                                <input type="text" id="price2" value='<%= company.price %>'/>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="text-bold-500">주문금액</th>
-                                            <td><input type="number" id="total2" value='<%= company.price %>' readonly="readonly"/></td>
+                                        <tr style="text-align:center;">
+                                            <th>주문금액</th>
+                                            <td>
+                                                <input type="text" id="total2" value='<%= company.price %>' readonly="readonly"/>
+                                            </td>
+
+                                        </tr>
                                         </tr>
 
                                     </tbody>
@@ -529,7 +534,7 @@ function ch(){
     },
 
     series: [{
-        name: 'Random data',
+        name: '주식 현재가',
         data: (function () {
         // generate an array of random data
         var data = [],
