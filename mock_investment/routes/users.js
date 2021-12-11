@@ -1,9 +1,9 @@
 //my주식창
 var express = require('express');
 var session = require('express-session');
-const UserControllers = require('../controllers/UserControllers');
 var router = express.Router();
 
+var adminControllers = require('../controllers/AdminControllers');
 var userControllers = require('../controllers/UserControllers');
 
 /* GET users listing. */
@@ -19,11 +19,11 @@ router.post('/change_nickname', userControllers.changeNickname);
 router.post('/change_password', userControllers.changePassword);
 
 router.get('/asset', userControllers.doAssetView);
-router.get('/list',userControllers.adlistView);
-router.get('/setting',userControllers.adminView);
-router.get('/home',userControllers.homeView);
-router.get('/ranking',userControllers.rankingView);
-router.get('/result',userControllers.resultView);
+router.get('/list',adminControllers.adlistView);
+router.get('/setting',adminControllers.adminView);
+router.get('/home',adminControllers.homeView);
+router.get('/ranking',adminControllers.rankingView);
+router.get('/result',adminControllers.resultView);
 
 // router.get('/admin1',UserControllers.guideView);
 
