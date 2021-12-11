@@ -5,25 +5,18 @@ const router = require('../routes');
 module.exports = {
     // views
     adlistView : function(req,res,next) {
-        res.render('admin/adlist', { title: 'Express' , layout:'layoutad'});
+        Admin.getUserInfo().then((result) => {
+            console.log(result);
+            res.render('admin/adlist', { title: 'Express' , layout:'layoutad' , user : result});
+        })
     },
     adminView : function(req,res,next) {
         Admin.getCompetition().then((result) => {
             res.render('admin/compet-setting', { title: 'Express' ,layout:'layoutad' , competition : result});
         })
     },
-    homeView : function(req,res,next) {
-        res.render('admin/home', { title: 'Express' ,layout:'layoutad'});
-    },
-    rankingView : function(req,res,next) {
-        res.render('admin/ranking', { title: 'Express' ,layout:'layoutad'});
-    },
     resultView : function(req,res,next) {
         Admin.getCompetitionDetail(req.query.idx,req.query.start,req.query.end).then((result) =>{
-            // console.log(result);
-            console.log(result);
-            console.log('0번째');
-            console.log(result[0][0].titles);
             res.render('admin/result', { title: 'Express' , layout:'layoutad', competition : result});
         })
     },

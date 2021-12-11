@@ -60,5 +60,20 @@ module.exports={
             });
             // dbconn.end();
         })
+    },
+    getUserInfo : function(start,limit) {
+        var query = `select * from user_info`
+        return new Promise ((resolve, reject) => {
+            dbconn.query(query, (err,result,fields) =>
+                {
+                    if(err){
+                        reject(err);
+                    } else {
+                        let res = JSON.parse(JSON.stringify(result));
+                        resolve(res);
+                    }
+                });
+            // dbconn.end();
+        })
     }
 }

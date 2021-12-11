@@ -20,13 +20,15 @@ router.post('/change_password', userControllers.changePassword);
 
 router.get('/asset', userControllers.doAssetView);
 
-router.get('/list',adminControllers.adlistView);
 router.get('/setting',adminControllers.adminView);
-// router.get('/home',adminControllers.homeView);
-// router.get('/ranking',adminControllers.rankingView);
+router.post('/setCompetition',adminControllers.setCompetition);
+
 router.get('/result',adminControllers.resultView);
 
-router.post('/setCompetition',adminControllers.setCompetition);
+router.get('/list',adminControllers.adlistView);
+
+// router.get('/home',adminControllers.homeView);
+// router.get('/ranking',adminControllers.rankingView);
 // router.get('/admin1',UserControllers.guideView);
 
 
