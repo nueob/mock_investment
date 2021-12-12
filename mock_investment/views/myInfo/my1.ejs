@@ -176,27 +176,15 @@
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-bold-500">가용 자산</th>
-                                                                <% if(result[1][0].realAssets != null) { %>
                                                                 <td><%= result[1][0].realAssets %></td>
-                                                                <% } else { %>
-                                                                <td><%= result[0][0].assets %></td>
-                                                                <% } %>
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-bold-500">보유 주식 총액</th>
-                                                                <% if(result[1][0].share != null) { %>
                                                                 <td><%= result[1][0].share %></td>
-                                                                <% } else { %>
-                                                                <td>0</td>
-                                                                <% } %>
                                                             </tr>
                                                             <tr>
-                                                                <th class="text-bold-500">보유 종목 수</th>
-                                                                <% if(result[1][0].allAssets != null) { %>
+                                                                <th class="text-bold-500">보유 주식 수</th>
                                                                 <td><%= result[1][0].allAssets %> 종목</td>
-                                                                <% } else { %>
-                                                                <td>0 종목</td>
-                                                                <% } %>
                                                             </tr>
                                                         </tbody>
                                                     </table>

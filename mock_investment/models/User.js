@@ -134,13 +134,16 @@ module.exports = {
     // myinfo
     getMyInfo : function(idx) {
         return new Promise ((resolve, reject) => {
-            var query = `select assets from ${table} where user_idx = ${idx};` + //보유 자산
+            var query = `select (assets + IFNULL(sum(get_buy_price),0) - IFNULL(sum(get_sell_price),0)) as assets from user_info u
+                        left join stock_buy_item b on u.user_idx = b.user_idx
+                        left join stock_sell_item s on u.user_idx = s.user_idx
+                        where u.user_idx = ${idx};` + //보유 자산
 
-                        `select (sum(get_buy_price) - sum(get_sell_price)) as share,
-                         (sum(get_buy_stock) - sum(get_sell_stock)) as allAssets , (assets - sum(get_buy_price) + sum(get_sell_price)) as realAssets
+                        `select (IFNULL(sum(get_buy_price),0) - IFNULL(sum(get_sell_price),0)) as share,
+                         (IFNULL(sum(get_buy_stock),0) - IFNULL(sum(get_sell_stock),0)) as allAssets , (assets - IFNULL(sum(get_buy_price),0) + IFNULL(sum(get_sell_price),0)) as realAssets
                         from stock_buy_item b
-                        inner join user_info u on b.user_idx = u.user_idx
                         left join stock_sell_item s on b.company_idx = s.company_idx
+                        inner join user_info u on b.user_idx = u.user_idx
                         where b.user_idx = ${idx};` + // 보유 주, 보유 주식 총액
 
                         // `select company_name, get_buy_stock as stock , '매수 준비 중' as memo ,
@@ -174,7 +177,7 @@ module.exports = {
                         `select company_name from interest_item i
                         inner join company_info_kospi c on i.company_idx = c.company_idx
                         where i.user_idx = ${idx}`; // 관심 종목
-
+            console.log(query);
             dbconn.query(query, (err,result,fields) =>
                 {
                     if(err){
