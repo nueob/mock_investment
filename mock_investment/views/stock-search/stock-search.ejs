@@ -76,7 +76,7 @@ body {
                         <div class="col-md-2">
                             <h6 class="font-extrabold mb-0"></h6>
                             <h6 class="text-muted font-semibold">현재가</h6>
-                            <h6 class="font-extrabold mb-0"><%= company.price %></h6>
+                            <h6 class="font-extrabold mb-0" id="finish"></h6>
                             <h6 class="font-extrabold mb-0"></h6>
                         </div>
                         <div class="col-md-2">
@@ -494,6 +494,7 @@ function ch(){
                 },
                 type:"POST",
                 success:function(result){
+                document.getElementById("finish").innerHTML = result;
                 var x = (new Date()).getTime(), // current time
                 y = result;
                 series.addPoint([x, y], true, true);
